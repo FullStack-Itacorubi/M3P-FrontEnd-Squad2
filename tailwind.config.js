@@ -9,4 +9,9 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /via-(zinc)-(50|100|900)/,
+    },
+  ],
 };
