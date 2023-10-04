@@ -8,8 +8,10 @@ import { NgIconsModule } from '@ng-icons/core';
 import * as heroIcons from '@ng-icons/heroicons/outline';
 
 @NgModule({
-  declarations: [AppComponent,
-    LoginComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
