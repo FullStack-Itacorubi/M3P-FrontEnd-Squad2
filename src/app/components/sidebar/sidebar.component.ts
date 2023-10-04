@@ -19,4 +19,12 @@ export class SidebarComponent {
     { text: 'Dietas', icon: 'heroCakeSolid', selected: false },
     { text: 'Exercícios', icon: 'heroHeartSolid', selected: false },
   ];
+
+  test(text: string) {
+    this.menuItems = this.menuItems.map((item) =>
+      item.text === text
+        ? { ...item, selected: true }
+        : { ...item, selected: false }
+    );
+  }
 }
