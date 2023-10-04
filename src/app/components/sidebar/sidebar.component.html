@@ -34,7 +34,8 @@
           *ngFor="let item of menuItems"
           class="{{ collapsed ? 'mx-auto' : 'mx-0' }}"
         >
-          <button
+          <a
+            href="#"
             class="flex items-center gap-4 p-2 rounded border text-zinc-400 overflow-hidden {{
               !collapsed ? 'w-full' : 'w-fit'
             }} {{
@@ -46,7 +47,7 @@
           >
             <ng-icon name="{{ item.icon }}" class="text-2xl" />
             <span *ngIf="!collapsed" class="truncate">{{ item.text }}</span>
-          </button>
+          </a>
         </li>
       </ul>
     </div>
@@ -54,7 +55,11 @@
 
   <section class="w-full">
     <app-fade-separator color="zinc-700" />
-    <div class="flex items-center justify-between w-full h-16 gap-2 py-2">
+    <div
+      class="flex items-center justify-between w-full gap-2 py-2 {{
+        collapsed ? 'flex-col' : ''
+      }}"
+    >
       <div class="flex items-center w-4/5 gap-2">
         <img
           class="w-10 h-10 rounded-full {{ collapsed ? 'mx-auto' : 'mx-0' }}"
@@ -67,10 +72,9 @@
         </div>
       </div>
       <button
-        *ngIf="!collapsed"
-        class="flex items-center justify-center w-10 transition-all border rounded-md aspect-square bg-zinc-800 border-zinc-700 hover:brightness-125"
+        class="flex items-center justify-center w-10 transition-all rounded-md aspect-square text-zinc-500 hover:text-zinc-50"
       >
-        <ng-icon name="heroArrowLeftOnRectangle" class="text-2xl" />
+        <ng-icon name="jamLogOut" class="text-3xl" />
       </button>
     </div>
   </section>
