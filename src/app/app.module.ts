@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgIconsModule } from '@ng-icons/core';
 import * as heroIcons from '@ng-icons/heroicons/outline';
+import * as heroIconsSolid from '@ng-icons/heroicons/solid';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FadeSeparatorComponent } from './components/shared/fade-separator/fade-separator.component';
 
@@ -13,7 +14,7 @@ import { FadeSeparatorComponent } from './components/shared/fade-separator/fade-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgIconsModule.withIcons(heroIcons),
+    NgIconsModule.withIcons({ ...heroIcons, ...heroIconsSolid }),
   ],
   bootstrap: [AppComponent],
 })

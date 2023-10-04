@@ -1,23 +1,69 @@
 <aside
-  class="flex flex-col justify-between w-2/12 h-screen p-5 bg-zinc-900 text-zinc-50"
+  ngClass="relative flex flex-col justify-between h-screen p-5 bg-zinc-900 text-zinc-50 transition-all duration-500 {{
+    collapsed ? 'w-24' : 'w-2/12'
+  }}"
 >
-  <section>Menu</section>
+  <button
+    (click)="collapsed = !collapsed"
+    class="absolute right-0 flex items-center justify-center w-8 transition-all translate-x-1/2 border rounded-full top-4 bg-zinc-700 aspect-square border-zinc-800 hover:brightness-125"
+  >
+    <ng-icon [name]="!collapsed ? 'heroChevronLeft' : 'heroChevronRight'" />
+  </button>
+
+  <section>
+    <div class="flex items-center gap-4 py-4 overflow-hidden">
+      <img
+        [src]="brandImgUrl"
+        alt=""
+        class="w-12 rounded-md aspect-square transition-all {{
+          collapsed ? 'mx-auto' : 'mx-0'
+        }}"
+      />
+      <span *ngIf="!collapsed" class="text-2xl truncate">{{ brandName }}</span>
+    </div>
+    <app-fade-separator color="zinc-700" />
+
+    <div class="overflow-hidden">
+      <span
+        *ngIf="!collapsed"
+        class="ml-8 text-sm font-medium tracking-widest truncate text-zinc-400"
+        >MENU</span
+      >
+      <ul class="flex flex-col gap-1">
+        <li
+          *ngFor="let item of menuItems"
+          class="{{ collapsed ? 'mx-auto' : 'mx-0' }}"
+        >
+          <button
+            class="flex items-center gap-4 p-2 rounded border-zinc-700 text-zinc-400 overflow-hidden {{
+              !collapsed ? 'w-full' : 'w-fit'
+            }} {{ item.selected ? 'bg-zinc-800 border text-zinc-50' : '' }}"
+          >
+            <ng-icon name="{{ item.icon }}" class="text-2xl" />
+            <span *ngIf="!collapsed" class="truncate">{{ item.text }}</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <section class="w-full">
     <app-fade-separator color="zinc-700" />
-    <div class="flex items-center justify-between w-full gap-2 py-2">
-      <div class="flex w-4/5 gap-2">
+    <div class="flex items-center justify-between w-full h-16 gap-2 py-2">
+      <div class="flex items-center w-4/5 gap-2">
         <img
-          class="w-12 rounded-full aspect-square"
+          class="w-10 h-10 rounded-full {{ collapsed ? 'mx-auto' : 'mx-0' }}"
           src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1985&q=80"
           alt=""
         />
-        <div class="overflow-hidden">
-          <p class="font-medium">{{ name }}</p>
+        <div *ngIf="!collapsed" class="overflow-hidden">
+          <p class="font-medium truncate">{{ name }}</p>
           <p class="text-sm truncate text-zinc-500">{{ email }}</p>
         </div>
       </div>
       <button
-        class="flex items-center justify-center w-10 transition-all border rounded aspect-square bg-zinc-800 border-zinc-700 hover:brightness-125"
+        *ngIf="!collapsed"
+        class="flex items-center justify-center w-10 transition-all border rounded-md aspect-square bg-zinc-800 border-zinc-700 hover:brightness-125"
       >
         <ng-icon name="heroArrowLeftOnRectangle" class="text-2xl" />
       </button>
