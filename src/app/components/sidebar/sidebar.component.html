@@ -1,0 +1,26 @@
+<aside
+  class="flex flex-col justify-between w-2/12 h-screen p-5 bg-zinc-900 text-zinc-50"
+>
+  <section>Menu</section>
+  <section class="w-full">
+    <app-fade-separator color="zinc-700" />
+    <div class="flex items-center justify-between w-full gap-2 py-2">
+      <div class="flex w-4/5 gap-2">
+        <img
+          class="w-12 rounded-full aspect-square"
+          src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1985&q=80"
+          alt=""
+        />
+        <div class="overflow-hidden">
+          <p class="font-medium">{{ name }}</p>
+          <p class="text-sm truncate text-zinc-500">{{ email }}</p>
+        </div>
+      </div>
+      <button
+        class="flex items-center justify-center w-10 transition-all border rounded aspect-square bg-zinc-800 border-zinc-700 hover:brightness-125"
+      >
+        <ng-icon name="heroArrowLeftOnRectangle" class="text-2xl" />
+      </button>
+    </div>
+  </section>
+</aside>

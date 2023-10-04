@@ -11,7 +11,7 @@ module.exports = {
   plugins: [],
   safelist: [
     {
-      pattern: /via-(zinc)-(50|100|900)/,
+      pattern: /via-(zinc)-(50|100|200|700|800|900)/,
     },
   ],
 };
