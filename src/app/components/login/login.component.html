@@ -7,7 +7,7 @@
     </div>
 
     <div class="w-full">
-      <form class="flex flex-col">
+      <form class="flex flex-col" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-3 flex justify-evenly">
           <label>E-mail: </label>
           <input
@@ -24,17 +24,17 @@
             class="rounded-sm w-3/5"
             type="password"
             placeholder="Digite sua senha"
-            name="senha"
-            formControlName="senha"
+            name="password"
+            formControlName="password"
           />
         </div>
-        <button class="bg-slate-100 w-2/5 h-9 self-center rounded-md" type="submit">Entrar</button>
+        <button class="bg-slate-100 w-2/5 h-9 self-center rounded-md" type="submit" [disabled]="loginForm.invalid">Entrar</button>
       </form>
     </div>
 
     <div class="self-end me-4 flex flex-col ">
       <p>Ainda não possui uma conta?</p>
-      <button class="bg-slate-100 w-2/5 h-9 rounded-md self-end">Cadastrar</button>
+      <button class="bg-slate-100 w-2/5 h-9 rounded-md self-end" routerLink="/register">Cadastrar</button>
     </div>
   </div>
 </div>
