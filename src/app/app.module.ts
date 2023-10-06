@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgIconsModule } from '@ng-icons/core';
 import * as heroIcons from '@ng-icons/heroicons/outline';
+import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, BaseLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
