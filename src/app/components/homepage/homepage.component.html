@@ -1,0 +1,87 @@
+<div>
+  <h2 class="text-3xl m-2 ml-10">Estatisticas e informações</h2>
+
+  <div id="statistics-and-information" class="flex justify-between m-2">
+    <div
+      id="total-pacients"
+      class="shadow-sm shadow-black rounded text-center m-2"
+    >
+      há um total de 100 pacientes cadastrados
+    </div>
+    <div id="consults" class="shadow-sm shadow-black rounded text-center m-2">
+      foram realizadas 100 consultas no total
+    </div>
+    <div id="exams" class="shadow-sm shadow-black rounded text-center m-2">
+      foram feitos 100 exames no total
+    </div>
+    <div
+      id="medications"
+      class="shadow-sm shadow-black rounded text-center m-2"
+    >
+      há um total de 100 medicações cadastradas
+    </div>
+    <div id="diets" class="shadow-sm shadow-black rounded text-center m-2">
+      há um total de 100 dietas cadastradas
+    </div>
+    <div id="exercises" class="shadow-sm shadow-black rounded text-center m-2">
+      há um total de 100 exercícios cadastrados
+    </div>
+  </div>
+
+  <!-- usar *ngIf para verificar se é um admin-->
+  <div>
+    <div>
+      <input 
+        id="filterUsers"
+        class="m-3 px-1 w-2/5 rounded" 
+        type="text" 
+        placeholder="Buscar um usuario..." />
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- usar *ngFor -->
+          <tr>
+            <td scope="row">nome usuario</td>
+          </tr>
+          <tr>
+            <td scope="row">nome usuario</td>
+          </tr>
+          <tr>
+            <td scope="row">nome usuario</td>
+          </tr>
+          <tr>
+            <td scope="row">nome usuario</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <input
+        id="filterPacients"
+        class="m-3 px-1 w-2/5 rounded" 
+        type="text"
+        placeholder="Buscar um paciente..."
+      />
+    </div>
+    <div id="dashboard-cards-pacients" class="flex flex-wrap">
+      <!-- usar *ngFor -->
+      <div class="card-pacient shadow-sm shadow-black rounded text-center m-2" *ngFor="let item of value">
+        <i>icon</i>
+        <div class="name-pacient-title">Nome: Nome do Paciente</div>
+        <div class="age">31</div>
+        <div class="contact">99 99999-9999 / email@email.com</div>
+        <div class="health-plan">Nome do plano de saúde</div>
+        <button>Saber mais</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
   {
     path: 'labmedical',
-    component: BaseLayoutComponent
-  }
+    component: BaseLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/labmedical/homepage',
+        pathMatch: 'full',
+      },
+      { 
+        path: 'homepage', 
+        component: HomepageComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
