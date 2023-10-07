@@ -20,3 +20,4 @@ import { FadeSeparatorComponent } from './components/shared/fade-separator/fade-
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
