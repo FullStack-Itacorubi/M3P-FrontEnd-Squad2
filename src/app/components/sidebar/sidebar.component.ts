@@ -18,6 +18,7 @@ export class SidebarComponent {
     { text: 'Exames', icon: 'heroDocumentTextSolid', selected: false },
     { text: 'Dietas', icon: 'heroCakeSolid', selected: false },
     { text: 'Exercícios', icon: 'heroHeartSolid', selected: false },
+    {text:'Sair', icon:'jamLogOut', selected:false}
   ];
 
   test(text: string) {
