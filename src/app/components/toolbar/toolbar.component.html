@@ -1,0 +1,20 @@
+<div class="relative flex justify-between items-center bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+  <div class="absolute left-0 flex items-center gap-2">
+    <img
+      class="w-10 h-10 rounded-full"
+      src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1985&q=80"
+      alt=""
+    />
+    <div class="overflow-hidden">
+      <p class="font-medium truncate">{{ name }}</p>
+      <p class="text-sm truncate text-zinc-500">{{ email }}</p>
+    </div>
+  </div>
+  <!-- Centered Title -->
+  <div class="flex-grow">
+    <p class="text-lg font-semibold text-gray-900">{{ pageTitle }}</p>
+  </div>
+  <div class="flex items-center gap-2">
+    <a href="#" class="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Log out <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</div>

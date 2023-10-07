@@ -9,9 +9,10 @@ import * as heroIconsSolid from '@ng-icons/heroicons/solid';
 import * as jamIcons from '@ng-icons/jam-icons';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FadeSeparatorComponent } from './components/shared/fade-separator/fade-separator.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, FadeSeparatorComponent],
+  declarations: [AppComponent, SidebarComponent, FadeSeparatorComponent, ToolbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
