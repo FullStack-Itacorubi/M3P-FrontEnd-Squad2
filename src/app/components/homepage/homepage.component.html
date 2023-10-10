@@ -1,87 +1,110 @@
+<div class="m-1 p-2 w-10/12 bg-neutral-100/5 rounded-lg overflow-hidden">
+  <h2 class="text-4xl">Estatisticas e informações</h2>
+</div>
+
+<div id="statistics-and-information" class="flex justify-evenly mx-auto m-2 gap-5 mt-2">
+  
+  <div id="total-pacients" class="flex flex-col items-center text-center m-2 bg-neutral-400/60 shadow-2xl shadow-black/50 rounded-lg">
+    <div class="w-full h-1/3 flex justify-center items-center p-2 text-white text-base bg-zinc-700 rounded-t-md">
+      <div>TOTAL DE PACIENTES</div>
+    </div>
+    <p class="my-auto p-2">há um total de 100 pacientes cadastrados</p>
+  </div>
+
+  <div id="consults" class="flex flex-col items-center text-center m-2 bg-neutral-400/60 shadow-2xl shadow-black/50 rounded-lg">
+    <div class="w-full h-1/3 flex justify-center items-center p-2 text-white text-base bg-zinc-700 rounded-t-md">
+      <div>TOTAL DE CONSULTAS</div>
+    </div>
+    <p class="my-auto p-2">foram realizadas 100 consultas no total</p>
+  </div>
+
+  <div id="exams" class="flex flex-col items-center text-center m-2 bg-neutral-400/60 shadow-2xl shadow-black/50 rounded-lg">
+    <div class="w-full h-1/3 flex justify-center items-center p-2 text-white text-base bg-zinc-700 rounded-t-md">
+      <div>TOTAL DE EXAMES</div>
+    </div>
+    <p class="my-auto p-2">foram feitos 100 exames no total</p>
+  </div>
+
+  <div id="medications" class="flex flex-col items-center text-center m-2 bg-neutral-400/60 shadow-2xl shadow-black/50 rounded-lg">
+    <div class="w-full h-1/3 flex justify-center items-center p-2 text-white text-base bg-zinc-700 rounded-t-md">
+      <div>TOTAL DE MEDICAÇÕES</div>
+    </div>
+    <p class="my-auto p-2">há um total de 100 medicações cadastradas</p>
+  </div>
+
+  <div id="diets" class="flex flex-col items-center text-center m-2 bg-neutral-400/60 shadow-2xl shadow-black/50 rounded-lg">
+    <div class="w-full h-1/3 flex justify-center items-center p-2 text-white text-base bg-zinc-700 rounded-t-md">
+      <div>TOTAL DE DIETAS</div>
+    </div>
+    <p class="my-auto p-2">há um total de 100 dietas cadastradas</p>
+  </div>
+
+  <div id="exercises" class="flex flex-col items-center text-center m-2 bg-neutral-400/60 shadow-2xl shadow-black/50 rounded-lg">
+    <div class="w-full h-1/3 flex justify-center items-center p-2 text-white text-base bg-zinc-700 rounded-t-md">
+      <div>TOTAL DE EXERCÍCIOS</div>
+    </div>
+    <p class="my-auto p-2">há um total de 100 exercícios cadastrados</p>
+  </div>
+
+</div>
+
+<!-- usar *ngIf para verificar se é um admin-->
 <div>
-  <h2 class="text-3xl m-2 ml-10">Estatisticas e informações</h2>
-
-  <div id="statistics-and-information" class="flex justify-between m-2">
-    <div
-      id="total-pacients"
-      class="shadow-sm shadow-black rounded text-center m-2"
-    >
-      há um total de 100 pacientes cadastrados
-    </div>
-    <div id="consults" class="shadow-sm shadow-black rounded text-center m-2">
-      foram realizadas 100 consultas no total
-    </div>
-    <div id="exams" class="shadow-sm shadow-black rounded text-center m-2">
-      foram feitos 100 exames no total
-    </div>
-    <div
-      id="medications"
-      class="shadow-sm shadow-black rounded text-center m-2"
-    >
-      há um total de 100 medicações cadastradas
-    </div>
-    <div id="diets" class="shadow-sm shadow-black rounded text-center m-2">
-      há um total de 100 dietas cadastradas
-    </div>
-    <div id="exercises" class="shadow-sm shadow-black rounded text-center m-2">
-      há um total de 100 exercícios cadastrados
-    </div>
-  </div>
-
-  <!-- usar *ngIf para verificar se é um admin-->
   <div>
-    <div>
-      <input 
-        id="filterUsers"
-        class="m-3 px-1 w-2/5 rounded" 
-        type="text" 
-        placeholder="Buscar um usuario..." />
-    </div>
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Usuario</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- usar *ngFor -->
-          <tr>
-            <td scope="row">nome usuario</td>
-          </tr>
-          <tr>
-            <td scope="row">nome usuario</td>
-          </tr>
-          <tr>
-            <td scope="row">nome usuario</td>
-          </tr>
-          <tr>
-            <td scope="row">nome usuario</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <input
+      id="filterUsers"
+      class="m-3 px-1 w-2/5 rounded"
+      type="text"
+      placeholder="Buscar um usuario..."
+    />
   </div>
-
   <div>
-    <div>
-      <input
-        id="filterPacients"
-        class="m-3 px-1 w-2/5 rounded" 
-        type="text"
-        placeholder="Buscar um paciente..."
-      />
-    </div>
-    <div id="dashboard-cards-pacients" class="flex flex-wrap">
-      <!-- usar *ngFor -->
-      <div class="card-pacient shadow-sm shadow-black rounded text-center m-2" *ngFor="let item of value">
-        <i>icon</i>
-        <div class="name-pacient-title">Nome: Nome do Paciente</div>
-        <div class="age">31</div>
-        <div class="contact">99 99999-9999 / email@email.com</div>
-        <div class="health-plan">Nome do plano de saúde</div>
-        <button>Saber mais</button>
-      </div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- usar *ngFor -->
+        <tr>
+          <td scope="row">nome usuario</td>
+        </tr>
+        <tr>
+          <td scope="row">nome usuario</td>
+        </tr>
+        <tr>
+          <td scope="row">nome usuario</td>
+        </tr>
+        <tr>
+          <td scope="row">nome usuario</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div>
+  <div>
+    <input
+      id="filterPacients"
+      class="m-3 px-1 w-2/5 rounded"
+      type="text"
+      placeholder="Buscar um paciente..."
+    />
+  </div>
+  <div id="dashboard-cards-pacients" class="flex flex-wrap">
+    <!-- usar *ngFor -->
+    <div
+      class="card-pacient  bg-neutral-400/60 shadow-2xl shadow-black/50 rounded-lg text-center m-2"
+      *ngFor="let item of value"
+    >
+      <i>icon</i>
+      <div class="name-pacient-title">Nome: Nome do Paciente</div>
+      <div class="age">31</div>
+      <div class="contact">99 99999-9999 / email@email.com</div>
+      <div class="health-plan">Nome do plano de saúde</div>
+      <button>Saber mais</button>
     </div>
   </div>
 </div>
