@@ -7,6 +7,26 @@ import { Component } from '@angular/core';
 })
 export class HomepageComponent {
 
+  admin: boolean = true;
+
+  users = [
+    {
+      username: 'John Doe',
+      gender: 'male',
+      type: 'doctor'
+    },
+  {
+    username: 'Mary Bludson',
+    gender: 'female',
+    type: 'administrator'
+  },
+  {
+    username: 'Jack Smith',
+    gender: 'undefined',
+    type: 'nurse'
+  }
+]
+
   value = ['','','','','','','','','','',''];
 
 }
