@@ -1,0 +1,72 @@
+<aside
+  ngClass="relative flex flex-col justify-between h-screen p-5 bg-zinc-900 text-zinc-50 transition-all duration-500 {{
+    collapsed ? 'w-24' : 'w-2/12'
+  }}"
+>
+  <button
+    (click)="collapsed = !collapsed"
+    class="absolute right-0 flex items-center justify-center w-8 transition-all translate-x-1/2 border rounded-full top-4 bg-zinc-700 aspect-square border-zinc-800 hover:brightness-125"
+  >
+    <ng-icon [name]="!collapsed ? 'heroChevronLeft' : 'heroChevronRight'" />
+  </button>
+
+  <section>
+    <div class="flex items-center gap-4 py-4 overflow-hidden">
+      <img
+        [src]="brandImgUrl"
+        alt=""
+        class="w-12 rounded-md aspect-square transition-all {{
+          collapsed ? 'mx-auto' : 'mx-0'
+        }}"
+      />
+      <span *ngIf="!collapsed" class="text-2xl truncate">{{ brandName }}</span>
+    </div>
+    <app-fade-separator color="zinc-700" />
+
+    <div class="overflow-hidden">
+      <span
+        *ngIf="!collapsed"
+        class="ml-8 text-sm font-medium tracking-widest truncate text-zinc-400"
+        >MENU</span
+      >
+      <ul class="flex flex-col gap-1 pt-2">
+        <li
+          *ngFor="let item of menuItems"
+          class="{{ collapsed ? 'mx-auto' : 'mx-0' }}"
+        >
+          <a
+            href="#"
+            class="flex items-center gap-4 p-2 rounded border text-zinc-400 overflow-hidden {{
+              !collapsed ? 'w-full' : 'w-fit'
+            }} {{
+              item.selected
+                ? 'bg-zinc-800 border-zinc-700 text-zinc-50 cursor-default'
+                : 'border-transparent hover:text-zinc-200'
+            }}"
+            (click)="test(item.text)"
+          >
+            <ng-icon name="{{ item.icon }}" class="text-2xl" />
+            <span *ngIf="!collapsed" class="truncate">{{ item.text }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="w-full">
+    <app-fade-separator color="zinc-700" />
+    <div
+      class="flex items-center justify-between w-full gap-2 py-2 {{
+        collapsed ? 'flex-col' : ''
+      }}"
+    >
+      
+      <button
+        class="flex items-center justify-center w-10 transition-all rounded-md aspect-square text-zinc-500 hover:text-zinc-50"
+      >
+        <ng-icon name="jamLogOut" class="text-3xl" />
+      </button>
+    </div>
+  </section>
+ 
+</aside>
