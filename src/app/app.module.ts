@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgIconsModule } from '@ng-icons/core';
 import * as heroIcons from '@ng-icons/heroicons/outline';
 import * as heroIconsSolid from '@ng-icons/heroicons/solid';
@@ -12,11 +14,15 @@ import { FadeSeparatorComponent } from './components/shared/fade-separator/fade-
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, FadeSeparatorComponent, ToolbarComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgIconsModule.withIcons({ ...heroIcons, ...heroIconsSolid, ...jamIcons }),
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
 })
