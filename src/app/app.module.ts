@@ -21,13 +21,18 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     AppComponent,
     LoginComponent,
     BaseLayoutComponent, 
-    HomepageComponent
+    HomepageComponent,
+    SidebarComponent,
+    FadeSeparatorComponent,
+    ToolbarComponent
   ],
+  
  imports: [
     BrowserModule,
     AppRoutingModule,
     NgIconsModule.withIcons({ ...heroIcons, ...heroIconsSolid, ...jamIcons }),
     ReactiveFormsModule
+    
   ],
   bootstrap: [AppComponent],
 })

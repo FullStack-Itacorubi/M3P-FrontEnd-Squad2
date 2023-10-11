@@ -6,7 +6,8 @@ import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-
+  {path:'login', component:LoginComponent},
+  
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
@@ -19,8 +20,10 @@ const routes: Routes = [
       { 
         path: 'homepage', 
         component: HomepageComponent,
-  },
-];
+      },
+    ]
+  }
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
