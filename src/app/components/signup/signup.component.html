@@ -1,0 +1,235 @@
+<!-- Requisitos:
+
+Nome completo: Obrigatório, com máximo e mínimo de 64 e 8 caracteres, respectivamente.
+
+Gênero: Obrigatório com dropdown de opções pré-definidas.
+
+CPF: Obrigatório com o formato 000.000.000-00
+
+Telefone: Obrigatório com o formato (99) 9 9999-99999
+
+E-mail: Obrigatório e com validação.
+
+Senha: Obrigatório, com mínimo de 6 caracteres.
+
+Tipo: Obrigatório com dropdown de opções com: Médico, Administrador e Enfermeiro. -->
+
+<section class="register-page">
+  <div class="container">
+    <div class="signup-card">
+      <div class="title">
+        <h1>Crie sua conta</h1>
+      </div>
+      <form [formGroup]="registerForm">
+        <div class="inputs">
+          <div class="input-wrapper">
+            <label for="nome-completo">Nome completo:</label>
+            <input
+              type="text"
+              name="nome-completo"
+              id="nome-completo"
+              formControlName="nomeCompleto"
+            />
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('nomeCompleto')?.touched ||
+                registerForm.get('nomeCompleto')?.dirty
+              "
+            >
+              <div
+                *ngIf="registerForm.get('nomeCompleto')?.hasError('required')"
+              >
+                Campo obrigatório
+              </div>
+              <div
+                *ngIf="registerForm.get('nomeCompleto')?.hasError('minlength')"
+              >
+                Mínimo de 8 caracteres
+              </div>
+              <div
+                *ngIf="registerForm.get('nomeCompleto')?.hasError('maxlength')"
+              >
+                Máximo de 64 caracteres
+              </div>
+            </div>
+          </div>
+          <div class="input-wrapper">
+            <label for="gender">Gênero:</label>
+            <select name="gender" id="gender" formControlName="gender">
+              <option value="male">Masculino</option>
+              <option value="female">Feminino</option>
+              <option value="other">Outros</option>
+            </select>
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('gender')?.touched ||
+                registerForm.get('gender')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('gender')?.hasError('required')">
+                Campo obrigatório
+              </div>
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="cpf">Cpf:</label>
+            <input type="text" name="cpf" id="cpf" formControlName="cpf" />
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('cpf')?.touched ||
+                registerForm.get('cpf')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('cpf')?.hasError('required')">
+                Campo obrigatório
+              </div>
+              <div *ngIf="registerForm.get('cpf')?.hasError('pattern')">
+                Formato inválido
+              </div>
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="phone-number">Telefone:</label>
+            <input
+              type="text"
+              name="phone-number"
+              id="phone-number"
+              formControlName="phoneNumber"
+            />
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('phoneNumber')?.touched ||
+                registerForm.get('phoneNumber')?.dirty
+              "
+            >
+              <div
+                *ngIf="registerForm.get('phoneNumber')?.hasError('required')"
+              >
+                Campo obrigatório
+              </div>
+              <div *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">
+                Formato inválido
+              </div>
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              formControlName="email"
+            />
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('email')?.touched ||
+                registerForm.get('email')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('email')?.hasError('required')">
+                Campo obrigatório
+              </div>
+              <div *ngIf="registerForm.get('email')?.hasError('email')">
+                Formato de email inválido
+              </div>
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <label for="password">Senha:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              formControlName="password"
+            />
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('password')?.touched ||
+                registerForm.get('password')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('password')?.hasError('required')">
+                Campo obrigatório
+              </div>
+              <div *ngIf="registerForm.get('password')?.hasError('minlength')">
+                Mínimo de 6 caracteres
+              </div>
+            </div>
+          </div>
+          <div class="input-wrapper">
+            <label for="user-type">Tipo de usuário:</label>
+            <select name="user-type" id="user-type" formControlName="userType">
+              <option value="nurse">Enfermeiro</option>
+              <option value="doctor">Médico</option>
+              <option value="administrator">Administrador</option>
+            </select>
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('userType')?.touched ||
+                registerForm.get('userType')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('userType')?.hasError('required')">
+                Campo obrigatório
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit">Registrar</button>
+      </form>
+
+      <!-- <form>
+        <div class="inputs">
+          <div class="input-wrapper">
+            <label for="nome-completo">Nome completo:</label>
+            <input type="text" name="nome-completo" id="nome-completo" />
+          </div>
+          <div class="input-wrapper">
+            <label for="gender">Gênero:</label>
+            <select name="gender" id="gender">
+              <option value="male">Masculino</option>
+              <option value="female">Feminino</option>
+              <option value="other">Outros</option>
+            </select>
+          </div>
+          <div class="input-wrapper">
+            <label for="cpf">Cpf:</label>
+            <input type="text" name="cpf" id="cpf" />
+          </div>
+
+          <div class="input-wrapper">
+            <label for="phone-number">Telefone:</label>
+            <input type="text" name="phone-number" id="phone-number" />
+          </div>
+          <div class="input-wrapper">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" />
+          </div>
+          <div class="input-wrapper">
+            <label for="password">Senha:</label>
+            <input type="password" name="password" id="password" />
+          </div>
+          <div class="input-wrapper">
+            <label for="user-type">Tipo de usuário:</label>
+            <select name="user-type" id="user-type">
+              <option value="nurse">Enfermeiro</option>
+              <option value="doctor">Medico</option>
+              <option value="administrator">Administrador</option>
+            </select>
+          </div>
+        </div>
+      </form> -->
+    </div>
+  </div>
+</section>

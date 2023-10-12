@@ -3,9 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {path:'register', component: SignupComponent},
 
   {
     path: 'labmedical',
@@ -16,14 +19,17 @@ const routes: Routes = [
         redirectTo: '/labmedical/homepage',
         pathMatch: 'full',
       },
-      { 
-        path: 'homepage', 
+      {
+        path: 'homepage',
         component: HomepageComponent,
-  },
-];
+      },
 
+    ]
+
+  }
+]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

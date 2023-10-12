@@ -1,13 +1,13 @@
 <div class="h-screen flex flex-row items-center justify-center">
   <div class="h-3/4 w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700 overflow-hidden rounded-3xl">
     <div class="bg-zinc-800 w-2/5 h-full ">
-  
+
     </div>
     <div class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400 ">
       <div class="self-start ms-4">
         <h3 class="text-4xl">Seja bem vindo(a)</h3>
       </div>
-  
+
       <div class="w-3/4  text-white">
         <form class="flex flex-col" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within:last:hidden transition-all duration-500">
@@ -33,7 +33,7 @@
           <button class=" bg-zinc-700 w-full h-9 self-center rounded-md hover:bg-zinc-800" type="submit" [disabled]="loginForm.invalid">Entrar</button>
         </form>
       </div>
-  
+
       <div class="self-end me-4 flex flex-col ">
         <p>Ainda não possui uma conta?</p>
         <button class="bg-slate-50 w-2/5 h-9 rounded-md self-end hover:bg-zinc-500/80" routerLink="/register">Cadastrar</button>

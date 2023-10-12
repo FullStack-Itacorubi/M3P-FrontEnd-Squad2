@@ -15,15 +15,19 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FadeSeparatorComponent } from './components/shared/fade-separator/fade-separator.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    BaseLayoutComponent, 
-    HomepageComponent
+    BaseLayoutComponent,
+    HomepageComponent, SignupComponent,
+    SidebarComponent, FadeSeparatorComponent,
+    ToolbarComponent
+
   ],
- imports: [
+  imports: [
     BrowserModule,
     AppRoutingModule,
     NgIconsModule.withIcons({ ...heroIcons, ...heroIconsSolid, ...jamIcons }),
@@ -31,5 +35,5 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
 
