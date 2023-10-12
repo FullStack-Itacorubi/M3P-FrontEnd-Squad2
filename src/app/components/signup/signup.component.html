@@ -1,18 +1,3 @@
-<!-- Requisitos:
-
-Nome completo: Obrigatório, com máximo e mínimo de 64 e 8 caracteres, respectivamente.
-
-Gênero: Obrigatório com dropdown de opções pré-definidas.
-
-CPF: Obrigatório com o formato 000.000.000-00
-
-Telefone: Obrigatório com o formato (99) 9 9999-99999
-
-E-mail: Obrigatório e com validação.
-
-Senha: Obrigatório, com mínimo de 6 caracteres.
-
-Tipo: Obrigatório com dropdown de opções com: Médico, Administrador e Enfermeiro. -->
 
 <section class="register-page">
   <div class="container">
@@ -23,32 +8,32 @@ Tipo: Obrigatório com dropdown de opções com: Médico, Administrador e Enferm
       <form [formGroup]="registerForm">
         <div class="inputs">
           <div class="input-wrapper">
-            <label for="nome-completo">Nome completo:</label>
+            <label for="full-name">Nome completo:</label>
             <input
               type="text"
-              name="nome-completo"
-              id="nome-completo"
-              formControlName="nomeCompleto"
+              name="full-name"
+              id="full-name"
+              formControlName="fullName"
             />
             <div
               class="validation"
               *ngIf="
-                registerForm.get('nomeCompleto')?.touched ||
-                registerForm.get('nomeCompleto')?.dirty
+                registerForm.get('fullName')?.touched ||
+                registerForm.get('fullName')?.dirty
               "
             >
               <div
-                *ngIf="registerForm.get('nomeCompleto')?.hasError('required')"
+                *ngIf="registerForm.get('fullName')?.hasError('required')"
               >
                 Campo obrigatório
               </div>
               <div
-                *ngIf="registerForm.get('nomeCompleto')?.hasError('minlength')"
+                *ngIf="registerForm.get('fullName')?.hasError('minlength')"
               >
                 Mínimo de 8 caracteres
               </div>
               <div
-                *ngIf="registerForm.get('nomeCompleto')?.hasError('maxlength')"
+                *ngIf="registerForm.get('fullName')?.hasError('maxlength')"
               >
                 Máximo de 64 caracteres
               </div>
@@ -76,7 +61,7 @@ Tipo: Obrigatório com dropdown de opções com: Médico, Administrador e Enferm
 
           <div class="input-wrapper">
             <label for="cpf">Cpf:</label>
-            <input type="text" name="cpf" id="cpf" formControlName="cpf" />
+            <input type="text" name="cpf" id="cpf" formControlName="cpf" [dropSpecialCharacters]="false" mask="000.000.000-00"/>
             <div
               class="validation"
               *ngIf="
@@ -86,9 +71,6 @@ Tipo: Obrigatório com dropdown de opções com: Médico, Administrador e Enferm
             >
               <div *ngIf="registerForm.get('cpf')?.hasError('required')">
                 Campo obrigatório
-              </div>
-              <div *ngIf="registerForm.get('cpf')?.hasError('pattern')">
-                Formato inválido
               </div>
             </div>
           </div>
@@ -100,6 +82,7 @@ Tipo: Obrigatório com dropdown de opções com: Médico, Administrador e Enferm
               name="phone-number"
               id="phone-number"
               formControlName="phoneNumber"
+              [dropSpecialCharacters]="false" mask="(00) 0 0000-0000"
             />
             <div
               class="validation"
@@ -188,48 +171,6 @@ Tipo: Obrigatório com dropdown de opções com: Médico, Administrador e Enferm
         </div>
         <button type="submit">Registrar</button>
       </form>
-
-      <!-- <form>
-        <div class="inputs">
-          <div class="input-wrapper">
-            <label for="nome-completo">Nome completo:</label>
-            <input type="text" name="nome-completo" id="nome-completo" />
-          </div>
-          <div class="input-wrapper">
-            <label for="gender">Gênero:</label>
-            <select name="gender" id="gender">
-              <option value="male">Masculino</option>
-              <option value="female">Feminino</option>
-              <option value="other">Outros</option>
-            </select>
-          </div>
-          <div class="input-wrapper">
-            <label for="cpf">Cpf:</label>
-            <input type="text" name="cpf" id="cpf" />
-          </div>
-
-          <div class="input-wrapper">
-            <label for="phone-number">Telefone:</label>
-            <input type="text" name="phone-number" id="phone-number" />
-          </div>
-          <div class="input-wrapper">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" />
-          </div>
-          <div class="input-wrapper">
-            <label for="password">Senha:</label>
-            <input type="password" name="password" id="password" />
-          </div>
-          <div class="input-wrapper">
-            <label for="user-type">Tipo de usuário:</label>
-            <select name="user-type" id="user-type">
-              <option value="nurse">Enfermeiro</option>
-              <option value="doctor">Medico</option>
-              <option value="administrator">Administrador</option>
-            </select>
-          </div>
-        </div>
-      </form> -->
     </div>
   </div>
 </section>

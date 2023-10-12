@@ -12,10 +12,10 @@ export class SignupComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.registerForm = this.formBuilder.group({
-      nomeCompleto: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]],
+      fullName: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]],
       gender: ['', Validators.required],
       cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\(\d{2}\)\s\d\s\d{4}-\d{5}$/)]],
+      phoneNumber: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       userType: ['', Validators.required]

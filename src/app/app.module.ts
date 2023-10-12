@@ -16,6 +16,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FadeSeparatorComponent } from './components/shared/fade-separator/fade-separator.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -31,8 +32,10 @@ import { SignupComponent } from './components/signup/signup.component';
     BrowserModule,
     AppRoutingModule,
     NgIconsModule.withIcons({ ...heroIcons, ...heroIconsSolid, ...jamIcons }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskDirective, NgxMaskPipe
   ],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
