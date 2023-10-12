@@ -21,7 +21,7 @@ export class LoginComponent {
     try {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
-      await 
+      await
       alert("logado com sucesso")
       console.log(`${email} logou usando ${password} como senha`);
     } catch (e) {
