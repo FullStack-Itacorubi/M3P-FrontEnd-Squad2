@@ -13,12 +13,15 @@ export class SidebarComponent {
     'https://img.freepik.com/vetores-gratis/hospital-logo-design-vector-medical-cross_53876-136743.jpg';
   collapsed = false;
   menuItems = [
+    {text:'Usuarios' ,icon:'heroUsersSolid', selected: false},
+    {text:'Medicos' ,icon:'jamActivity', selected: false},
     { text: 'Pacientes', icon: 'heroUserGroupSolid', selected: false },
     { text: 'Consultas', icon: 'heroClockSolid', selected: true },
     { text: 'Exames', icon: 'heroDocumentTextSolid', selected: false },
     { text: 'Dietas', icon: 'heroCakeSolid', selected: false },
     { text: 'Exercícios', icon: 'heroHeartSolid', selected: false },
-    {text:'Sair', icon:'jamLogOut', selected:false}
+    {text:'Sair', icon:'heroPowerSolid', selected:false}
+
   ];
 
   test(text: string) {
