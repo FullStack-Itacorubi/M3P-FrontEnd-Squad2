@@ -17,6 +17,7 @@ import { FadeSeparatorComponent } from './components/shared/fade-separator/fade-
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     BaseLayoutComponent,
     HomepageComponent, SignupComponent,
     SidebarComponent, FadeSeparatorComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    RegistryNotAlowedComponent
 
   ],
   imports: [

@@ -4,11 +4,17 @@ import { BaseLayoutComponent } from './components/base-layout/base-layout.compon
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path:'login', component:LoginComponent},
-  {path:'register', component: SignupComponent},
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'register-not-allowed',
+    component: RegistryNotAlowedComponent
+  },
+
+  
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
@@ -21,6 +27,11 @@ const routes: Routes = [
       {
         path: 'homepage',
         component: HomepageComponent,
+      },
+      {
+        path: 'register',
+        component: SignupComponent
+        // canActivate: [AuthGuard]
       },
     ]
   }
