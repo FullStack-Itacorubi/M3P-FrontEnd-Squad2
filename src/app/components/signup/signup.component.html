@@ -1,0 +1,278 @@
+<section
+  class="register-page h-screen flex flex-row items-center justify-center"
+>
+  <div
+    class="h-screen w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700 overflow-hidden rounded-3xl"
+  >
+    <div class="bg-zinc-800 w-2/5 h-full"></div>
+
+    <div
+      class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400"
+    >
+      <div class="title self-start ms-4">
+        <h3 class="text-4xl">Crie sua conta</h3>
+      </div>
+
+      <div class="w-3/4  text-white">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <!-- -->
+          <div class="input-wrapper">
+            <label
+              class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within:last:hidden transition-all duration-500"
+            >
+              <span
+                class="ms-2 transition-all duration-500 group-focus-within:opacity-0"
+                >Nome completo:</span
+              >
+              <input
+                class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
+                type="text"
+                name="full-name"
+                id="full-name"
+                formControlName="fullName"
+                placeholder="Digite seu nome"
+              />
+            </label>
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('fullName')?.touched ||
+                registerForm.get('fullName')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('fullName')?.hasError('required')">
+                Campo obrigatório
+              </div>
+              <div *ngIf="registerForm.get('fullName')?.hasError('minlength')">
+                Mínimo de 8 caracteres
+              </div>
+              <div *ngIf="registerForm.get('fullName')?.hasError('maxlength')">
+                Máximo de 64 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class=" gap-1 grid grid-cols-2">
+            <div class="flex flex-col">
+              <div class="input-wrapper">
+                <label
+                class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within:last:hidden transition-all duration-500"
+              >
+                <span
+                  class="ms-2 transition-all duration-500 group-focus-within:opacity-0"
+                  >Gênero:</span
+                >
+                <select
+                  class="w-11/12 mx-auto bg-zinc-800 hover:bg-zinc-500 rounded-sm"
+                  name="gender"
+                  id="gender"
+                  formControlName="gender"
+                >
+                  <option value="male">Masculino</option>
+                  <option value="female">Feminino</option>
+                  <option value="other">Outro</option>
+                </select>
+              </label>
+              <div
+                class="validation"
+                *ngIf="
+                  registerForm.get('gender')?.touched ||
+                  registerForm.get('gender')?.dirty
+                "
+              >
+                <div *ngIf="registerForm.get('gender')?.hasError('required')">
+                  Campo obrigatório
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="input-wrapper">
+              <label
+              class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within:last:hidden transition-all duration-500"
+              ><span
+                class="ms-2 transition-all duration-500 group-focus-within:opacity-0"
+                >Cpf:</span
+              >
+              <input
+                class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
+                placeholder="000.000.000-00"
+                type="text"
+                name="cpf"
+                id="cpf"
+                formControlName="cpf"
+                [dropSpecialCharacters]="false"
+                mask="000.000.000-00"
+              />
+            </label>
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('cpf')?.touched ||
+                registerForm.get('cpf')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('cpf')?.hasError('required')">
+                Campo obrigatório
+              </div>
+            </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-1">
+            <div class="input-wrapper">
+              <label
+                class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within:last:hidden transition-all duration-500"
+              >
+                <span
+                  class="ms-2 transition-all duration-500 group-focus-within:opacity-0"
+                  >Tipo de usuário:</span
+                >
+                <select
+                  class="w-11/12 mx-auto bg-zinc-800 hover:bg-zinc-500 rounded-sm"
+                  name="user-type"
+                  id="user-type"
+                  formControlName="userType"
+                >
+                  <option value="nurse">Enfermeiro</option>
+                  <option value="doctor">Médico</option>
+                  <option value="administrator">Administrador</option>
+                </select>
+              </label>
+              <div
+                class="validation"
+                *ngIf="
+                  registerForm.get('userType')?.touched ||
+                  registerForm.get('userType')?.dirty
+                "
+              >
+                <div *ngIf="registerForm.get('userType')?.hasError('required')">
+                  Campo obrigatório
+                </div>
+              </div>
+            </div>
+
+            <div class="input-wrapper">
+              <label
+                class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within:last:hidden transition-all duration-500"
+              >
+                <span
+                  class="ms-2 transition-all duration-500 group-focus-within:opacity-0"
+                  >Telefone:</span
+                >
+                <input
+                  class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
+                  type="text"
+                  placeholder="(00) 0 0000-0000"
+                  name="phone-number"
+                  id="phone-number"
+                  formControlName="phoneNumber"
+                  [dropSpecialCharacters]="false"
+                  mask="(00) 0 0000-0000"
+                />
+              </label>
+              <div
+                class="validation"
+                *ngIf="
+                  registerForm.get('phoneNumber')?.touched ||
+                  registerForm.get('phoneNumber')?.dirty
+                "
+              >
+                <div
+                  *ngIf="registerForm.get('phoneNumber')?.hasError('required')"
+                >
+                  Campo obrigatório
+                </div>
+                <div *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">
+                  Formato inválido
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="input-wrapper">
+            <label
+              class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within:last:hidden transition-all duration-500"
+            >
+              <span
+                class="ms-2 transition-all duration-500 group-focus-within:opacity-0"
+                >Email:</span
+              >
+              <input
+                class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
+                type="email"
+                name="email"
+                id="email"
+                formControlName="email"
+              />
+            </label>
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('email')?.touched ||
+                registerForm.get('email')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('email')?.hasError('required')">
+                Campo obrigatório
+              </div>
+              <div *ngIf="registerForm.get('email')?.hasError('email')">
+                Formato de email inválido
+              </div>
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <label
+              class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within:last:hidden transition-all duration-500"
+            >
+              <span
+                class="ms-2 transition-all duration-500 group-focus-within:opacity-0"
+                >Senha:</span
+              >
+              <input
+                class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
+                type="password"
+                name="password"
+                id="password"
+                formControlName="password"
+            /></label>
+            <div
+              class="validation"
+              *ngIf="
+                registerForm.get('password')?.touched ||
+                registerForm.get('password')?.dirty
+              "
+            >
+              <div *ngIf="registerForm.get('password')?.hasError('required')">
+                Campo obrigatório
+              </div>
+              <div *ngIf="registerForm.get('password')?.hasError('minlength')">
+                Mínimo de 6 caracteres
+              </div>
+            </div>
+          </div>
+
+
+          <div class="button-wapper">
+            <button
+              class="bg-zinc-700 w-full h-9 self-center rounded-md hover:bg-zinc-800"
+              type="submit"
+            >
+              Registrar-se
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="self-end me-4 flex flex-col">
+        <p>Já possue conta?</p>
+        <button
+          class="bg-slate-50 w-2/5 h-9 rounded-md self-end hover:bg-zinc-500/80"
+          routerLink="/login"
+        >
+          Entrar
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
