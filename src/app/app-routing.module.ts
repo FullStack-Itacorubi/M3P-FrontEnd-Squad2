@@ -10,10 +10,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'register',
+    path: 'register-not-allowed',
     component: RegistryNotAlowedComponent
   },
 
+  
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
@@ -32,11 +33,10 @@ const routes: Routes = [
         component: SignupComponent
         // canActivate: [AuthGuard]
       },
-
     ]
-
   }
 ]
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
