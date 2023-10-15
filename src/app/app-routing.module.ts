@@ -5,6 +5,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
+import { DietComponent } from './components/diet/diet.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,7 +15,7 @@ const routes: Routes = [
     component: RegistryNotAlowedComponent
   },
 
-  
+
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
@@ -33,6 +34,11 @@ const routes: Routes = [
         component: SignupComponent
         // canActivate: [AuthGuard]
       },
+      {
+        path: 'diet',
+        component: DietComponent
+        // canActivate: [AuthGuard]
+      }
     ]
   }
 ]
