@@ -1,0 +1,106 @@
+<section class="register-page h-screen flex flex-row items-center justify-center">
+    <div class="h-screen w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700 rounded-3xl">
+      <div class="bg-zinc-800 w-2/5 h-full"></div>
+  
+      <div class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400">
+        <div class="w-3/4 text-white">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  
+            <!-- Nome da Série de Exercícios -->
+            <div class="input-wrapper">
+              <label class="group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Nome da Série de Exercícios:</span>
+                <input class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" type="text" name="exerciseName" id="exerciseName" formControlName="exerciseName" placeholder="Digite o nome da série de exercícios" />
+              </label>
+              <div class="validation" *ngIf="registerForm.get('exerciseName')?.touched || registerForm.get('exerciseName')?.dirty">
+                <div *ngIf="registerForm.get('exerciseName')?.hasError('required')">Campo obrigatório</div>
+                <div *ngIf="registerForm.get('exerciseName')?.hasError('minlength')">Mínimo de 5 caracteres</div>
+                <div *ngIf="registerForm.get('exerciseName')?.hasError('maxlength')">Máximo de 100 caracteres</div>
+              </div>
+            </div>
+  
+            <!-- Data da Consulta -->
+            <div class="input-wrapper">
+              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Data:</span>
+                <div class="input-with-icon">
+                  <input class="ms-2 w-full h-full bg-transparent outline-none" type="date" name="exerciseDate" id="exerciseDate" formControlName="exerciseDate" [value]="getCurrentDate()" [disabled]="isEditMode" />
+                  <span class="icon calendar-icon">&#128197;</span>
+                </div>
+              </label>
+              <div class="validation" *ngIf="registerForm.get('exerciseDate')?.touched || registerForm.get('exerciseDate')?.dirty">
+                <div *ngIf="registerForm.get('exerciseDate')?.hasError('required')">Data é obrigatória.</div>
+              </div>
+            </div>
+  
+            <!-- Horário da Consulta -->
+            <div class="input-wrapper">
+              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Horário:</span>
+                <div class="input-with-icon">
+                  <input class="ms-2 w-full h-full bg-transparent outline-none" type="time" name="exerciseTime" id="exerciseTime" formControlName="exerciseTime" [value]="getCurrentTime()" [disabled]="isEditMode" />
+                  <span class="icon clock-icon">&#9201;</span>
+                </div>
+              </label>
+              <div class="validation" *ngIf="registerForm.get('exerciseTime')?.touched || registerForm.get('exerciseTime')?.dirty">
+                <div *ngIf="registerForm.get('exerciseTime')?.hasError('required')">Horário é obrigatório.</div>
+              </div>
+            </div>
+  
+            <!-- Tipo do Exercício -->
+            <div class="input-wrapper">
+              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Tipo:</span>
+                <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="exerciseType" id="exerciseType" formControlName="exerciseType">
+                  <option value="">Selecione um tipo</option>
+                  <option value="Resistência Aeróbica">Resistência Aeróbica</option>
+                  <option value="Resistência Muscular">Resistência Muscular</option>
+                  <option value="Flexibilidade">Flexibilidade</option>
+                  <option value="Força">Força</option>
+                  <option value="Agilidade">Agilidade</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </label>
+              <div class="validation" *ngIf="registerForm.get('exerciseType')?.touched || registerForm.get('exerciseType')?.dirty">
+                <div *ngIf="registerForm.get('exerciseType')?.hasError('required')">Tipo é obrigatório.</div>
+              </div>
+            </div>
+  
+            <!-- Quantidade por Semana -->
+            <div class="input-wrapper">
+              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Quantidade por Semana:</span>
+                <input class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" type="number" step="0.01" name="exerciseFrequency" id="exerciseFrequency" formControlName="exerciseFrequency" />
+              </label>
+              <div class="validation" *ngIf="registerForm.get('exerciseFrequency')?.touched || registerForm.get('exerciseFrequency')?.dirty">
+                <div *ngIf="registerForm.get('exerciseFrequency')?.hasError('required')">Quantidade é obrigatória.</div>
+                <div *ngIf="registerForm.get('exerciseFrequency')?.hasError('min') || registerForm.get('exerciseFrequency')?.hasError('max')">Valor inválido.</div>
+              </div>
+            </div>
+  
+            <!-- Descrição do Exercício -->
+            <div class="input-wrapper">
+              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Descrição do Exercício:</span>
+                <textarea class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" name="exerciseDescription" id="exerciseDescription" formControlName="exerciseDescription"></textarea>
+              </label>
+              <div class="validation" *ngIf="registerForm.get('exerciseDescription')?.touched || registerForm.get('exerciseDescription')?.dirty">
+                <div *ngIf="registerForm.get('exerciseDescription')?.hasError('required')">Descrição é obrigatória.</div>
+                <div *ngIf="registerForm.get('exerciseDescription')?.hasError('minlength')">Mínimo de 10 caracteres</div>
+                <div *ngIf="registerForm.get('exerciseDescription')?.hasError('maxlength')">Máximo de 1000 caracteres</div>
+              </div>
+            </div>
+  
+            <!-- Botões de Ação -->
+            <div class="button-wrapper mt-4 overflow-show">
+              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="editForm()" [disabled]="isEditMode">Editar</button>
+              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="deleteForm()" [disabled]="isEditMode">Deletar</button>
+              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" type="submit">Registrar</button>
+            </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  

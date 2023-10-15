@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
-
+import { ExerciseComponent } from './components/exercise/exercise.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -37,6 +37,11 @@ const routes: Routes = [
       {
         path: 'appointment',
         component: AppointmentComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'exercise',
+        component: ExerciseComponent
         // canActivate: [AuthGuard]
       },
     ]
