@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-record',
-  templateUrl: './record.component.html',
-  styleUrls: ['./record.component.scss']
+  templateUrl: './records.component.html',
+  styleUrls: ['./records.component.scss']
 })
-export class RecordComponent {
+export class RecordsComponent {
   //fetch patients from API
   patients = [
     {
