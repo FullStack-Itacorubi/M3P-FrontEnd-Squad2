@@ -3,26 +3,11 @@
       <div class="bg-zinc-800 w-2/5 h-full"></div>
       <div class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400">
         <div class="w-3/4 text-white">
-          <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">
-            <!-- Search for a patient -->
-            <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
-                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Paciente</span>
-                <input
-                  id="filterPatients"
-                  class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
-                  type="text"
-                  name="patientSearch"
-                  formControlName="patientSearchControl"
-                  placeholder="Buscar um paciente..."
-                />
-              </label>
-            </div>
-  
+          <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">          
             <!-- Medication Form Fields -->
             <!-- Medication Name -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md focus-within:last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Nome do Medicamento:</span>
                 <input
                   class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
@@ -41,7 +26,7 @@
   
             <!-- Date -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Data:</span>
                 <div class="input-with-icon">
                   <input class="ms-2 w-full h-full bg-transparent outline-none" type="date" name="medicationDate" id="medicationDate" formControlName="medicationDate" [value]="getCurrentDate()" [disabled]="isEditMode" />
@@ -55,7 +40,7 @@
   
             <!-- Time -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Horário:</span>
                 <div class="input-with-icon">
                   <input class="ms-2 w-full h-full bg-transparent outline-none" type="time" name="medicationTime" id="medicationTime" formControlName="medicationTime" [value]="getCurrentTime()" [disabled]="isEditMode" />
@@ -69,7 +54,7 @@
   
             <!-- Type -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Tipo:</span>
                 <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="medicationType" id="medicationType" formControlName="medicationType">
                   <option value="">Selecione um tipo</option>
@@ -91,7 +76,7 @@
   
             <!-- Quantity -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Quantidade:</span>
                 <input
                   class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
@@ -110,7 +95,7 @@
   
             <!-- Unit -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Unidade:</span>
                 <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="medicationUnit" id="medicationUnit" formControlName="medicationUnit">
                   <option value="">Selecione uma unidade</option>
@@ -128,7 +113,7 @@
   
             <!-- Observations -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Observações:</span>
                 <textarea
                   class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
@@ -146,7 +131,7 @@
   
             <!-- Status -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Status do Sistema:</span>
                 <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="medicationStatus" id="medicationStatus" formControlName="medicationStatus">
                   <option value="true">Ativo</option>
@@ -159,7 +144,7 @@
             </div>
   
             <!-- Action Buttons -->
-            <div class="button-wrapper mt-4 overflow-show">
+            <div class=" button-wrapper mt-4 overflow-show">
               <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="editForm()" [disabled]="isEditMode">Editar</button>
               <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="deleteForm()" [disabled]="isEditMode">Deletar</button>
               <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" type="submit">Registrar</button>
