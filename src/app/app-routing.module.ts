@@ -7,6 +7,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
+import { MedicationComponent } from './components/medication/medication.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -42,6 +43,11 @@ const routes: Routes = [
       {
         path: 'exercise',
         component: ExerciseComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'medication',
+        component: MedicationComponent
         // canActivate: [AuthGuard]
       },
     ]

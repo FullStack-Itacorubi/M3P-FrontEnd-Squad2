@@ -20,6 +20,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
+import { MedicationComponent } from './components/medication/medication.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
     ToolbarComponent,
     RegistryNotAlowedComponent,
     AppointmentComponent,
-    ExerciseComponent
+    ExerciseComponent,
+    MedicationComponent
 
   ],
   imports: [
