@@ -19,7 +19,7 @@ export class PatientService {
   //   })
   // }
 
-    private apiUrl = 'http://localhost:3000/patients';
+    private apiUrl = 'http://localhost:8080/patients';
 
     constructor(private http: HttpClient) {}
 
@@ -45,4 +45,9 @@ export class PatientService {
         const url = `${this.apiUrl}/${id}`;
         return this.http.delete<void>(url);
     }
+    getPatientsByName(name: string): Observable<IPatient[]> {
+        const url = `${this.apiUrl}?name_like=${name}`;
+        return this.http.get<IPatient[]>(url);
+      }
+      
 }
