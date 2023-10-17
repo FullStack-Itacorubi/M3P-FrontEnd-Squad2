@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'register-not-allowed',
     component: RegistryNotAlowedComponent
   },
+  {
+    path: 'register',
+    component: SignupComponent
+    // canActivate: [AuthGuard]
+  },
 
   
   {
@@ -29,6 +34,7 @@ const routes: Routes = [
         path: 'homepage',
         component: HomepageComponent,
       },
+      { path: '**', component: LoginComponent }
       {
         path: 'register',
         component: SignupComponent
