@@ -5,6 +5,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
+import { AppointmentComponent } from './components/appointment/appointment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -34,6 +35,16 @@ const routes: Routes = [
         component: HomepageComponent,
       },
       { path: '**', component: LoginComponent }
+      {
+        path: 'register',
+        component: SignupComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'appointment',
+        component: AppointmentComponent
+        // canActivate: [AuthGuard]
+      },
     ]
   }
 ]
