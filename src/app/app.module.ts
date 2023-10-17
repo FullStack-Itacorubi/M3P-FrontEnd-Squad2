@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +36,7 @@ import { RegistryNotAlowedComponent } from './components/registry-not-alowed/reg
     AppRoutingModule,
     NgIconsModule.withIcons({ ...heroIcons, ...heroIconsSolid, ...jamIcons }),
     ReactiveFormsModule,
-    NgxMaskDirective, NgxMaskPipe
+    NgxMaskDirective, NgxMaskPipe, HttpClientModule
   ],
   providers: [provideNgxMask()],
   bootstrap: [AppComponent],
