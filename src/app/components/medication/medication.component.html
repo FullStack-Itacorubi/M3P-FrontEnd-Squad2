@@ -1,6 +1,23 @@
 <section class="register-page h-screen flex flex-row items-center justify-center">
     <div class="h-screen w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700 rounded-3xl">
-      <div class="bg-zinc-800 w-2/5 h-full"></div>
+      <div class="bg-zinc-800 w-2/5 h-full">
+        <div class="search-bar">
+          <input
+            #searchInput
+            class="w-3/4 mx-7 my-3 px-3 py-1 w-2/5 rounded shadow-xl text-black"
+            type="text"
+            placeholder="Search Patients"
+            (input)="searchPatients(searchInput.value)"
+          />
+          
+          <ul *ngIf="showSearchResults" class="bg-white shadow-md rounded-lg p-2 mt-2 ">
+            <li *ngFor="let patient of searchResults" (click)="assignPatient(patient)" class="p-2 hover:bg-gray-100 cursor-pointer ">
+              {{ patient.name }} - {{ patient.email }}
+            </li>
+          </ul>
+
+        </div>
+      </div>
       <div class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400">
         <div class="w-3/4 text-white">
           <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">          
