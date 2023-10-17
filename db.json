@@ -1,0 +1,118 @@
+{
+  "patients":
+  [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "gender": "MALE",
+      "cpf": "123.456.789-01",
+      "phone": "(99) 9999-9999",
+      "email": "johndoe@example.com",
+      "status": true,
+      "dateOfBirth": "1990-01-15",
+      "rgWithIssuingAuthority": "12345-SSP",
+      "maritalStatus": "MARRIED",
+      "emergencyContact": "(98) 9888-8888",
+      "allergies": "No known allergies",
+      "specificCare": "None",
+      "insuranceNumber": "123456",
+      "insuranceValidity": "2023-12-31",
+      "address": {
+        "id": 1,
+        "cep": "54321-876",
+        "city": "New City",
+        "state": "NS",
+        "street": "456 Elm St",
+        "number": "101",
+        "complement": "Unit 202",
+        "district": "Uptown",
+        "reference": "Near the mall"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "gender": "FEMALE",
+      "cpf": "987.654.321-09",
+      "phone": "(88) 8888-8888",
+      "email": "janesmith@example.com",
+      "status": true,
+      "dateOfBirth": "1985-03-20",
+      "rgWithIssuingAuthority": "54321-SSP",
+      "maritalStatus": "SINGLE",
+      "emergencyContact": "(99) 9999-9999",
+      "allergies": "Pollen allergy",
+      "specificCare": "Carries an epinephrine pen for allergies",
+      "insuranceNumber": "987654",
+      "insuranceValidity": "2024-05-31",
+      "address": {
+        "id": 2,
+        "cep": "12345-678",
+        "city": "Old Town",
+        "state": "OT",
+        "street": "789 Oak Ave",
+        "number": "303",
+        "complement": "Apt 101",
+        "district": "Downtown",
+        "reference": "Next to the park"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Maria Gonzalez",
+      "gender": "FEMALE",
+      "cpf": "765.432.109-87",
+      "phone": "(77) 7777-7777",
+      "email": "mariagonzalez@example.com",
+      "status": true,
+      "dateOfBirth": "1988-09-10",
+      "rgWithIssuingAuthority": "67890-SSP",
+      "maritalStatus": "MARRIED",
+      "emergencyContact": "(76) 6666-6666",
+      "allergies": "None",
+      "specificCare": "Regular medication for hypertension",
+      "insuranceNumber": "54321",
+      "insuranceValidity": "2023-11-30",
+      "address": {
+        "id": 3,
+        "cep": "98765-432",
+        "city": "Smallville",
+        "state": "SV",
+        "street": "123 Maple Rd",
+        "number": "25",
+        "complement": "Apt 303",
+        "district": "Suburbia",
+        "reference": "Near the school"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Carlos Rodriguez",
+      "gender": "MALE",
+      "cpf": "345.678.901-23",
+      "phone": "(66) 5555-5555",
+      "email": "carlosrodriguez@example.com",
+      "status": true,
+      "dateOfBirth": "1975-07-05",
+      "rgWithIssuingAuthority": "45678-SSP",
+      "maritalStatus": "DIVORCED",
+      "emergencyContact": "(65) 4444-4444",
+      "allergies": "Peanut allergy",
+      "specificCare": "Carries an epinephrine pen for allergies",
+      "insuranceNumber": "56789",
+      "insuranceValidity": "2024-03-15",
+      "address": {
+        "id": 4,
+        "cep": "23456-789",
+        "city": "Metropolis",
+        "state": "MT",
+        "street": "567 Oak Lane",
+        "number": "10",
+        "complement": "Apt 505",
+        "district": "Downtown",
+        "reference": "Next to the theater"
+      }
+    }
+  ]
+
+}
