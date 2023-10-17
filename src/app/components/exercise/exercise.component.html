@@ -25,7 +25,7 @@
   
             <!-- Nome da Série de Exercícios -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Nome da Série de Exercícios:</span>
                 <input class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" type="text" name="exerciseName" id="exerciseName" formControlName="exerciseName" placeholder="Digite o nome da série de exercícios" />
               </label>
@@ -38,7 +38,7 @@
   
             <!-- Data da Consulta -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Data:</span>
                 <div class="input-with-icon">
                   <input class="ms-2 w-full h-full bg-transparent outline-none" type="date" name="exerciseDate" id="exerciseDate" formControlName="exerciseDate" [value]="getCurrentDate()" [disabled]="isEditMode" />
@@ -52,7 +52,7 @@
   
             <!-- Horário da Consulta -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Horário:</span>
                 <div class="input-with-icon">
                   <input class="ms-2 w-full h-full bg-transparent outline-none" type="time" name="exerciseTime" id="exerciseTime" formControlName="exerciseTime" [value]="getCurrentTime()" [disabled]="isEditMode" />
@@ -66,7 +66,7 @@
   
             <!-- Tipo do Exercício -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Tipo:</span>
                 <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="exerciseType" id="exerciseType" formControlName="exerciseType">
                   <option value="">Selecione um tipo</option>
@@ -85,7 +85,7 @@
   
             <!-- Quantidade por Semana -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Quantidade por Semana:</span>
                 <input class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" type="number" step="0.01" name="exerciseFrequency" id="exerciseFrequency" formControlName="exerciseFrequency" />
               </label>
@@ -97,7 +97,7 @@
   
             <!-- Descrição do Exercício -->
             <div class="input-wrapper">
-              <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Descrição do Exercício:</span>
                 <textarea class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" name="exerciseDescription" id="exerciseDescription" formControlName="exerciseDescription"></textarea>
               </label>
@@ -110,9 +110,9 @@
   
             <!-- Botões de Ação -->
             <div class="button-wrapper mt-4 overflow-show">
-              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="editForm()" [disabled]="isEditMode">Editar</button>
-              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="deleteForm()" [disabled]="isEditMode">Deletar</button>
-              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" type="submit">Registrar</button>
+              <button class="hover:bg-zinc-800 bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="editForm()" [disabled]="isEditMode">Editar</button>
+              <button class="hover:bg-zinc-800 bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="deleteForm()" [disabled]="isEditMode">Deletar</button>
+              <button class="hover:bg-zinc-800 bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" type="submit">Registrar</button>
             </div>
   
           </form>
