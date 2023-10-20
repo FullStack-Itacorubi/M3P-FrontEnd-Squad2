@@ -5,6 +5,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
+import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'homepage',
         component: HomepageComponent,
+      },
+      {
+        path: 'patient-registration',
+        component: PatientRegistrationComponent,
       },
       { path: '**', component: LoginComponent }
     ]
