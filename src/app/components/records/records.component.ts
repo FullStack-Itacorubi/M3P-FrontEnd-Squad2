@@ -9,7 +9,8 @@ import { IPatient } from '../shared/interfaces/IPatient';
 })
 export class RecordsComponent implements OnInit {
   patients: IPatient[] = [];
-  searchTerm = ''; // Add a property to store the search term
+  filteredPatients: IPatient[] = []; // Store the filtered patients
+  searchTerm = '';
 
   constructor(private patientService: PatientService) {}
 
@@ -20,12 +21,14 @@ export class RecordsComponent implements OnInit {
   loadPatients() {
     this.patientService.getPatients().subscribe((data) => {
       this.patients = data;
+      this.filteredPatients = data; // Initialize filteredPatients with all patients
     });
   }
 
   onSearchInputChange() {
-    this.patientService.getPatientsByName(this.searchTerm).subscribe((data) => {
-      this.patients = data;
-    });
+    console.log(this.filteredPatients);
+    this.filteredPatients = this.patients.filter(patient =>
+      patient.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }
