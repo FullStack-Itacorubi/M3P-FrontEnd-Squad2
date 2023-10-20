@@ -20,6 +20,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
+import { AppointmentComponent } from './components/appointment/appointment.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +31,8 @@ import { PatientRegistrationComponent } from './components/patient-registration/
     SidebarComponent, FadeSeparatorComponent,
     ToolbarComponent,
     RegistryNotAlowedComponent,
-    PatientRegistrationComponent
-
+    PatientRegistrationComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
