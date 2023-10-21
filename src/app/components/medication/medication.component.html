@@ -1,0 +1,173 @@
+<section class="register-page h-screen flex flex-row items-center justify-center h-14">
+    <div class="h-screen w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700  rounded-3xl">
+      <div class="bg-zinc-800 w-2/5 h-full"> 
+        <!--Patient Search-->
+        <div class="search-bar">
+          <input
+            #searchInput
+            class="w-3/4 mx-7 my-3 px-3 py-1 w-2/5 rounded shadow-xl text-black"
+            type="text"
+            placeholder="Search Patients"
+            (input)="searchPatients(searchInput.value)"
+          />         
+          <ul *ngIf="showSearchResults" class="bg-white shadow-md rounded-lg p-2 mt-2 ">
+            <li *ngFor="let patient of searchResults" (click)="assignPatient(patient)" class="p-2 hover:bg-gray-100 cursor-pointer ">
+              {{ patient.name }} - {{ patient.email }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400">
+        <div class="w-3/4 text-white">
+          <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">          
+            <!-- Medication Form Fields -->
+            <!-- Medication Name -->
+            <div class="input-wrapper">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md focus-within:last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Nome do Medicamento:</span>
+                <input
+                  class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
+                  type="text"
+                  name="medicationName"
+                  formControlName="medicationName"
+                  placeholder="Digite o nome do medicamento"
+                />
+              </label>
+              <div class="validation" *ngIf="medicationForm.get('medicationName')?.touched || medicationForm.get('medicationName')?.dirty">
+                <div *ngIf="medicationForm.get('medicationName')?.hasError('required')">Campo obrigatório</div>
+                <div *ngIf="medicationForm.get('medicationName')?.hasError('minlength')">Mínimo de 5 caracteres</div>
+                <div *ngIf="medicationForm.get('medicationName')?.hasError('maxlength')">Máximo de 100 caracteres</div>
+              </div>
+            </div>
+  
+            <!-- Date -->
+            <div class="input-wrapper">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Data:</span>
+                <div class="input-with-icon">
+                  <input class="ms-2 w-full h-full bg-transparent outline-none" type="date" name="medicationDate" id="medicationDate" formControlName="medicationDate" [value]="getCurrentDate()" [disabled]="isEditMode" />
+                  <span class="icon calendar-icon">&#128197;</span>
+                </div>
+              </label>
+              <div class="validation" *ngIf="medicationForm.get('medicationDate')?.touched || medicationForm.get('medicationDate')?.dirty">
+                <div *ngIf="medicationForm.get('medicationDate')?.hasError('required')">Data é obrigatória.</div>
+              </div>
+            </div>
+  
+            <!-- Time -->
+            <div class="input-wrapper">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Horário:</span>
+                <div class="input-with-icon">
+                  <input class="ms-2 w-full h-full bg-transparent outline-none" type="time" name="medicationTime" id="medicationTime" formControlName="medicationTime" [value]="getCurrentTime()" [disabled]="isEditMode" />
+                  <span class="icon clock-icon">&#9201;</span>
+                </div>
+              </label>
+              <div class="validation" *ngIf="medicationForm.get('medicationTime')?.touched || medicationForm.get('medicationTime')?.dirty">
+                <div *ngIf="medicationForm.get('medicationTime')?.hasError('required')">Horário é obrigatório.</div>
+              </div>
+            </div>
+  
+            <!-- Type -->
+            <div class="input-wrapper">
+              <label class="hover:bg-zinc-700 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Tipo:</span>
+                <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="medicationType" id="medicationType" formControlName="medicationType">
+                  <option value="">Selecione um tipo</option>
+                  <option value="Cápsula">Cápsula</option>
+                  <option value="Comprimido">Comprimido</option>
+                  <option value="Líquido">Líquido</option>
+                  <option value="Creme">Creme</option>
+                  <option value="Gel">Gel</option>
+                  <option value="Inalação">Inalação</option>
+                  <option value="Injeção">Injeção</option>
+                  <option value="Spray">Spray</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </label>
+              <div class="validation" *ngIf="medicationForm.get('medicationType')?.touched || medicationForm.get('medicationType')?.dirty">
+                <div *ngIf="medicationForm.get('medicationType')?.hasError('required')">Tipo é obrigatório.</div>
+              </div>
+            </div>
+  
+            <!-- Quantity -->
+            <div class="input-wrapper">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Quantidade:</span>
+                <input
+                  class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
+                  type="number"
+                  step="0.01"
+                  name="medicationQuantity"
+                  id="medicationQuantity"
+                  formControlName="medicationQuantity"
+                />
+              </label>
+              <div class="validation" *ngIf="medicationForm.get('medicationQuantity')?.touched || medicationForm.get('medicationQuantity')?.dirty">
+                <div *ngIf="medicationForm.get('medicationQuantity')?.hasError('required')">Quantidade é obrigatória.</div>
+                <div *ngIf="medicationForm.get('medicationQuantity')?.hasError('min') || medicationForm.get('medicationQuantity')?.hasError('max')">Valor inválido.</div>
+              </div>
+            </div>
+  
+            <!-- Unit -->
+            <div class="input-wrapper">
+              <label class="hover:bg-zinc-700 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Unidade:</span>
+                <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="medicationUnit" id="medicationUnit" formControlName="medicationUnit">
+                  <option value="">Selecione uma unidade</option>
+                  <option value="mg">mg</option>
+                  <option value="mcg">mcg</option>
+                  <option value="g">g</option>
+                  <option value="mL">mL</option>
+                  <option value="%">%</option>
+                </select>
+              </label>
+              <div class="validation" *ngIf="medicationForm.get('medicationUnit')?.touched || medicationForm.get('medicationUnit')?.dirty">
+                <div *ngIf="medicationForm.get('medicationUnit')?.hasError('required')">Unidade é obrigatória.</div>
+              </div>
+            </div>
+  
+            <!-- Observations -->
+            <div class="input-wrapper">
+              <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Observações:</span>
+                <textarea
+                  class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3"
+                  name="medicationObservations"
+                  id="medicationObservations"
+                  formControlName="medicationObservations"
+                ></textarea>
+              </label>
+              <div class="validation" *ngIf="medicationForm.get('medicationObservations')?.touched || medicationForm.get('medicationObservations')?.dirty">
+                <div *ngIf="medicationForm.get('medicationObservations')?.hasError('required')">Observações são obrigatórias.</div>
+                <div *ngIf="medicationForm.get('medicationObservations')?.hasError('minlength')">Mínimo de 10 caracteres</div>
+                <div *ngIf="medicationForm.get('medicationObservations')?.hasError('maxlength')">Máximo de 1000 caracteres</div>
+              </div>
+            </div>
+  
+            <!-- Status -->
+            <div class="input-wrapper">
+              <label class="hover:bg-zinc-700 group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md focus-within-last:hidden transition-all duration-500">
+                <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Status do Sistema:</span>
+                <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="medicationStatus" id="medicationStatus" formControlName="medicationStatus">
+                  <option value="true">Ativo</option>
+                  <option value="false">Inativo</option>
+                </select>
+              </label>
+              <div class="validation" *ngIf="medicationForm.get('medicationStatus')?.touched || medicationForm.get('medicationStatus')?.dirty">
+                <div *ngIf="medicationForm.get('medicationStatus')?.hasError('required')">Status é obrigatório.</div>
+              </div>
+            </div>
+  
+            <!-- Action Buttons -->
+            <div class=" button-wrapper mt-4 overflow-show">
+              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover:bg-zinc-800" (click)="editForm()" [disabled]="isEditMode">Editar</button>
+              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover:bg-zinc-800" (click)="deleteForm()" [disabled]="isEditMode">Deletar</button>
+              <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover:bg-zinc-800" type="submit">Registrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  

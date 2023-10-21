@@ -2,29 +2,32 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
-import { IPatient } from '../shared/interfaces/IPatient';
+import { IPatient } from '../shared/interfaces/IPatient'; 
 @Component({
-  selector: 'app-exercise',
-  templateUrl: './exercise.component.html',
-  styleUrls: ['./exercise.component.scss']
+  selector: 'app-medication',
+  templateUrl: './medication.component.html',
+  styleUrls: ['./medication.component.scss'],
 })
-export class ExerciseComponent {
-  registerForm: FormGroup;
+export class MedicationComponent {
+  medicationForm: FormGroup;
   isEditMode: boolean = false;
-  identifier= 0;
+  identifier = 0;
   searchResults: IPatient[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
 
   constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
-    this.registerForm = this.formBuilder.group({
+    this.medicationForm = this.formBuilder.group({
       patientId: [''],
-      exerciseName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-      exerciseDate: [this.getCurrentDate(), Validators.required],
-      exerciseTime: [this.getCurrentTime(), Validators.required],
-      exerciseType: ['', Validators.required],
-      exerciseFrequency: ['', [Validators.required, Validators.min(0.01)]],
-      exerciseDescription: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
+      patientSearchControl: [''],
+      medicationName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+      medicationDate: [this.getCurrentDate(), Validators.required],
+      medicationTime: [this.getCurrentTime(), Validators.required],
+      medicationType: ['', Validators.required],
+      medicationQuantity: ['', [Validators.required, Validators.min(0.01)]],
+      medicationUnit: ['', Validators.required],
+      medicationObservations: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
+      medicationStatus: [true, Validators.required],
     });
   }
 
@@ -53,14 +56,14 @@ export class ExerciseComponent {
   }
 
   deleteForm() {
-    this.registerForm.reset;
+    this.medicationForm.reset();
   }
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      const uniqueIdentifier = this.identifier +1;
+    if (this.medicationForm.valid) {
+      const uniqueIdentifier = this.identifier + 1;
 
-      alert(`Exercício registrado com sucesso! Identificador único: ${uniqueIdentifier}`);
+      alert(`Medicamento registrado com sucesso! Identificador único: ${uniqueIdentifier}`);
       this.router.navigate(['labmedical']);
     } else {
       alert('Existem dados inválidos no formulário. Por favor, corrija-os e tente novamente.');
@@ -68,7 +71,6 @@ export class ExerciseComponent {
 
     this.isEditMode = false;
   }
-  
   searchPatients(query: string) {
     if (query && query.length >= 3) {
       this.patientService.getPatientsByName(query).subscribe((patients) => {
@@ -82,7 +84,7 @@ export class ExerciseComponent {
   }
   
   assignPatient(patient: IPatient) {
-    this.registerForm.patchValue({
+    this.medicationForm.patchValue({
       patientId: patient.id,
     });
     this.searchQuery = '';

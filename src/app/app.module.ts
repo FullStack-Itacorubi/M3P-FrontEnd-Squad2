@@ -23,6 +23,7 @@ import { RegistryNotAlowedComponent } from './components/registry-not-alowed/reg
 import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
+import { MedicationComponent } from './components/medication/medication.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
     RegistryNotAlowedComponent,
     AppointmentComponent,
     ExerciseComponent,
+    MedicationComponent,
     RecordsComponent
   ],
   imports: [

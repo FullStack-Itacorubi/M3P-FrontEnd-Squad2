@@ -17,14 +17,14 @@
           </ul>
 
         </div>
-      </div>
-  
+      </div>  
       <div class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400">
         <div class="w-3/4 text-white">
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   
             <!-- Nome da Série de Exercícios -->
             <div class="input-wrapper">
+              <label class="group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
               <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
                 <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Nome da Série de Exercícios:</span>
                 <input class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" type="text" name="exerciseName" id="exerciseName" formControlName="exerciseName" placeholder="Digite o nome da série de exercícios" />
