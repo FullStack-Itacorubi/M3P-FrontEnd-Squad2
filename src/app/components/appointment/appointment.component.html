@@ -38,7 +38,7 @@
 
           <!-- Date da Consulta -->
           <div class="input-wrapper">
-            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within-last:hidden transition-all duration-500">
               <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Data da Consulta:</span>
               <div class="input-with-icon">
                 <input class="ms-2 w-full h-full bg-transparent outline-none" type="date" name="appointmentDate" id="appointmentDate" formControlName="appointmentDate" [value]="getCurrentDate()" [disabled]="isEditMode" />
@@ -52,7 +52,7 @@
 
           <!-- Horário da Consulta -->
           <div class="input-wrapper">
-            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within-last:hidden transition-all duration-500">
               <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Horário da Consulta:</span>
               <div class="input-with-icon">
                 <input class="ms-2 w-full h-full bg-transparent outline-none" type="time" name="appointmentTime" id="appointmentTime" formControlName="appointmentTime" [value]="getCurrentTime()" [disabled]="isEditMode" />
@@ -66,7 +66,7 @@
 
           <!-- Descrição do Problema -->
           <div class="input-wrapper">
-            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within-last:hidden transition-all duration-500">
               <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Descrição do Problema:</span>
               <textarea class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" name="problemDescription" id="problemDescription" formControlName="problemDescription"></textarea>
             </label>
@@ -79,7 +79,7 @@
 
           <!-- Medicação Receitada -->
           <div class="input-wrapper">
-            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within-last:hidden transition-all duration-500">
               <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Medicação Receitada:</span>
               <input class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" type="text" name="prescribedMedication" id="prescribedMedication" formControlName="prescribedMedication" />
             </label>
@@ -87,7 +87,7 @@
 
           <!-- Dosagem e Precauções -->
           <div class="input-wrapper">
-            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within-last:hidden transition-all duration-500">
               <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Dosagem e Precauções:</span>
               <textarea class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" name="dosageAndPrecautions" id="dosageAndPrecautions" formControlName="dosageAndPrecautions"></textarea>
             </label>
@@ -100,7 +100,7 @@
 
           <!-- Status do Sistema -->
           <div class="input-wrapper">
-            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within-last:hidden transition-all duration-500">
               <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Status do Sistema:</span>
               <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="systemStatus" id="systemStatus" formControlName="systemStatus">
                 <option value="true">Ativo</option>
@@ -114,14 +114,14 @@
 
           <!-- Botões de Ação -->
           <div class="button-wrapper mt-4 overflow-show">
-            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="editForm()" [disabled]="isEditMode">Editar</button>
-            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="deleteForm()" [disabled]="isEditMode">Deletar</button>
-            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" type="submit">Registrar</button>
+            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover:bg-zinc-800" (click)="editForm()" [disabled]="isEditMode">Editar</button>
+            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover:bg-zinc-800" (click)="deleteForm()" [disabled]="isEditMode">Deletar</button>
+            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover:bg-zinc-800" type="submit">Registrar</button>
           </div>
 
           </form>
         </div>
       </div>
     </div>
-  </section>
+</section>
   
