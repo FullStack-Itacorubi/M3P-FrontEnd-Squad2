@@ -21,8 +21,6 @@ const routes: Routes = [
     component: SignupComponent
     // canActivate: [AuthGuard]
   },
-
-  
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
@@ -36,7 +34,6 @@ const routes: Routes = [
         path: 'homepage',
         component: HomepageComponent,
       },
-      { path: '**', component: LoginComponent },
       {
         path: 'register',
         component: SignupComponent
