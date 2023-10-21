@@ -8,13 +8,11 @@
           placeholder="Search Patients"
           (input)="searchPatients(searchInput.value)"
         />
-        
         <ul *ngIf="showSearchResults" class="bg-white shadow-md rounded-lg p-2 mt-2 ">
           <li *ngFor="let patient of searchResults" (click)="assignPatient(patient)" class="p-2 hover:bg-gray-100 cursor-pointer ">
             {{ patient.name }} - {{ patient.email }}
           </li>
         </ul>
-
       </div>
     </div>
         

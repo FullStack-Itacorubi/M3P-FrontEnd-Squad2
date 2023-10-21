@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
-import { IPatient } from '../shared/interfaces/IPatient'; // Update 'path-to-ipatient' to the actual path
+import { IPatient } from '../shared/interfaces/IPatient';
 
 @Component({
   selector: 'app-appointment',
@@ -16,7 +16,7 @@ export class AppointmentComponent {
   showSearchResults: boolean = false;
   searchQuery: string = '';
   patients: IPatient[] = [];
-  
+
   constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
     this.registerForm = this.formBuilder.group({
       patientId: [''],
@@ -82,12 +82,10 @@ export class AppointmentComponent {
     }
   }
 
-  // Load patients from the getPatients endpoint on component initialization
   ngOnInit() {
     this.loadPatients();
   }
 
-  // Load patients from the getPatients endpoint
   loadPatients() {
     this.patientService.getPatients().subscribe((data) => {
       this.patients = data;
