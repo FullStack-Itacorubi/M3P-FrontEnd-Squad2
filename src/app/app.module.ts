@@ -22,6 +22,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
+import { ExerciseComponent } from './components/exercise/exercise.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,9 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     SidebarComponent, FadeSeparatorComponent,
     ToolbarComponent,
     RegistryNotAlowedComponent,
-    RecordsComponent,
-    AppointmentComponent
-
+    AppointmentComponent,
+    ExerciseComponent,
+    RecordsComponent
   ],
   imports: [
     BrowserModule,
