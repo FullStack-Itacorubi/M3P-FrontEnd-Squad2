@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { PatientService } from '../shared/services/patient.service';
+import { IPatient } from '../shared/interfaces/IPatient';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
@@ -11,9 +12,13 @@ export class ExerciseComponent {
   registerForm: FormGroup;
   isEditMode: boolean = false;
   identifier= 0;
+  searchResults: IPatient[] = [];
+  showSearchResults: boolean = false;
+  searchQuery: string = '';
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
     this.registerForm = this.formBuilder.group({
+      patientId: [''],
       exerciseName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       exerciseDate: [this.getCurrentDate(), Validators.required],
       exerciseTime: [this.getCurrentTime(), Validators.required],
@@ -62,5 +67,25 @@ export class ExerciseComponent {
     }
 
     this.isEditMode = false;
+  }
+  
+  searchPatients(query: string) {
+    if (query && query.length >= 3) {
+      this.patientService.getPatientsByName(query).subscribe((patients) => {
+        this.searchResults = patients;
+        this.showSearchResults = true;
+      });
+    } else {
+      this.searchResults = [];
+      this.showSearchResults = false;
+    }
+  }
+  
+  assignPatient(patient: IPatient) {
+    this.registerForm.patchValue({
+      patientId: patient.id,
+    });
+    this.searchQuery = '';
+    this.showSearchResults = false;
   }
 }
