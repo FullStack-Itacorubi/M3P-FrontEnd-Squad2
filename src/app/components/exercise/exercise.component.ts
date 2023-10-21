@@ -12,6 +12,7 @@ export class ExerciseComponent {
   registerForm: FormGroup;
   isEditMode: boolean = false;
   identifier= 0;
+  patients: IPatient[]=[];
   searchResults: IPatient[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
@@ -71,14 +72,23 @@ export class ExerciseComponent {
   
   searchPatients(query: string) {
     if (query && query.length >= 3) {
-      this.patientService.getPatientsByName(query).subscribe((patients) => {
-        this.searchResults = patients;
-        this.showSearchResults = true;
-      });
+      this.searchResults = this.patients.filter(patient =>
+        patient.name.toLowerCase().includes(query.toLowerCase())
+      );
+      this.showSearchResults = true;
     } else {
       this.searchResults = [];
       this.showSearchResults = false;
     }
+  }
+  ngOnInit() {
+    this.loadPatients();
+  }
+
+  loadPatients() {
+    this.patientService.getPatients().subscribe((data) => {
+      this.patients = data;
+    });
   }
   
   assignPatient(patient: IPatient) {
