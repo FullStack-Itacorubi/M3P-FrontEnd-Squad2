@@ -75,7 +75,7 @@ export class ExerciseComponent {
       this.searchResults = this.patients.filter(patient =>
         patient.name.toLowerCase().includes(query.toLowerCase())
       );
-      this.showSearchResults = true;
+      this.showSearchResults = this.searchResults.length > 0;
     } else {
       this.searchResults = [];
       this.showSearchResults = false;
