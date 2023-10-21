@@ -36,7 +36,7 @@ const routes: Routes = [
         path: 'homepage',
         component: HomepageComponent,
       },
-      { path: '**', component: LoginComponent }
+      { path: '**', component: LoginComponent },
       {
         path: 'register',
         component: SignupComponent
