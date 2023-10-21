@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
+import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 
 @NgModule({
@@ -30,6 +32,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     SidebarComponent, FadeSeparatorComponent,
     ToolbarComponent,
     RegistryNotAlowedComponent,
+    RecordsComponent,
     AppointmentComponent
 
   ],
@@ -38,7 +41,8 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
     AppRoutingModule,
     NgIconsModule.withIcons({ ...heroIcons, ...heroIconsSolid, ...jamIcons }),
     ReactiveFormsModule,
-    NgxMaskDirective, NgxMaskPipe, HttpClientModule
+    NgxMaskDirective, NgxMaskPipe, HttpClientModule,
+    FormsModule
   ],
   providers: [provideNgxMask()],
   bootstrap: [AppComponent],
