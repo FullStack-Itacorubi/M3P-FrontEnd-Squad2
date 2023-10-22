@@ -1,189 +1,250 @@
 <div class="text-lg transition-all duration-1000">
-  <div class="m-2 p-2 w-10/12 duration-1000 transition-all translate-x-0 bg-neutral-100/5 rounded-lg overflow-hidden">
-    <h3 class="text-3xl m-5 showDown [text-shadow:_0_2px_5px_rgb(0_0_0_/_40%)]">Cadastrar paciente</h3>
+  <div
+    class="m-2 p-2 w-10/12 duration-1000 transition-all translate-x-0 bg-neutral-100/5 rounded-lg overflow-hidden"
+  >
+    <h3 class="text-3xl m-5 showDown [text-shadow:_0_2px_5px_rgb(0_0_0_/_40%)]">
+      Cadastrar paciente
+    </h3>
   </div>
 
-  <hr class="showUp mx-5 border-b border-black/20">
+  <hr class="showUp mx-5 border-b border-black/20" />
 
-  <form class="grid grid-cols-2 gap-x-12 mx-auto ms-10 my-8" [formGroup]="newPatientForm" (ngSubmit)="onSubmit()">
+  <form
+    #f="ngForm"
+    class="grid grid-cols-2 gap-x-12 mx-auto ms-10 my-8"
+    [formGroup]="newPatientForm"
+    (ngSubmit)="onSubmit()"
+  >
     <div class="flex flex-col justify-between items-center showRight">
-        <label for="name" class="self-start ms-2">Nome completo</label>
-        <input
-          type="text"
-          class="self-start w-11/12 p-1 rounded-md"
-          id="name"
-          placeholder="Insira o nome do paciente"
-          name="name"
-          formControlName="name"
-        />
-        <label for="gender" class="self-start ms-2">Gênero</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="gender"
-          placeholder=""
-          name="gender"
-          formControlName="gender"
-        />
-        <label for="birth" class="self-start ms-2">Data de Nascimento</label>
-        <input
-          type="date"
-          class="self-start w-11/12 p-1 rounded-md"
-          id="birth"
-          placeholder="dd/mm/aaaa"
-          name="birth"
-          formControlName="birth"
-        />
-        <label for="cpf" class="self-start ms-2">Cpf</label>
-        <input
-          type="text"
-          class="self-start w-11/12 p-1 rounded-md"
-          id="cpf"
-          placeholder="999.999.999-99"
-          name="cpf"
-          formControlName="cpf"
-          mask="000.000.000-00"
-        />
-        <label for="rg" class="self-start ms-2">Rg</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="rg"
-          placeholder=""
-          name="rg"
-          formControlName="rg"
-        />
-        <label for="maritalStatus" class="self-start ms-2">Estado civil</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="maritalStatus"
-          placeholder=""
-          name="maritalStatus"
-          formControlName="maritalStatus"
-        />
-        
-        <label for="telephone" class="self-start ms-2">Telefone</label>
-        <input
-          type="text"
-          class="self-start w-11/12 p-1 rounded-md"
-          id="telephone"
-          placeholder="(99) 9 9999-9999"
-          mask="(00) 0 0000-0000"
-          name="telephone"
-          formControlName="telephone"
-        />
-        <label for="email" class="self-start ms-2">Email</label>
-        <input
-          type="email"
-          class="self-start w-11/12 p-1 rounded-md"
-          id="email"
-          placeholder="Insira o email"
-          name="email"
-          formControlName="email"
-        />
-        <label for="nationality" class="self-start ms-2">Naturalidade</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="nationality"
-          placeholder=""
-          name="nationality"
-          formControlName="nationality"
-        />
+      <label for="name" class="self-start ms-2">Nome completo</label>
+      <input
+        type="text"
+        class="self-start w-11/12 p-1 rounded-md"
+        id="name"
+        placeholder="Insira o nome do paciente"
+        name="name"
+        formControlName="name"
+      />
+      <label for="gender" class="self-start ms-2">Gênero</label>
+      <select
+        class="self-start w-11/12 p-1 rounded-md"
+        id="gender"
+        name="gender"
+        formControlName="gender"
+      >
+        <option value="" selected>Selecione uma opção</option>
+        <option value="female">Feminino</option>
+        <option value="male">Masculino</option>
+        <option value="other">Outro</option>
+      </select>
+      <label for="birth" class="self-start ms-2">Data de Nascimento</label>
+      <input
+        type="date"
+        class="self-start w-11/12 p-1 rounded-md"
+        id="birth"
+        placeholder="dd/mm/aaaa"
+        name="birth"
+        formControlName="birth"
+      />
+      <label for="cpf" class="self-start ms-2">Cpf</label>
+      <input
+        type="text"
+        class="self-start w-11/12 p-1 rounded-md"
+        id="cpf"
+        placeholder="999.999.999-99"
+        name="cpf"
+        formControlName="cpf"
+        mask="000.000.000-00"
+      />
+      <label for="rg" class="self-start ms-2">Rg</label>
+      <input
+        type="text"
+        class="self-start w-11/12 p-1 rounded-md"
+        id="rg"
+        placeholder=""
+        name="rg"
+        formControlName="rg"
+      />
+      <label for="maritalStatus" class="self-start ms-2">Estado civil</label>
+      <select
+        class="self-start w-11/12 p-1 rounded-md"
+        id="maritalStatus"
+        name="maritalStatus"
+        formControlName="maritalStatus"
+      >
+        <option value="" selected>Selecione uma opção</option>
+        <option value="married">Casado(a)</option>
+        <option value="divorced">Divorciado(a)</option>
+        <option value="separated">Separado(a)</option>
+        <option value="single">Solteiro(a)</option>
+        <option value="widowed">Viúvo(a)</option>
+      </select>
+
+      <label for="telephone" class="self-start ms-2">Telefone</label>
+      <input
+        type="text"
+        class="self-start w-11/12 p-1 rounded-md"
+        id="telephone"
+        placeholder="(99) 9 9999-9999"
+        mask="(00) 0 0000-0000"
+        name="telephone"
+        formControlName="telephone"
+      />
+      <label for="email" class="self-start ms-2">Email</label>
+      <input
+        type="email"
+        class="self-start w-11/12 p-1 rounded-md"
+        id="email"
+        placeholder="Insira o email"
+        name="email"
+        formControlName="email"
+      />
+      <label for="nationality" class="self-start ms-2">Naturalidade</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="nationality"
+        placeholder=""
+        name="nationality"
+        formControlName="nationality"
+      />
     </div>
 
     <div class="flex flex-col justify-between items-center showLeft">
-        
-        <label for="emergencyContact" class="self-start ms-2">Contato de emergência</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="emergencyContact"
-          placeholder=""
-          name="emergencyContact"
-          formControlName="emergencyContact"
-        />
-        <label for="allergies" class="self-start ms-2">Lista de alergias</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="allergies"
-          placeholder=""
-          name="allergies"
-          formControlName="allergies"
-        />
-        <label for="especialCare" class="self-start ms-2">Lista de cuidados específicos</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="especialCare"
-          placeholder=""
-          name="especialCare"
-          formControlName="especialCare"
-        />
-        <label for="healthInsurance" class="self-start ms-2">Convênio</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="healthInsurance"
-          placeholder=""
-          name="healthInsurance"
-          formControlName="healthInsurance"
-        />
-        <label for="healthInsuranceNumber" class="self-start ms-2">Número do convênio</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="healthInsuranceNumber"
-          placeholder=""
-          name="healthInsuranceNumber"
-          formControlName="healthInsuranceNumber"
-        />
-        <label for="validity" class="self-start ms-2">Validade do convênio</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="validity"
-          placeholder=""
-          name="validity"
-          formControlName="validity"
-        />
-        <label for="address" class="self-start ms-2">Endereço</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="address"
-          placeholder=""
-          name="address"
-          formControlName="address"
-        />
-        <label for="" class="self-start ms-2">Complemento</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id=""
-          placeholder=""
-          name=""
-          formControlName=""
-        />
-        <label for="complement" class="self-start ms-2">Status do sistema</label>
-        <input
-          type=""
-          class="self-start w-11/12 p-1 rounded-md"
-          id="complement"
-          placeholder=""
-          name="complement"
-          formControlName="complement"
-        />
+      <label for="emergencyContact" class="self-start ms-2">Contato de emergência</label>
+      <input
+        type="text"
+        class="self-start w-11/12 p-1 rounded-md"
+        id="emergencyContact"
+        placeholder="(99) 9 9999-9999"
+        mask="(00) 0 0000-0000"
+        name="emergencyContact"
+        formControlName="emergencyContact"
+      />
+      <label for="allergies" class="self-start ms-2">Lista de alergias</label>
+      <textarea
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="allergies"
+        placeholder=""
+        name="allergies"
+        formControlName="allergies"
+      ></textarea>
+      <label for="especialCare" class="self-start ms-2">Lista de cuidados específicos</label>
+      <textarea
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="especialCare"
+        placeholder=""
+        name="especialCare"
+        formControlName="especialCare"
+      ></textarea>
+      <label for="healthInsurance" class="self-start ms-2">Convênio</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="healthInsurance"
+        placeholder=""
+        name="healthInsurance"
+        formControlName="healthInsurance"
+      />
+      <label for="healthInsuranceNumber" class="self-start ms-2">Número do convênio</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="healthInsuranceNumber"
+        placeholder=""
+        name="healthInsuranceNumber"
+        formControlName="healthInsuranceNumber"
+      />
+      <label for="validity" class="self-start ms-2">Validade do convênio</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="validity"
+        placeholder=""
+        name="validity"
+        formControlName="validity"
+      />
+      <label for="cep" class="self-start ms-2">Cep</label>
+      <input type="text"
+      name="cep"
+      class="self-start w-11/12 p-1 rounded-md"
+      #cep
+      formControlName="cep"
+      mask="00.000-000"
+      (blur)="consultCEP(cep.value, f.value)"
+      />
+      <label for="street" class="self-start ms-2">Rua</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="street"
+        placeholder=""
+        name="street"
+        formControlName="street"
+      />
+      <label for="complement" class="self-start ms-2">Complemento</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="complement"
+        placeholder=""
+        name="complement"
+        formControlName="complement"
+      />
+      <label for="neighborhood" class="self-start ms-2">Bairro</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="neighborhood"
+        placeholder=""
+        name="neighborhood"
+        formControlName="neighborhood"
+      />
+      <label for="city" class="self-start ms-2">Cidade</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="city"
+        placeholder=""
+        name="city"
+        formControlName="city"
+      />
+      <label for="state" class="self-start ms-2">Estado</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="state"
+        placeholder=""
+        name="state"
+        formControlName="state"
+      />
+      <label for="sistemStatus" class="self-start ms-2">Status do sistema</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="sistemStatus"
+        placeholder=""
+        name="sistemStatus"
+        formControlName="sistemStatus"
+      />
     </div>
 
-    <button type="submit" class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md" [disabled]="newPatientForm.invalid">
+    <button
+      type="submit"
+      class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
+      [disabled]="newPatientForm.invalid"
+    >
       Cadastrar paciente
     </button>
   </form>
 
-  <button type="button" class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md" routerLink="/labmedical/patients">
+  <button
+    type="button"
+    class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
+    routerLink="/labmedical/patients"
+  >
     Voltar
   </button>
 </div>
