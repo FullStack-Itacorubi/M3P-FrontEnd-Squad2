@@ -9,6 +9,7 @@ import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -21,8 +22,6 @@ const routes: Routes = [
     component: SignupComponent
     // canActivate: [AuthGuard]
   },
-
-
   {
     path: 'labmedical',
     component: BaseLayoutComponent,

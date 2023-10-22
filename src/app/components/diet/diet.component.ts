@@ -69,6 +69,7 @@ export class DietComponent {
 
     this.isEditMode = false;
   }
+
   searchPatients(query: string) {
     if (query && query.length >= 3) {
       this.patientService.getPatientsByName(query).subscribe((patients) => {
@@ -88,4 +89,5 @@ export class DietComponent {
     this.searchQuery = '';
     this.showSearchResults = false;
   }
+
 }
