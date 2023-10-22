@@ -1,0 +1,125 @@
+<section class="register-page h-screen flex flex-row items-center justify-center">
+  <div class="h-screen w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700 rounded-3xl">
+    <div class="bg-zinc-800 w-2/5 h-full">
+      <div class="search-bar">
+        <input
+          #searchInput
+          class="w-3/4 mx-7 my-3 px-3 py-1 w-2/5 rounded shadow-xl text-black"
+          type="text"
+          placeholder="Search Patients"
+          (input)="searchPatients(searchInput.value)"
+        />
+
+        <ul *ngIf="showSearchResults" class="bg-white shadow-md rounded-lg p-2 mt-2 ">
+          <li *ngFor="let patient of searchResults" (click)="assignPatient(patient)" class="p-2 hover:bg-gray-100 cursor-pointer ">
+            {{ patient.name }} - {{ patient.email }}
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400">
+      <div class="w-3/4 text-white">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <!-- Nome da Dieta -->
+          <div class="input-wrapper">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
+              <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Nome da Dieta:</span>
+              <input class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" type="text" name="dietName" id="dietName" formControlName="dietName" placeholder="Digite o nome da dieta" />
+            </label>
+            <div class="validation" *ngIf="registerForm.get('dietName')?.touched || registerForm.get('dietName')?.dirty">
+              <div *ngIf="registerForm.get('dietName')?.hasError('required')">Campo obrigatório</div>
+              <div *ngIf="registerForm.get('dietName')?.hasError('minlength')">Mínimo de 5 caracteres</div>
+              <div *ngIf="registerForm.get('dietName')?.hasError('maxlength')">Máximo de 100 caracteres</div>
+            </div>
+          </div>
+
+          <!-- Data da Consulta -->
+          <div class="input-wrapper">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Data:</span>
+              <div class="input-with-icon">
+                <input class="ms-2 w-full h-full bg-transparent outline-none" type="date" name="dietDate" id="dietDate" formControlName="dietDate" [value]="getCurrentDate()" [disabled]="isEditMode" />
+                <span class="icon calendar-icon">&#128197;</span>
+              </div>
+            </label>
+            <div class="validation" *ngIf="registerForm.get('dietDate')?.touched || registerForm.get('dietDate')?.dirty">
+              <div *ngIf="registerForm.get('dietDate')?.hasError('required')">Data é obrigatória.</div>
+            </div>
+          </div>
+
+          <!-- Horário da Consulta -->
+          <div class="input-wrapper">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Horário:</span>
+              <div class="input-with-icon">
+                <input class="ms-2 w-full h-full bg-transparent outline-none" type="time" name="dietTime" id="dietTime" formControlName="dietTime" [value]="getCurrentTime()" [disabled]="isEditMode" />
+                <span class="icon clock-icon">&#9201;</span>
+              </div>
+            </label>
+            <div class="validation" *ngIf="registerForm.get('dietTime')?.touched || registerForm.get('dietTime')?.dirty">
+              <div *ngIf="registerForm.get('dietTime')?.hasError('required')">Horário é obrigatório.</div>
+            </div>
+          </div>
+
+          <!-- Tipo de Dieta -->
+          <div class="input-wrapper">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Tipo:</span>
+              <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="dietType" id="dietType" formControlName="dietType">
+                <option value="">Selecione um tipo</option>
+                <option value="Low Carb">Low Carb</option>
+                <option value="Dash">Dash</option>
+                <option value="Paleolítica">Paleolítica</option>
+                <option value="Cetogênica">Cetogênica</option>
+                <option value="Dukan">Dukan</option>
+                <option value="Mediterrânea">Mediterrânea</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </label>
+            <div class="validation" *ngIf="registerForm.get('dietType')?.touched || registerForm.get('dietType')?.dirty">
+              <div *ngIf="registerForm.get('dietType')?.hasError('required')">Tipo é obrigatório.</div>
+            </div>
+          </div>
+
+          <!-- Descrição da Dieta -->
+          <div class="input-wrapper">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Descrição do Dieta:</span>
+              <textarea class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" name="dietDescription" id="dietDescription" formControlName="dietDescription"></textarea>
+            </label>
+            <div class="validation" *ngIf="registerForm.get('dietDescription')?.touched || registerForm.get('dietDescription')?.dirty">
+              <div *ngIf="registerForm.get('dietDescription')?.hasError('required')">Descrição é obrigatória.</div>
+              <div *ngIf="registerForm.get('dietDescription')?.hasError('minlength')">Mínimo de 10 caracteres</div>
+              <div *ngIf="registerForm.get('dietDescription')?.hasError('maxlength')">Máximo de 1000 caracteres</div>
+            </div>
+          </div>
+
+          <!-- Status do Sistema -->
+          <div class="input-wrapper">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+              <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Status do Sistema:</span>
+              <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="systemStatus" id="systemStatus" formControlName="systemStatus">
+                <option value="true">Ativo</option>
+                <option value="false">Inativo</option>
+              </select>
+            </label>
+            <div class="validation" *ngIf="registerForm.get('systemStatus')?.touched || registerForm.get('systemStatus')?.dirty">
+              <div *ngIf="registerForm.get('systemStatus')?.hasError('required')">Status do sistema é obrigatório.</div>
+            </div>
+          </div>
+
+          <!-- Botões de Ação -->
+          <div class="button-wrapper mt-4 overflow-show">
+            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="editForm()" [disabled]="isEditMode">Editar</button>
+            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" (click)="deleteForm()" [disabled]="isEditMode">Deletar</button>
+            <button class="bg-zinc-700 w-1/3 h-9 self-center rounded-md hover-bg-zinc-800" type="submit">Registrar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
