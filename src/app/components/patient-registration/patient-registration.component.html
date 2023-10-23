@@ -37,14 +37,14 @@
         <option value="male">Masculino</option>
         <option value="other">Outro</option>
       </select>
-      <label for="birth" class="self-start ms-2">Data de Nascimento</label>
+      <label for="dateOfBirth" class="self-start ms-2">Data de Nascimento</label>
       <input
         type="date"
         class="self-start w-11/12 p-1 rounded-md"
-        id="birth"
+        id="dateOfBirth"
         placeholder="dd/mm/aaaa"
-        name="birth"
-        formControlName="birth"
+        name="dateOfBirth"
+        formControlName="dateOfBirth"
       />
       <label for="cpf" class="self-start ms-2">Cpf</label>
       <input
@@ -80,15 +80,15 @@
         <option value="widowed">Viúvo(a)</option>
       </select>
 
-      <label for="telephone" class="self-start ms-2">Telefone</label>
+      <label for="phone" class="self-start ms-2">Telefone</label>
       <input
         type="text"
         class="self-start w-11/12 p-1 rounded-md"
-        id="telephone"
+        id="phone"
         placeholder="(99) 9 9999-9999"
         mask="(00) 0 0000-0000"
-        name="telephone"
-        formControlName="telephone"
+        name="phone"
+        formControlName="phone"
       />
       <label for="email" class="self-start ms-2">Email</label>
       <input
@@ -101,7 +101,7 @@
       />
       <label for="nationality" class="self-start ms-2">Naturalidade</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
         id="nationality"
         placeholder=""
@@ -123,48 +123,48 @@
       />
       <label for="allergies" class="self-start ms-2">Lista de alergias</label>
       <textarea
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
         id="allergies"
         placeholder=""
         name="allergies"
         formControlName="allergies"
       ></textarea>
-      <label for="especialCare" class="self-start ms-2">Lista de cuidados específicos</label>
+      <label for="specificCare" class="self-start ms-2">Lista de cuidados específicos</label>
       <textarea
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
-        id="especialCare"
+        id="specificCare"
         placeholder=""
-        name="especialCare"
-        formControlName="especialCare"
+        name="specificCare"
+        formControlName="specificCare"
       ></textarea>
-      <label for="healthInsurance" class="self-start ms-2">Convênio</label>
+      <label for="insurance" class="self-start ms-2">Convênio</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
-        id="healthInsurance"
+        id="insurance"
         placeholder=""
-        name="healthInsurance"
-        formControlName="healthInsurance"
+        name="insurance"
+        formControlName="insurance"
       />
-      <label for="healthInsuranceNumber" class="self-start ms-2">Número do convênio</label>
+      <label for="insuranceNumber" class="self-start ms-2">Número do convênio</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
-        id="healthInsuranceNumber"
+        id="insuranceNumber"
         placeholder=""
-        name="healthInsuranceNumber"
-        formControlName="healthInsuranceNumber"
+        name="insuranceNumber"
+        formControlName="insuranceNumber"
       />
-      <label for="validity" class="self-start ms-2">Validade do convênio</label>
+      <label for="insuranceValidity" class="self-start ms-2">Validade do convênio</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
-        id="validity"
+        id="insuranceValidity"
         placeholder=""
-        name="validity"
-        formControlName="validity"
+        name="insuranceValidity"
+        formControlName="insuranceValidity"
       />
       <label for="cep" class="self-start ms-2">Cep</label>
       <input type="text"
@@ -177,34 +177,43 @@
       />
       <label for="street" class="self-start ms-2">Rua</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
         id="street"
         placeholder=""
         name="street"
         formControlName="street"
       />
+      <label for="number" class="self-start ms-2">Número</label>
+      <input
+        type="text"
+        class="self-start w-11/12 p-1 rounded-md"
+        id="number"
+        placeholder=""
+        name="number"
+        formControlName="number"
+      />
       <label for="complement" class="self-start ms-2">Complemento</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
         id="complement"
         placeholder=""
         name="complement"
         formControlName="complement"
       />
-      <label for="neighborhood" class="self-start ms-2">Bairro</label>
+      <label for="district" class="self-start ms-2">Bairro</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
-        id="neighborhood"
+        id="district"
         placeholder=""
-        name="neighborhood"
-        formControlName="neighborhood"
+        name="district"
+        formControlName="district"
       />
       <label for="city" class="self-start ms-2">Cidade</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
         id="city"
         placeholder=""
@@ -213,28 +222,42 @@
       />
       <label for="state" class="self-start ms-2">Estado</label>
       <input
-        type=""
+        type="text"
         class="self-start w-11/12 p-1 rounded-md"
         id="state"
         placeholder=""
         name="state"
         formControlName="state"
       />
-      <label for="sistemStatus" class="self-start ms-2">Status do sistema</label>
-      <input
-        type=""
-        class="self-start w-11/12 p-1 rounded-md"
-        id="sistemStatus"
-        placeholder=""
-        name="sistemStatus"
-        formControlName="sistemStatus"
-      />
+      <div class="flex flex-row justify-between">
+        <label for="status" class="self-start ms-2 me-10">Status do sistema:</label><br>
+        <span>Ativo<input
+          type="radio"
+          checked
+          class="self-start w-11/12 p-1 rounded-md"
+          id="valid"
+          placeholder="ativo"
+          name="status"
+          value="valid"
+          formControlName="status"
+        /></span>
+        <span>Inativo<input
+          type="radio"
+          class="self-start w-11/12 p-1 rounded-md"
+          id="invalid"
+          placeholder="inativo"
+          name="status"
+          value="invalid"
+          formControlName="status"
+        /></span>
+      </div>
     </div>
 
     <button
       type="submit"
       class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
       [disabled]="newPatientForm.invalid"
+      routerLink="/labmedical/patients"
     >
       Cadastrar paciente
     </button>

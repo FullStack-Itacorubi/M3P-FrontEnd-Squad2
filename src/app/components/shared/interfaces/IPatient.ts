@@ -8,10 +8,12 @@ export interface IPatient {
   status: boolean;
   dateOfBirth: string;
   rgWithIssuingAuthority: string;
+  nationality: string;
   maritalStatus: string;
   emergencyContact: string;
   allergies: string;
   specificCare: string;
+  insurance: string;
   insuranceNumber: string;
   insuranceValidity: string;
   address: {

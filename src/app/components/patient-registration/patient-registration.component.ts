@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { IPatient } from '../shared/interfaces/IPatient';
+import { PatientService } from '../shared/services/patient.service';
 
 @Component({
   selector: 'app-patient-registration',
@@ -11,30 +13,31 @@ export class PatientRegistrationComponent {
   
   newPatientForm: FormGroup;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private patientService: PatientService) {
     this.newPatientForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]),
       gender: new FormControl('', [Validators.required]),
-      birth: new FormControl('', [Validators.required]),
+      dateOfBirth: new FormControl('', [Validators.required]),
       cpf: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{11}$')]),
       rg: new FormControl('', [Validators.required, Validators.maxLength(20)]),
       maritalStatus: new FormControl('', [Validators.required]),
-      telephone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{11}$')]),
+      phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{11}$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
       nationality: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]),
       emergencyContact: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{11}$')]),
       allergies: new FormControl(''),
-      especialCare: new FormControl(''),
-      healthInsurance: new FormControl(''),
-      healthInsuranceNumber: new FormControl(''),
-      validity: new FormControl(''),
+      specificCare: new FormControl(''),
+      insurance: new FormControl(''),
+      insuranceNumber: new FormControl(''),
+      insuranceValidity: new FormControl(''),
       cep: new FormControl('', [Validators.required]),
       street: new FormControl('', [Validators.required]),
+      number: new FormControl(''),
       complement: new FormControl(''),
-      neighborhood: new FormControl('', [Validators.required]),
+      district: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
       state: new FormControl('', [Validators.required]),
-      sistemStatus: new FormControl(''),
+      status: new FormControl(''),
     })
   }
 
@@ -60,7 +63,7 @@ export class PatientRegistrationComponent {
     this.newPatientForm.patchValue({
       street: data.logradouro,
       complement: data.complemento,
-      neighborhood: data.bairro,
+      district: data.bairro,
       city: data.localidade,
       state: data.uf
     })
@@ -68,31 +71,43 @@ export class PatientRegistrationComponent {
 
   async onSubmit() {
     try{
-      const name = this.newPatientForm.get('name')?.value;
-      const gender = this.newPatientForm.get('gender')?.value;
-      const birth = this.newPatientForm.get('birth')?.value;
-      const cpf = this.newPatientForm.get('cpf')?.value;
-      const rg = this.newPatientForm.get('rg')?.value;
-      const maritalStatus = this.newPatientForm.get('maritalStatus')?.value;
-      const telephone = this.newPatientForm.get('telephone')?.value;
-      const email = this.newPatientForm.get('email')?.value;
-      const nationality = this.newPatientForm.get('nationality')?.value;
-      const emergencyContact = this.newPatientForm.get('emergencyContact')?.value;
-      const allergies = this.newPatientForm.get('allergies')?.value;
-      const especialCare = this.newPatientForm.get('especialCare')?.value;
-      const healthInsurance = this.newPatientForm.get('healthInsurance')?.value;
-      const healthInsuranceNumber = this.newPatientForm.get('healthInsuranceNumber')?.value;
-      const validity = this.newPatientForm.get('validity')?.value;
-      const cep = this.newPatientForm.get('cep')?.value;
-      const street = this.newPatientForm.get('street')?.value;
-      const complement = this.newPatientForm.get('complement')?.value;
-      const neighborhood = this.newPatientForm.get('complement')?.value;
-      const city = this.newPatientForm.get('complement')?.value;
-      const state = this.newPatientForm.get('complement')?.value;
-      const sistemStatus = this.newPatientForm.get('sistemStatus')?.value;
-      await
+      const newPatient: IPatient = {
+        id: 0,
+        name: this.newPatientForm.get('name')?.value,
+        gender: this.newPatientForm.get('gender')?.value,
+        dateOfBirth: this.newPatientForm.get('dateOfBirth')?.value,
+        cpf: this.newPatientForm.get('cpf')?.value,
+        rgWithIssuingAuthority: this.newPatientForm.get('rg')?.value,
+        maritalStatus: this.newPatientForm.get('maritalStatus')?.value,
+        phone: this.newPatientForm.get('phone')?.value,
+        email: this.newPatientForm.get('email')?.value,
+        nationality: this.newPatientForm.get('nationality')?.value,
+        emergencyContact: this.newPatientForm.get('emergencyContact')?.value,
+        allergies: this.newPatientForm.get('allergies')?.value,
+        specificCare: this.newPatientForm.get('specificCare')?.value,
+        insurance: this.newPatientForm.get('insurance')?.value,
+        insuranceNumber: this.newPatientForm.get('insuranceNumber')?.value,
+        insuranceValidity: this.newPatientForm.get('insuranceValidity')?.value,
+        status: this.newPatientForm.get('status')?.value,
+        address: {
+          id: 0,
+          cep: this.newPatientForm.get('cep')?.value,
+          city: this.newPatientForm.get('city')?.value,
+          state: this.newPatientForm.get('state')?.value,
+          street: this.newPatientForm.get('street')?.value,
+          number: this.newPatientForm.get('number')?.value,
+          complement: this.newPatientForm.get('complement')?.value,
+          district: this.newPatientForm.get('district')?.value,
+          reference: this.newPatientForm.get('reference')?.value,
+        },
+      };
+
+      this.patientService.addPatient(newPatient)
+      await 
+      console.log(newPatient)
       alert("cadastrado com sucesso")
-      console.log(name, gender, birth, cpf, rg, maritalStatus, telephone, email, nationality, emergencyContact, allergies,especialCare, healthInsurance, healthInsuranceNumber, validity,cep, street, complement, neighborhood, city, state, sistemStatus);
+      // console.log(name, gender, dateOfBirth, cpf, rg, maritalStatus, phone, email, nationality, emergencyContact, allergies, specificCare, insurance, insuranceNumber, insuranceValidity,cep, street, complement, district, city, state, status);
+
     } catch (e) {
       alert("dados de cadastro inválidos")
     }

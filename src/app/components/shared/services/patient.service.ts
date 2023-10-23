@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { IPatient } from '../interfaces/IPatient';
 
 @Injectable({
@@ -32,8 +32,8 @@ export class PatientService {
         return this.http.get<IPatient>(url);
     }
 
-    addPatient(patient: IPatient): Observable<IPatient> {
-        return this.http.post<IPatient>(this.apiUrl, patient);
+    async addPatient(patient: IPatient) {
+        return lastValueFrom(this.http.post<IPatient>(this.apiUrl, patient));
     }
 
     updatePatient(patient: IPatient): Observable<IPatient> {
