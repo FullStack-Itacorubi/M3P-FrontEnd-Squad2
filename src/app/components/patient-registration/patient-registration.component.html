@@ -37,14 +37,14 @@
         <option value="male">Masculino</option>
         <option value="other">Outro</option>
       </select>
-      <label for="dateOfBirth" class="self-start ms-2">Data de Nascimento</label>
+      <label for="birth" class="self-start ms-2">Data de Nascimento</label>
       <input
         type="date"
         class="self-start w-11/12 p-1 rounded-md"
-        id="dateOfBirth"
+        id="birth"
         placeholder="dd/mm/aaaa"
-        name="dateOfBirth"
-        formControlName="dateOfBirth"
+        name="birth"
+        formControlName="birth"
       />
       <label for="cpf" class="self-start ms-2">Cpf</label>
       <input
@@ -80,15 +80,15 @@
         <option value="widowed">Viúvo(a)</option>
       </select>
 
-      <label for="phone" class="self-start ms-2">Telefone</label>
+      <label for="telephone" class="self-start ms-2">Telefone</label>
       <input
         type="text"
         class="self-start w-11/12 p-1 rounded-md"
-        id="phone"
+        id="telephone"
         placeholder="(99) 9 9999-9999"
         mask="(00) 0 0000-0000"
-        name="phone"
-        formControlName="phone"
+        name="telephone"
+        formControlName="telephone"
       />
       <label for="email" class="self-start ms-2">Email</label>
       <input
@@ -101,7 +101,7 @@
       />
       <label for="nationality" class="self-start ms-2">Naturalidade</label>
       <input
-        type="text"
+        type=""
         class="self-start w-11/12 p-1 rounded-md"
         id="nationality"
         placeholder=""
@@ -123,14 +123,14 @@
       />
       <label for="allergies" class="self-start ms-2">Lista de alergias</label>
       <textarea
-        type="text"
+        type=""
         class="self-start w-11/12 p-1 rounded-md"
         id="allergies"
         placeholder=""
         name="allergies"
         formControlName="allergies"
       ></textarea>
-      <label for="specificCare" class="self-start ms-2">Lista de cuidados específicos</label>
+      <label for="especialCare" class="self-start ms-2">Lista de cuidados específicos</label>
       <textarea
         type="text"
         class="self-start w-11/12 p-1 rounded-md"
@@ -177,32 +177,23 @@
       />
       <label for="street" class="self-start ms-2">Rua</label>
       <input
-        type="text"
+        type=""
         class="self-start w-11/12 p-1 rounded-md"
         id="street"
         placeholder=""
         name="street"
         formControlName="street"
       />
-      <label for="number" class="self-start ms-2">Número</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="number"
-        placeholder=""
-        name="number"
-        formControlName="number"
-      />
       <label for="complement" class="self-start ms-2">Complemento</label>
       <input
-        type="text"
+        type=""
         class="self-start w-11/12 p-1 rounded-md"
         id="complement"
         placeholder=""
         name="complement"
         formControlName="complement"
       />
-      <label for="district" class="self-start ms-2">Bairro</label>
+      <label for="neighborhood" class="self-start ms-2">Bairro</label>
       <input
         type="text"
         class="self-start w-11/12 p-1 rounded-md"
@@ -211,6 +202,9 @@
         name="district"
         formControlName="district"
       />
+      <div class="validation" *ngIf="newPatientForm.get('neighborhood')?.touched || newPatientForm.get('neighborhood')?.dirty">
+        Neighbourhood is required      
+      </div>
       <label for="city" class="self-start ms-2">Cidade</label>
       <input
         type="text"
@@ -220,6 +214,9 @@
         name="city"
         formControlName="city"
       />
+      <div class="validation" *ngIf="newPatientForm.get('city')?.touched || newPatientForm.get('city')?.dirty">
+        City is required
+      </div>
       <label for="state" class="self-start ms-2">Estado</label>
       <input
         type="text"
@@ -229,35 +226,21 @@
         name="state"
         formControlName="state"
       />
-      <div class="flex flex-row justify-between">
-        <label for="status" class="self-start ms-2 me-10">Status do sistema:</label><br>
-        <span>Ativo<input
-          type="radio"
-          checked
-          class="self-start w-11/12 p-1 rounded-md"
-          id="valid"
-          placeholder="ativo"
-          name="status"
-          value="valid"
-          formControlName="status"
-        /></span>
-        <span>Inativo<input
-          type="radio"
-          class="self-start w-11/12 p-1 rounded-md"
-          id="invalid"
-          placeholder="inativo"
-          name="status"
-          value="invalid"
-          formControlName="status"
-        /></span>
-      </div>
+      <label for="sistemStatus" class="self-start ms-2">Status do sistema</label>
+      <input
+        type=""
+        class="self-start w-11/12 p-1 rounded-md"
+        id="sistemStatus"
+        placeholder=""
+        name="sistemStatus"
+        formControlName="sistemStatus"
+      />
     </div>
 
     <button
       type="submit"
       class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
       [disabled]="newPatientForm.invalid"
-      routerLink="/labmedical/patients"
     >
       Cadastrar paciente
     </button>
