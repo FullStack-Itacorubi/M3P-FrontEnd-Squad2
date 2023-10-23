@@ -8,7 +8,8 @@ import { RegistryNotAlowedComponent } from './components/registry-not-alowed/reg
 import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
-import { MedicationComponent } from './components/medication/medication.component';
+import { DietComponent } from './components/diet/diet.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -35,6 +36,10 @@ const routes: Routes = [
         component: HomepageComponent,
       },
       {
+        path: '**',
+        component: LoginComponent
+      },
+      {
         path: 'register',
         component: SignupComponent
         // canActivate: [AuthGuard]
@@ -54,10 +59,10 @@ const routes: Routes = [
         // canActivate: [AuthGuard]
       },
       {
-        path: 'medication',
-        component: MedicationComponent
+        path: 'diet',
+        component: DietComponent
         // canActivate: [AuthGuard]
-      },
+      }
     ]
   }
 ]

@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NgIconsModule } from '@ng-icons/core';
 import * as heroIcons from '@ng-icons/heroicons/outline';
 import * as heroIconsSolid from '@ng-icons/heroicons/solid';
@@ -23,7 +22,7 @@ import { RegistryNotAlowedComponent } from './components/registry-not-alowed/reg
 import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
-import { MedicationComponent } from './components/medication/medication.component';
+import { DietComponent } from './components/diet/diet.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +35,8 @@ import { MedicationComponent } from './components/medication/medication.componen
     RegistryNotAlowedComponent,
     AppointmentComponent,
     ExerciseComponent,
-    MedicationComponent,
-    RecordsComponent
+    RecordsComponent,
+    DietComponent
   ],
   imports: [
     BrowserModule,
