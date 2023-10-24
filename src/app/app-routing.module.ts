@@ -9,6 +9,7 @@ import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
+import { MedicationComponent } from './components/medication/medication.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -36,10 +37,6 @@ const routes: Routes = [
         component: HomepageComponent,
       },
       {
-        path: '**',
-        component: LoginComponent
-      },
-      {
         path: 'register',
         component: SignupComponent
         // canActivate: [AuthGuard]
@@ -62,6 +59,15 @@ const routes: Routes = [
         path: 'diet',
         component: DietComponent
         // canActivate: [AuthGuard]
+      },
+      {
+        path: 'medication',
+        component: MedicationComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: '**',
+        component: LoginComponent
       }
     ]
   }

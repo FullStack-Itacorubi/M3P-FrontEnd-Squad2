@@ -6,7 +6,7 @@ import { IPatient } from '../shared/interfaces/IPatient';
 @Component({
   selector: 'app-medication',
   templateUrl: './medication.component.html',
-  styleUrls: ['./medication.component.scss'],
+  styleUrls: ['./medication.component.scss']
 })
 export class MedicationComponent {
   medicationForm: FormGroup;

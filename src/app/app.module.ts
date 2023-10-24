@@ -23,6 +23,7 @@ import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
+import { MedicationComponent } from './components/medication/medication.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DietComponent } from './components/diet/diet.component';
     AppointmentComponent,
     ExerciseComponent,
     RecordsComponent,
-    DietComponent
+    DietComponent, 
+    MedicationComponent
   ],
   imports: [
     BrowserModule,
