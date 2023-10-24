@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient'; // Update 'path-to-ipatient' to the actual path
+import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 
 @Component({
   selector: 'app-appointment',
@@ -12,7 +13,7 @@ import { IPatient } from '../shared/interfaces/IPatient'; // Update 'path-to-ipa
 export class AppointmentComponent {
   registerForm: FormGroup;
   isEditMode: boolean = false;
-  searchResults: IPatient[] = [];
+  searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
 
@@ -81,7 +82,7 @@ export class AppointmentComponent {
     }
   }
   
-  assignPatient(patient: IPatient) {
+  assignPatient(patient: IPatientRequest) {
     this.registerForm.patchValue({
       patientId: patient.id,
     });

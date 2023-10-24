@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { PatientService } from '../shared/services/patient.service';
+import { IPatient } from '../shared/interfaces/IPatient';
 
 @Component({
   selector: 'app-patient-registration',
@@ -11,7 +13,7 @@ export class PatientRegistrationComponent {
   
   newPatientForm: FormGroup;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private patientService: PatientService) {
     this.newPatientForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]),
       gender: new FormControl('', [Validators.required]),
@@ -67,34 +69,40 @@ export class PatientRegistrationComponent {
   }
 
   async onSubmit() {
-    try{
-      const name = this.newPatientForm.get('name')?.value;
-      const gender = this.newPatientForm.get('gender')?.value;
-      const birth = this.newPatientForm.get('birth')?.value;
-      const cpf = this.newPatientForm.get('cpf')?.value;
-      const rg = this.newPatientForm.get('rg')?.value;
-      const maritalStatus = this.newPatientForm.get('maritalStatus')?.value;
-      const telephone = this.newPatientForm.get('telephone')?.value;
-      const email = this.newPatientForm.get('email')?.value;
-      const nationality = this.newPatientForm.get('nationality')?.value;
-      const emergencyContact = this.newPatientForm.get('emergencyContact')?.value;
-      const allergies = this.newPatientForm.get('allergies')?.value;
-      const especialCare = this.newPatientForm.get('especialCare')?.value;
-      const healthInsurance = this.newPatientForm.get('healthInsurance')?.value;
-      const healthInsuranceNumber = this.newPatientForm.get('healthInsuranceNumber')?.value;
-      const validity = this.newPatientForm.get('validity')?.value;
-      const cep = this.newPatientForm.get('cep')?.value;
-      const street = this.newPatientForm.get('street')?.value;
-      const complement = this.newPatientForm.get('complement')?.value;
-      const neighborhood = this.newPatientForm.get('complement')?.value;
-      const city = this.newPatientForm.get('complement')?.value;
-      const state = this.newPatientForm.get('complement')?.value;
-      const sistemStatus = this.newPatientForm.get('sistemStatus')?.value;
+    try {
+      const formData = this.newPatientForm.value; 
+      const patient: IPatient= {
+        name: formData.name,
+        gender: formData.gender,
+        cpf: formData.cpf,
+        phone: formData.phone,
+        email: formData.email,
+        status: formData.status,
+        dateOfBirth: formData.dateOfBirth,
+        rgWithIssuingAuthority: formData.rgWithIssuingAuthority,
+        maritalStatus: formData.maritalStatus,
+        emergencyContact: formData.emergencyContact,
+        allergies: formData.allergies,
+        specificCare: formData.specificCare,
+        insurance:formData.insurance,
+        insuranceNumber: formData.insuranceNumber,
+        insuranceValidity: formData.insuranceValidity,
+        address: {
+            cep: formData.CEP,
+            city: formData.city,
+            state: formData.state,
+            street: formData.street,
+            number: formData.number,
+            complement: formData.complement,
+            district: formData.district,
+            reference: formData.reference
+        }
+      };
+      this.patientService.addPatient(patient)
       await
-      alert("cadastrado com sucesso")
-      console.log(name, gender, birth, cpf, rg, maritalStatus, telephone, email, nationality, emergencyContact, allergies,especialCare, healthInsurance, healthInsuranceNumber, validity,cep, street, complement, neighborhood, city, state, sistemStatus);
-    } catch (e) {
-      alert("dados de cadastro inválidos")
+      alert ("cadastrado com suceso")
+    } catch(e){
+      alert("dados de cadastro invalido")
     }
   }
-}
+}   

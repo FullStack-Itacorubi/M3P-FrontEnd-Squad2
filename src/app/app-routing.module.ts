@@ -50,7 +50,7 @@ const routes: Routes = [
         component: PatientRegistrationComponent,
       },
 
-      { path: '**', component: LoginComponent }
+      { path: '*', component: LoginComponent }
     ]
   }
 ]
