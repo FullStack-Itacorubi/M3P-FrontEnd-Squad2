@@ -19,9 +19,7 @@ export class PatientService {
 
   //   })
   // }
-
-    private apiUrl = 'http://localhost:3000/patients';
-
+    private apiUrl = 'http://localhost:8080/api/pacientes';
     constructor(private http: HttpClient) {}
 
     getPatients(): Observable<IPatient[]> {

@@ -5,8 +5,12 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
+import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
+import { ExerciseComponent } from './components/exercise/exercise.component';
+import { DietComponent } from './components/diet/diet.component';
+import { MedicationComponent } from './components/medication/medication.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,8 +24,6 @@ const routes: Routes = [
     component: SignupComponent
     // canActivate: [AuthGuard]
   },
-
-  
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
@@ -41,6 +43,10 @@ const routes: Routes = [
         // canActivate: [AuthGuard]
       },
       {
+        path: 'records',
+        component: RecordsComponent
+      },
+      {
         path: 'appointment',
         component: AppointmentComponent
         // canActivate: [AuthGuard]
@@ -50,7 +56,26 @@ const routes: Routes = [
         component: PatientRegistrationComponent,
       },
 
-      { path: '*', component: LoginComponent }
+      { path: '*', component: LoginComponent },
+      {
+        path: 'exercise',
+        component: ExerciseComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'diet',
+        component: DietComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'medication',
+        component: MedicationComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: '**',
+        component: LoginComponent
+      }
     ]
   }
 ]
