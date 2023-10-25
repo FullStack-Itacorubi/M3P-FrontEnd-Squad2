@@ -12,6 +12,7 @@ export interface IPatient {
   emergencyContact: string;
   allergies: string;
   specificCare: string;
+  insurance:string;
   insuranceNumber: string;
   insuranceValidity: string;
   address: {
