@@ -16,231 +16,526 @@
     (ngSubmit)="onSubmit()"
   >
     <div class="flex flex-col justify-between items-center showRight">
-      <label for="name" class="self-start ms-2">Nome completo</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="name"
-        placeholder="Insira o nome do paciente"
-        name="name"
-        formControlName="name"
-      />
-      <label for="gender" class="self-start ms-2">Gênero</label>
-      <select
-        class="self-start w-11/12 p-1 rounded-md"
-        id="gender"
-        name="gender"
-        formControlName="gender"
-      >
-        <option value="" selected>Selecione uma opção</option>
-        <option value="female">Feminino</option>
-        <option value="male">Masculino</option>
-        <option value="other">Outro</option>
-      </select>
-      <label for="birth" class="self-start ms-2">Data de Nascimento</label>
-      <input
-        type="date"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="birth"
-        placeholder="dd/mm/aaaa"
-        name="birth"
-        formControlName="birth"
-      />
-      <label for="cpf" class="self-start ms-2">Cpf</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="cpf"
-        placeholder="999.999.999-99"
-        name="cpf"
-        formControlName="cpf"
-        mask="000.000.000-00"
-      />
-      <label for="rg" class="self-start ms-2">Rg</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="rg"
-        placeholder=""
-        name="rg"
-        formControlName="rg"
-      />
-      <label for="maritalStatus" class="self-start ms-2">Estado civil</label>
-      <select
-        class="self-start w-11/12 p-1 rounded-md"
-        id="maritalStatus"
-        name="maritalStatus"
-        formControlName="maritalStatus"
-      >
-        <option value="" selected>Selecione uma opção</option>
-        <option value="married">Casado(a)</option>
-        <option value="divorced">Divorciado(a)</option>
-        <option value="separated">Separado(a)</option>
-        <option value="single">Solteiro(a)</option>
-        <option value="widowed">Viúvo(a)</option>
-      </select>
+      <!-- Name -->
+      <div class="input-wrapper w-full">
+        <label for="name" class="self-start ms-2">Nome completo</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="name"
+          placeholder="Insira o nome do paciente"
+          name="name"
+          formControlName="name"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('name')?.touched ||
+            newPatientForm.get('name')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('name')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newPatientForm.get('name')?.hasError('minlength')">
+            Mínimo de 8 caracteres
+          </div>
+          <div *ngIf="newPatientForm.get('name')?.hasError('maxlength')">
+            Máximo de 64 caracteres
+          </div>
+        </div>
+      </div>
 
-      <label for="telephone" class="self-start ms-2">Telefone</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="telephone"
-        placeholder="(99) 9 9999-9999"
-        mask="(00) 0 0000-0000"
-        name="telephone"
-        formControlName="telephone"
-      />
-      <label for="email" class="self-start ms-2">Email</label>
-      <input
-        type="email"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="email"
-        placeholder="Insira o email"
-        name="email"
-        formControlName="email"
-      />
-      <label for="nationality" class="self-start ms-2">Naturalidade</label>
-      <input
-        type=""
-        class="self-start w-11/12 p-1 rounded-md"
-        id="nationality"
-        placeholder=""
-        name="nationality"
-        formControlName="nationality"
-      />
+      <!-- Gender -->
+      <div class="input-wrapper w-full">
+        <label for="gender" class="self-start ms-2">Gênero</label>
+        <select
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="gender"
+          name="gender"
+          formControlName="gender"
+        >
+          <option value="" selected>Selecione uma opção</option>
+          <option value="female">Feminino</option>
+          <option value="male">Masculino</option>
+          <option value="other">Outro</option>
+        </select>
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('gender')?.touched ||
+            newPatientForm.get('gender')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('gender')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="input-wrapper w-full">
+        <label for="dateOfBirth" class="self-start ms-2"
+          >Data de Nascimento</label
+        >
+        <input
+          type="date"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="dateOfBirth"
+          placeholder="dd/mm/aaaa"
+          name="dateOfBirth"
+          formControlName="dateOfBirth"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('dateOfBirth')?.touched ||
+            newPatientForm.get('dateOfBirth')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('dateOfBirth')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- CPF -->
+      <div class="input-wrapper w-full">
+        <label for="cpf" class="self-start ms-2 block">Cpf</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="cpf"
+          placeholder="999.999.999-99"
+          name="cpf"
+          formControlName="cpf"
+          mask="000.000.000-00"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('cpf')?.touched ||
+            newPatientForm.get('cpf')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('cpf')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newPatientForm.get('cpf')?.hasError('pattern')">
+            CPF inválido
+          </div>
+        </div>
+      </div>
+
+      <!-- RG -->
+      <div class="input-wrapper w-full">
+        <label for="rgWithIssuingAuthority" class="self-start ms-2">Rg</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="rgWithIssuingAuthority"
+          placeholder=""
+          name="rgWithIssuingAuthority"
+          formControlName="rgWithIssuingAuthority"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('rgWithIssuingAuthority')?.touched || newPatientForm.get('rg')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('rgWithIssuingAuthority')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newPatientForm.get('rgWithIssuingAuthority')?.hasError('maxlength')">
+            Máximo de 20 caracteres
+          </div>
+        </div>
+      </div>
+
+      <!-- Marital Status -->
+      <div class="input-wrapper w-full">
+        <label for="maritalStatus" class="self-start ms-2">Estado civil</label>
+        <select
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="maritalStatus"
+          name="maritalStatus"
+          formControlName="maritalStatus"
+        >
+          <option value="" selected>Selecione uma opção</option>
+          <option value="married">Casado(a)</option>
+          <option value="divorced">Divorciado(a)</option>
+          <option value="separated">Separado(a)</option>
+          <option value="single">Solteiro(a)</option>
+          <option value="widowed">Viúvo(a)</option>
+        </select>
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('maritalStatus')?.touched ||
+            newPatientForm.get('maritalStatus')?.dirty
+          "
+        >
+          <div
+            *ngIf="newPatientForm.get('maritalStatus')?.hasError('required')"
+          >
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="input-wrapper w-full">
+        <label for="phone" class="self-start ms-2">Telefone</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="phone"
+          placeholder="(99) 9 9999-9999"
+          mask="(00) 0 0000-0000"
+          name="phone"
+          formControlName="phone"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('phone')?.touched ||
+            newPatientForm.get('phone')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('phone')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newPatientForm.get('phone')?.hasError('pattern')">
+            Formato inválido
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="input-wrapper w-full">
+        <label for="email" class="self-start ms-2">Email</label>
+        <input
+          type="email"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="email"
+          placeholder="Insira o email"
+          name="email"
+          formControlName="email"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('email')?.touched ||
+            newPatientForm.get('email')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('email')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newPatientForm.get('email')?.hasError('email')">
+            Formato de email inválido
+          </div>
+        </div>
+      </div>
+
+      <!-- Nationality -->
+      <div class="input-wrapper w-full">
+        <label for="nationality" class="self-start ms-2">Naturalidade</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="nationality"
+          placeholder=""
+          name="nationality"
+          formControlName="nationality"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('nationality')?.touched ||
+            newPatientForm.get('nationality')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('nationality')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency Contact -->
+      <div class="input-wapper w-full">
+        <label for="emergencyContact" class="self-start ms-2"
+          >Contato de emergência</label
+        >
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="emergencyContact"
+          placeholder="(99) 9 9999-9999"
+          mask="(00) 0 0000-0000"
+          name="emergencyContact"
+          formControlName="emergencyContact"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('emergencyContact')?.touched ||
+            newPatientForm.get('emergencyContact')?.dirty
+          "
+        >
+          <div
+            *ngIf="newPatientForm.get('emergencyContact')?.hasError('required')"
+          >
+            Campo obrigatório
+          </div>
+          <div
+            *ngIf="newPatientForm.get('emergencyContact')?.hasError('pattern')"
+          >
+            Formato inválido
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="flex flex-col justify-between items-center showLeft">
-      <label for="emergencyContact" class="self-start ms-2">Contato de emergência</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="emergencyContact"
-        placeholder="(99) 9 9999-9999"
-        mask="(00) 0 0000-0000"
-        name="emergencyContact"
-        formControlName="emergencyContact"
-      />
-      <label for="allergies" class="self-start ms-2">Lista de alergias</label>
-      <textarea
-        type=""
-        class="self-start w-11/12 p-1 rounded-md"
-        id="allergies"
-        placeholder=""
-        name="allergies"
-        formControlName="allergies"
-      ></textarea>
-      <label for="especialCare" class="self-start ms-2">Lista de cuidados específicos</label>
-      <textarea
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="specificCare"
-        placeholder=""
-        name="specificCare"
-        formControlName="specificCare"
-      ></textarea>
-      <label for="insurance" class="self-start ms-2">Convênio</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="insurance"
-        placeholder=""
-        name="insurance"
-        formControlName="insurance"
-      />
-      <label for="insuranceNumber" class="self-start ms-2">Número do convênio</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="insuranceNumber"
-        placeholder=""
-        name="insuranceNumber"
-        formControlName="insuranceNumber"
-      />
-      <label for="insuranceValidity" class="self-start ms-2">Validade do convênio</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="insuranceValidity"
-        placeholder=""
-        name="insuranceValidity"
-        formControlName="insuranceValidity"
-      />
-      <label for="cep" class="self-start ms-2">Cep</label>
-      <input type="text"
-      name="cep"
-      class="self-start w-11/12 p-1 rounded-md"
-      #cep
-      formControlName="cep"
-      mask="00.000-000"
-      (blur)="consultCEP(cep.value, f.value)"
-      />
-      <label for="street" class="self-start ms-2">Rua</label>
-      <input
-        type=""
-        class="self-start w-11/12 p-1 rounded-md"
-        id="street"
-        placeholder=""
-        name="street"
-        formControlName="street"
-      />
-      <label for="complement" class="self-start ms-2">Complemento</label>
-      <input
-        type=""
-        class="self-start w-11/12 p-1 rounded-md"
-        id="complement"
-        placeholder=""
-        name="complement"
-        formControlName="complement"
-      />
-      <label for="neighborhood" class="self-start ms-2">Bairro</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="district"
-        placeholder=""
-        name="district"
-        formControlName="district"
-      />
-      <div class="validation" *ngIf="newPatientForm.get('neighborhood')?.touched || newPatientForm.get('neighborhood')?.dirty">
-        Neighbourhood is required      
+      <!-- Allergies -->
+      <div class="input-wrapper w-full">
+        <label for="allergies" class="self-start ms-2">Lista de alergias</label>
+        <textarea
+          type=""
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="allergies"
+          placeholder=""
+          name="allergies"
+          formControlName="allergies"
+        ></textarea>
       </div>
-      <label for="city" class="self-start ms-2">Cidade</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="city"
-        placeholder=""
-        name="city"
-        formControlName="city"
-      />
-      <div class="validation" *ngIf="newPatientForm.get('city')?.touched || newPatientForm.get('city')?.dirty">
-        City is required
+
+      <!-- SpecificCare -->
+      <div class="input-wrapper w-full">
+        <label for="specificCare" class="self-start ms-2"
+          >Lista de cuidados específicos</label
+        >
+        <textarea
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="specificCare"
+          placeholder=""
+          name="specificCare"
+          formControlName="specificCare"
+        ></textarea>
       </div>
-      <label for="state" class="self-start ms-2">Estado</label>
-      <input
-        type="text"
-        class="self-start w-11/12 p-1 rounded-md"
-        id="state"
-        placeholder=""
-        name="state"
-        formControlName="state"
-      />
-      <label for="sistemStatus" class="self-start ms-2">Status do sistema</label>
-      <input
-        type=""
-        class="self-start w-11/12 p-1 rounded-md"
-        id="sistemStatus"
-        placeholder=""
-        name="sistemStatus"
-        formControlName="sistemStatus"
-      />
+
+      <!-- Insurance -->
+      <div class="input-wrapper w-full">
+        <label for="insurance" class="self-start ms-2">Convênio</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="insurance"
+          placeholder=""
+          name="insurance"
+          formControlName="insurance"
+        />
+      </div>
+
+      <!-- InsuranceNumber -->
+      <div class="input-wrapper w-full">
+        <label for="insuranceNumber" class="self-start ms-2"
+          >Número do convênio</label
+        >
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="insuranceNumber"
+          placeholder=""
+          name="insuranceNumber"
+          formControlName="insuranceNumber"
+        />
+      </div>
+
+      <!-- InsuranceValidity -->
+      <div class="input-wrapper w-full">
+        <label for="insuranceValidity" class="self-start ms-2"
+          >Validade do convênio</label
+        >
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="insuranceValidity"
+          placeholder=""
+          name="insuranceValidity"
+          formControlName="insuranceValidity"
+        />
+      </div>
+
+      <!-- CEP -->
+      <div class="input-wrapper w-full">
+        <label for="cep" class="self-start ms-2">Cep</label>
+        <input
+          type="text"
+          name="cep"
+          class="self-start w-11/12 p-1 rounded-md block"
+          #cep
+          formControlName="cep"
+          mask="00.000-000"
+          (blur)="consultCEP(cep.value, f.value)"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('cep')?.touched ||
+            newPatientForm.get('cep')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('cep')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newPatientForm.get('cep')?.hasError('pattern')">
+            Formato inválido
+          </div>
+        </div>
+      </div>
+
+      <!-- Street -->
+      <div class="input-wrapper w-full">
+        <label for="street" class="self-start ms-2">Rua</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="street"
+          placeholder=""
+          name="street"
+          formControlName="street"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('street')?.touched ||
+            newPatientForm.get('street')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('street')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- Complement -->
+      <div class="input-wrapper w-full">
+        <label for="complement" class="self-start ms-2">Complemento</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="complement"
+          placeholder=""
+          name="complement"
+          formControlName="complement"
+        />
+      </div>
+
+      <!-- District -->
+      <div class="input-wrapper w-full">
+        <label for="district" class="self-start ms-2">Bairro</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="district"
+          placeholder=""
+          name="district"
+          formControlName="district"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('district')?.touched ||
+            newPatientForm.get('district')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('district')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- City -->
+      <div class="input-wrapper w-full">
+        <label for="city" class="self-start ms-2">Cidade</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="city"
+          placeholder=""
+          name="city"
+          formControlName="city"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('city')?.touched ||
+            newPatientForm.get('city')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('city')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- State -->
+      <div class="input-wrapper w-full">
+        <label for="state" class="self-start ms-2">Estado</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="state"
+          placeholder=""
+          name="state"
+          formControlName="state"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newPatientForm.get('state')?.touched ||
+            newPatientForm.get('state')?.dirty
+          "
+        >
+          <div *ngIf="newPatientForm.get('state')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="input-wrapper w-full">
+        <label for="status" class="self-start ms-2">Status do sistema: </label><br>
+        <input
+          type="radio"
+          class=""
+          id="status"
+          placeholder=""
+          name="status"
+          value="valid"
+          formControlName="status"
+        /><span class="me-10">Válido</span>
+        <input
+          type="radio"
+          class=""
+          id="status"
+          placeholder=""
+          name="status"
+          value="invalid"
+          formControlName="status"
+        /><span>Inválido</span>
+      </div>
     </div>
 
     <button
       type="submit"
       class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
       [disabled]="newPatientForm.invalid"
+      routerLink="labmedical/patients"
     >
       Cadastrar paciente
     </button>
