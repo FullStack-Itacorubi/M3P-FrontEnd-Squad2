@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { IPatient } from '../interfaces/IPatient';
+import { IPatientRequest } from '../interfaces/IPatientRequest';
 
 @Injectable({
     providedIn: 'root'
@@ -18,9 +19,7 @@ export class PatientService {
 
   //   })
   // }
-
     private apiUrl = 'http://localhost:8080/api/pacientes';
-
     constructor(private http: HttpClient) {}
 
     getPatients(): Observable<IPatient[]> {
@@ -32,11 +31,11 @@ export class PatientService {
         return this.http.get<IPatient>(url);
     }
 
-    addPatient(patient: IPatient): Observable<IPatient> {
-        return this.http.post<IPatient>(this.apiUrl, patient);
+    async addPatient(patient: IPatient) {
+        return lastValueFrom(this.http.post<IPatient>(this.apiUrl, patient));
     }
 
-    updatePatient(patient: IPatient): Observable<IPatient> {
+    updatePatient(patient: IPatientRequest): Observable<IPatient> {
         const url = `${this.apiUrl}/${patient.id}`;
         return this.http.put<IPatient>(url, patient);
     }
@@ -45,9 +44,9 @@ export class PatientService {
         const url = `${this.apiUrl}/${id}`;
         return this.http.delete<void>(url);
     }
-    getPatientsByName(name: string): Observable<IPatient[]> {
+    getPatientsByName(name: string): Observable<IPatientRequest[]> {
         const url = `${this.apiUrl}?name_like=${name}`;
-        return this.http.get<IPatient[]>(url);
+        return this.http.get<IPatientRequest[]>(url);
       }
       
 }

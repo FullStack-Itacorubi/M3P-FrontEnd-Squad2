@@ -19,6 +19,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
+import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
@@ -34,6 +35,7 @@ import { MedicationComponent } from './components/medication/medication.componen
     SidebarComponent, FadeSeparatorComponent,
     ToolbarComponent,
     RegistryNotAlowedComponent,
+    PatientRegistrationComponent,
     AppointmentComponent,
     ExerciseComponent,
     RecordsComponent,

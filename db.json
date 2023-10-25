@@ -1,0 +1,50 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "patients": [
+    {
+      "id": 1,
+      "name": "Nome Teste",
+      "gender": "male",
+      "dateOfBirth": "2000-12-31",
+      "cpf": "12321312312",
+      "rgWithIssuingAuthority": "54864564dsadsa",
+      "maritalStatus": "married",
+      "phone": "11999998888",
+      "email": "email@email.com",
+      "nationality": "sao paulo",
+      "emergencyContact": "55589980101",
+      "allergies": "lista de alergias teste",
+      "specificCare": "lista de cuidados teste",
+      "insurance": "convênio teste",
+      "insuranceNumber": "123456789",
+      "insuranceValidity": "11/2028",
+      "status": "valid",
+      "address": {
+        "id": 0,
+        "cep": "88110600",
+        "city": "São José",
+        "state": "SC",
+        "street": "Rodovia BR-101",
+        "number": "50",
+        "complement": "do km 205,000 ao km 205,998 - lado par",
+        "district": "Roçado"
+      }
+    }
+  ]
+}
