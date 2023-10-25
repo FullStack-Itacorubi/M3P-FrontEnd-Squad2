@@ -46,5 +46,17 @@
         "district": "Roçado"
       }
     }
+  ],
+  "users": [
+    {
+      "name": "Admin Admin",
+      "gender": "other",
+      "cpf": "123.213.123-12",
+      "type": "administrator",
+      "phone": "(11) 9 9999-8888",
+      "email": "admin@email.com",
+      "password": "123admin",
+      "id": 1
+    }
   ]
 }

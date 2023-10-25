@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor() {
+  constructor(private router: Router, private authService: AuthService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
@@ -21,9 +23,9 @@ export class LoginComponent {
     try {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
-      await
+      await this.authService.login(email, password)
       alert("logado com sucesso")
-      console.log(`${email} logou usando ${password} como senha`);
+      this.router.navigate(['/labmedical/homepage']);
     } catch (e) {
       alert("dados incorretos")
     }
