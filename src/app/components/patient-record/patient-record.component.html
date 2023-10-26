@@ -1,1 +1,96 @@
-<p>patient-record works!</p>
+<div class="container mx-auto p-4">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <ng-container *ngIf="patient; else noPatient">
+        <!-- Patient Information -->
+        <div class="mb-6">
+          <h2 class="text-2xl font-semibold">{{ patient?.name }}</h2>
+          <p>Convênio: {{ patient?.insuranceNumber || 'N/A' }}</p>
+          <p>Contato de Emergência: {{ patient?.emergencyContact || 'N/A' }}</p>
+          <p>Alergias: {{ patient?.allergies || 'N/A' }}</p>
+          <p>Cuidados Específicos: {{ patient?.specificCare || 'N/A' }}</p>
+        </div>
+  
+        <!-- History Sections -->
+        <div class="space-y-8">
+          <!-- Consultations -->
+          <div class="border-b pb-4">
+            <h3 class="text-lg font-semibold">Consultations</h3>
+            <ng-container *ngIf="patient.appointment?.length; else noConsultations">
+              <div *ngFor="let appointment of patient.appointment">
+                <p>Date: {{ appointment.consultationDate }}</p>
+                <p>Reason: {{ appointment.reason }}</p>
+                <!-- Add more appointment details here -->
+              </div>
+            </ng-container>
+            <ng-template #noConsultations>
+              <p>No consultations available.</p>
+            </ng-template>
+          </div>
+  
+          <!-- Exams -->
+          <div class="border-b pb-4">
+            <h3 class="text-lg font-semibold">Exams</h3>
+            <ng-container *ngIf="patient.examList?.length; else noExams">
+              <div *ngFor="let exam of patient.examList">
+                <p>Name: {{ exam.name }}</p>
+                <p>Date: {{ exam.date }}</p>
+                <!-- Add more exam details here -->
+              </div>
+            </ng-container>
+            <ng-template #noExams>
+              <p>No exams available.</p>
+            </ng-template>
+          </div>
+  
+          <!-- Medications -->
+          <div class="border-b pb-4">
+            <h3 class="text-lg font-semibold">Medications</h3>
+            <ng-container *ngIf="patient.medications?.length; else noMedications">
+              <div *ngFor="let medication of patient.medications">
+                <p>Name: {{ medication.medicationName }}</p>
+                <p>Dosage: {{ medication.dosage }}</p>
+                <!-- Add more medication details here -->
+              </div>
+            </ng-container>
+            <ng-template #noMedications>
+              <p>No medications available.</p>
+            </ng-template>
+          </div>
+  
+          <!-- Diets -->
+          <div class="border-b pb-4">
+            <h3 class="text-lg font-semibold">Diets</h3>
+            <ng-container *ngIf="patient.dietList?.length; else noDiets">
+              <div *ngFor="let diet of patient.dietList">
+                <p>Name: {{ diet.dietName }}</p>
+                <p>Date: {{ diet.date }}</p>
+                <!-- Add more diet details here -->
+              </div>
+            </ng-container>
+            <ng-template #noDiets>
+              <p>No diets available.</p>
+            </ng-template>
+          </div>
+  
+          <!-- Exercises -->
+          <div>
+            <h3 class="text-lg font-semibold">Exercises</h3>
+            <ng-container *ngIf="patient.exerciseList?.length; else noExercises">
+              <div *ngFor="let exercise of patient.exerciseList">
+                <p>Name: {{ exercise.exerciseName }}</p>
+                <p>Date: {{ exercise.date }}</p>
+                <!-- Add more exercise details here -->
+              </div>
+            </ng-container>
+            <ng-template #noExercises>
+              <p>No exercises available.</p>
+            </ng-template>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noPatient>
+        <p>No patient information available.</p>
+      </ng-template>
+    </div>
+  </div>
+  

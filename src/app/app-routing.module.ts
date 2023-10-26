@@ -12,6 +12,7 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
 import { MedicationComponent } from './components/medication/medication.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { PatientRecordComponent } from './components/patient-record/patient-record.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -60,8 +61,6 @@ const routes: Routes = [
         path: 'user-registration',
         component: UserRegistrationComponent,
       },
-
-      { path: '*', component: LoginComponent },
       {
         path: 'exercise',
         component: ExerciseComponent
@@ -75,6 +74,10 @@ const routes: Routes = [
       {
         path: 'medication',
         component: MedicationComponent
+        // canActivate: [AuthGuard]
+      },
+      {path: 'patient-records',
+      component: PatientRecordComponent
         // canActivate: [AuthGuard]
       },
       {

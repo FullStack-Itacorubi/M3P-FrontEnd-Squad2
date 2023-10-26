@@ -22,6 +22,7 @@ export class RecordsComponent implements OnInit {
     this.patientService.getPatients().subscribe((data) => {
       this.patients = data;
       this.filteredPatients = data; // Initialize filteredPatients with all patients
+      console.log(this.patients);
     });
   }
 
