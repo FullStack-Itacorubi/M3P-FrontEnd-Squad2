@@ -17,30 +17,83 @@ export class SidebarComponent {
     'https://img.freepik.com/vetores-gratis/hospital-logo-design-vector-medical-cross_53876-136743.jpg';
   collapsed = false;
   menuItems = [
-    {text: 'Inicio', icon:'heroHomeSolid', selected: true, route: 'labmedical/homepage'},
-    {text: 'Usuarios', icon:'heroUsersSolid', selected: false, route: 'labmedical/users'},
-    {text: 'Medicos', icon:'jamActivity', selected: false, route: 'labmedical/doctors'},
-    {text: 'Pacientes', icon: 'heroUserGroupSolid', selected: false, route: 'labmedical/patients'},
-    {text: 'Consultas', icon: 'heroClockSolid', selected: false, route: 'labmedical/appointment'},
-    {text: 'Exames', icon: 'heroDocumentTextSolid', selected: false, route: 'labmedical/exams'},
-    {text: 'Dietas', icon: 'heroCakeSolid', selected: false, route: 'labmedical/diets'},
-    {text: 'Exercícios', icon: 'heroHeartSolid', selected: false, route: 'labmedical/exercises'}
-
+    {
+      text: 'Inicio',
+      icon: 'heroHomeSolid',
+      selected: true,
+      route: 'homepage',
+    },
+    {
+      text: 'Usuarios',
+      icon: 'heroUsersSolid',
+      selected: false,
+      route: 'users',
+    },
+    {
+      text: 'Medicos',
+      icon: 'jamActivity',
+      selected: false,
+      route: 'doctors',
+    },
+    {
+      text: 'Pacientes',
+      icon: 'heroUserGroupSolid',
+      selected: false,
+      route: 'patients',
+    },
+    {
+      text: 'Consultas',
+      icon: 'heroClockSolid',
+      selected: false,
+      route: 'appointment',
+    },
+    {
+      text: 'Exames',
+      icon: 'heroDocumentTextSolid',
+      selected: false,
+      route: 'exams',
+    },
+    {
+      text: 'Dietas',
+      icon: 'heroCakeSolid',
+      selected: false,
+      route: 'diets',
+    },
+    {
+      text: 'Exercícios',
+      icon: 'heroHeartSolid',
+      selected: false,
+      route: 'exercises',
+    },
   ];
 
-  test(text: string) {
-    
-    this.menuItems = this.menuItems.map((item) =>
-      item.text === text
-        ? { ...item, selected: true }
-        : { ...item, selected: false }
+  // test(text: string) {
+  //   this.menuItems = this.menuItems.map((item) =>
+  //     item.text === text
+  //       ? { ...item, selected: true }
+  //       : { ...item, selected: false }
+  //   );
+  //   return this.menuItems;
+  // }
+
+  test(item: any) {
+    this.menuItems = this.menuItems.map(
+      (thisItem) =>
+        (thisItem.text === item.text
+          ? { ...thisItem, selected: true }
+          : { ...thisItem, selected: false }
+          )
     );
   }
 
-  constructor(private authService: AuthService, private router: Router) { }
+  check() {
+  console.log(this.menuItems);
+  
+  }
 
+  constructor(private authService: AuthService, private router: Router) {}
 
-  logOut(){
+  logOut() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
