@@ -7,24 +7,25 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
+import { privateChildGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'register-not-allowed',
-    component: RegistryNotAlowedComponent
+    component: RegistryNotAlowedComponent,
   },
   {
     path: 'register',
-    component: SignupComponent
+    component: SignupComponent,
     // canActivate: [AuthGuard]
   },
 
-  
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
+    canActivateChild: [privateChildGuard],
     children: [
       {
         path: '',
@@ -37,26 +38,25 @@ const routes: Routes = [
       },
       {
         path: 'register',
-        component: SignupComponent
+        component: SignupComponent,
         // canActivate: [AuthGuard]
       },
       {
         path: 'appointment',
-        component: AppointmentComponent
+        component: AppointmentComponent,
         // canActivate: [AuthGuard]
       },
       {
         path: 'patient-registration',
         component: PatientRegistrationComponent,
       },
-
-      { path: '*', component: LoginComponent }
-    ]
-  }
-]
+    ],
+  },
+  { path: '*', component: LoginComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

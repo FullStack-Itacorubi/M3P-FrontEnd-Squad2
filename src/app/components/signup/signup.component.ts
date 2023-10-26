@@ -37,7 +37,6 @@ export class SignupComponent {
         password: formUser.password, 
       };
       await this.userService.registerUser(user);
-      console.log(user);
       
       alert('Cadastro efetuado com sucesso!');
       this.router.navigate(['login']);

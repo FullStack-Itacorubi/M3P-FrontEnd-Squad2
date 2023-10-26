@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,8 +8,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-  @Input() name = 'Joao da Silva';
-  @Input() email = 'joaodasilva@email.com';
+  userName: string | undefined = '';
+
+  // @Input() name = 'Joao da Silva';
+  // @Input() email = 'joaodasilva@email.com';
   brandName = 'LabMedical';
   brandImgUrl =
     'https://img.freepik.com/vetores-gratis/hospital-logo-design-vector-medical-cross_53876-136743.jpg';
@@ -20,8 +24,7 @@ export class SidebarComponent {
     {text: 'Consultas', icon: 'heroClockSolid', selected: false, route: 'labmedical/appointment'},
     {text: 'Exames', icon: 'heroDocumentTextSolid', selected: false, route: 'labmedical/exams'},
     {text: 'Dietas', icon: 'heroCakeSolid', selected: false, route: 'labmedical/diets'},
-    {text: 'Exercícios', icon: 'heroHeartSolid', selected: false, route: 'labmedical/exercises'},
-    {text: 'Sair', icon: 'heroPowerSolid', selected:false, route: 'login'}
+    {text: 'Exercícios', icon: 'heroHeartSolid', selected: false, route: 'labmedical/exercises'}
 
   ];
 
@@ -32,5 +35,13 @@ export class SidebarComponent {
         ? { ...item, selected: true }
         : { ...item, selected: false }
     );
+  }
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+
+  logOut(){
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
