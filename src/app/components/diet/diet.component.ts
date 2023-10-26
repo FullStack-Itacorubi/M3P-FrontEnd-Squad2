@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient';
+import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 
 @Component({
   selector: 'app-diet',
@@ -14,7 +15,7 @@ export class DietComponent {
   registerForm: FormGroup;
   isEditMode: boolean = false;
   identifier= 0;
-  searchResults: IPatient[] = [];
+  searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
 
@@ -82,7 +83,7 @@ export class DietComponent {
     }
   }
 
-  assignPatient(patient: IPatient) {
+  assignPatient(patient: IPatientRequest) {
     this.registerForm.patchValue({
       patientId: patient.id,
     });
