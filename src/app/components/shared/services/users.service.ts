@@ -1,19 +1,24 @@
-import { Injectable } from '@angular/core';
-import { IUser } from '../interfaces/IUser'; // Import the IUser interface
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, lastValueFrom } from 'rxjs';
+import { IUser } from '../interfaces/IUser';
+import { IUserRequest } from '../interfaces/IUserRequest';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   private usersUrl = 'http://localhost:8080/api/usuarios';
   constructor(private http: HttpClient) {}
-  getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(this.usersUrl);
+  getUsers(): Observable<IUserRequest[]> {
+    return this.http.get<IUserRequest[]>(this.usersUrl);
   }
-  getUserById(userId: number): Observable<IUser> {
+  getUserById(userId: number): Observable<IUserRequest> {
     const userByIdUrl = `${this.usersUrl}/${userId}`;
-    return this.http.get<IUser>(userByIdUrl);
+    return this.http.get<IUserRequest>(userByIdUrl);
+  }
+
+  async addUser(user: IUser) {
+    return lastValueFrom(this.http.post<IUser>(this.usersUrl, user));
   }
 }

@@ -11,6 +11,7 @@ import { PatientRegistrationComponent } from './components/patient-registration/
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
 import { MedicationComponent } from './components/medication/medication.component';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -54,6 +55,10 @@ const routes: Routes = [
       {
         path: 'patient-registration',
         component: PatientRegistrationComponent,
+      },
+      {
+        path: 'user-registration',
+        component: UserRegistrationComponent,
       },
 
       { path: '*', component: LoginComponent },
