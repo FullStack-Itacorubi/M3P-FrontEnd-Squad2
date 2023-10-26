@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IUser } from '../shared/interfaces/IUser';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +13,7 @@ export class SignupComponent {
 
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) {
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]],
       gender: ['', Validators.required],
@@ -23,10 +25,23 @@ export class SignupComponent {
     });
   }
   async onSubmit() {
-    if (this.registerForm.valid) {
+    try{
+      const formUser = this.registerForm.value;
+      const user: IUser = {
+        name: formUser.fullName,
+        gender: formUser.gender,
+        cpf: formUser.cpf,
+        type: formUser.userType,
+        phone: formUser.phoneNumber,
+        email: formUser.email,
+        password: formUser.password, 
+      };
+      await this.userService.registerUser(user);
+      console.log(user);
+      
       alert('Cadastro efetuado com sucesso!');
       this.router.navigate(['login']);
-    } else {
+    } catch (e) {
       alert('Existem dados inválidos no formulário. Por favor, corrija-os e tente novamente.');
     }
   }
