@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient'; 
+import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 @Component({
   selector: 'app-medication',
   templateUrl: './medication.component.html',
@@ -12,7 +13,7 @@ export class MedicationComponent {
   medicationForm: FormGroup;
   isEditMode: boolean = false;
   identifier = 0;
-  searchResults: IPatient[] = [];
+  searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
 
@@ -83,7 +84,7 @@ export class MedicationComponent {
     }
   }
   
-  assignPatient(patient: IPatient) {
+  assignPatient(patient: IPatientRequest) {
     this.medicationForm.patchValue({
       patientId: patient.id,
     });

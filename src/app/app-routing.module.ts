@@ -7,9 +7,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
 import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
+import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
 import { MedicationComponent } from './components/medication/medication.component';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -50,6 +52,16 @@ const routes: Routes = [
         component: AppointmentComponent
         // canActivate: [AuthGuard]
       },
+      {
+        path: 'patient-registration',
+        component: PatientRegistrationComponent,
+      },
+      {
+        path: 'user-registration',
+        component: UserRegistrationComponent,
+      },
+
+      { path: '*', component: LoginComponent },
       {
         path: 'exercise',
         component: ExerciseComponent

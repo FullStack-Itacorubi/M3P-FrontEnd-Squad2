@@ -1,0 +1,254 @@
+<div class="text-lg transition-all duration-1000">
+  <div
+    class="m-2 p-2 w-10/12 duration-1000 transition-all translate-x-0 bg-neutral-100/5 rounded-lg overflow-hidden"
+  >
+    <h3 class="text-3xl m-5 showDown [text-shadow:_0_2px_5px_rgb(0_0_0_/_40%)]">
+      Cadastrar usuário
+    </h3>
+  </div>
+
+  <hr class="showUp mx-5 border-b border-black/20" />
+
+  <form
+    #f="ngForm"
+    class="grid grid-cols-2 gap-x-12 mx-auto ms-10 my-8"
+    [formGroup]="newUserForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="flex flex-col justify-between items-center showRight">
+      <!-- Name -->
+      <div class="input-wrapper w-full">
+        <label for="name" class="self-start ms-2">Nome completo</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="name"
+          placeholder="Insira o nome do usuário"
+          name="name"
+          formControlName="name"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newUserForm.get('name')?.touched ||
+            newUserForm.get('name')?.dirty
+          "
+        >
+          <div *ngIf="newUserForm.get('name')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newUserForm.get('name')?.hasError('minlength')">
+            Mínimo de 8 caracteres
+          </div>
+          <div *ngIf="newUserForm.get('name')?.hasError('maxlength')">
+            Máximo de 64 caracteres
+          </div>
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div class="input-wrapper w-full">
+        <label for="gender" class="self-start ms-2">Gênero</label>
+        <select
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="gender"
+          name="gender"
+          formControlName="gender"
+        >
+          <option value="" selected>Selecione uma opção</option>
+          <option value="female">Feminino</option>
+          <option value="male">Masculino</option>
+          <option value="other">Outro</option>
+        </select>
+        <div
+          class="validation"
+          *ngIf="
+            newUserForm.get('gender')?.touched ||
+            newUserForm.get('gender')?.dirty
+          "
+        >
+          <div *ngIf="newUserForm.get('gender')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- CPF -->
+      <div class="input-wrapper w-full">
+        <label for="cpf" class="self-start ms-2 block">Cpf</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="cpf"
+          placeholder="999.999.999-99"
+          name="cpf"
+          formControlName="cpf"
+          mask="000.000.000-00"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newUserForm.get('cpf')?.touched ||
+            newUserForm.get('cpf')?.dirty
+          "
+        >
+          <div *ngIf="newUserForm.get('cpf')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newUserForm.get('cpf')?.hasError('pattern')">
+            CPF inválido
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="input-wrapper w-full">
+        <label for="phone" class="self-start ms-2">Telefone</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="phone"
+          placeholder="(99) 9 9999-9999"
+          mask="(00) 0 0000-0000"
+          name="phone"
+          formControlName="phone"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newUserForm.get('phone')?.touched ||
+            newUserForm.get('phone')?.dirty
+          "
+        >
+          <div *ngIf="newUserForm.get('phone')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newUserForm.get('phone')?.hasError('pattern')">
+            Formato inválido
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="input-wrapper w-full">
+        <label for="email" class="self-start ms-2">Email</label>
+        <input
+          type="email"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="email"
+          placeholder="Insira o email"
+          name="email"
+          formControlName="email"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newUserForm.get('email')?.touched ||
+            newUserForm.get('email')?.dirty
+          "
+        >
+          <div *ngIf="newUserForm.get('email')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newUserForm.get('email')?.hasError('email')">
+            Formato de email inválido
+          </div>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="input-wrapper w-full">
+        <label for="password" class="self-start ms-2">Password</label>
+        <input
+          type="password"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="password"
+          placeholder="Insira a sua senha"
+          name="password"
+          formControlName="password"
+        />
+        <div
+          class="validation"
+          *ngIf="
+            newUserForm.get('password')?.touched ||
+            newUserForm.get('password')?.dirty
+          "
+        >
+          <div *ngIf="newUserForm.get('password')?.hasError('required')">
+            Campo obrigatório
+          </div>
+          <div *ngIf="newUserForm.get('password')?.hasError('minlength')">
+            Mínimo de 6 caracteres
+          </div>
+        </div>
+      </div>
+
+      <!-- Type -->
+      <div class="input-wrapper w-full">
+        <label for="type" class="self-start ms-2">Tipo de usuário</label>
+        <select
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="type"
+          name="type"
+          formControlName="type"
+        >
+          <option value="" selected>Selecione uma opção</option>
+          <option value="doctor">Médico(a)</option>
+          <option value="administrator">Administrador(a)</option>
+          <option value="nurse">Enfermeiro(a)</option>
+        </select>
+        <div
+          class="validation"
+          *ngIf="
+            newUserForm.get('type')?.touched ||
+            newUserForm.get('type')?.dirty
+          "
+        >
+          <div *ngIf="newUserForm.get('type')?.hasError('required')">
+            Campo obrigatório
+          </div>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="input-wrapper w-full">
+        <label for="status" class="self-start ms-2">Status do sistema: </label><br>
+        <input
+          type="radio"
+          class=""
+          id="status"
+          placeholder=""
+          name="status"
+          value="valid"
+          formControlName="status"
+        /><span class="me-10">Válido</span>
+        <input
+          type="radio"
+          class=""
+          id="status"
+          placeholder=""
+          name="status"
+          value="invalid"
+          formControlName="status"
+        /><span>Inválido</span>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
+      [disabled]="newUserForm.invalid"
+      routerLink="labmedical/users"
+    >
+      Cadastrar usuário
+    </button>
+  </form>
+
+  <button
+    type="button"
+    class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
+    routerLink="/labmedical/users"
+  >
+    Voltar
+  </button>
+</div>

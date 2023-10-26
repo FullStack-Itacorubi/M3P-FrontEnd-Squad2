@@ -1,5 +1,4 @@
 export interface IPatient {
-  id: number;
   name: string;
   gender: string;
   cpf: string;
@@ -8,6 +7,7 @@ export interface IPatient {
   status: boolean;
   dateOfBirth: string;
   rgWithIssuingAuthority: string;
+  nationality: string;
   maritalStatus: string;
   emergencyContact: string;
   allergies: string;
@@ -16,7 +16,6 @@ export interface IPatient {
   insuranceNumber: string;
   insuranceValidity: string;
   address: {
-      id: number;
       cep: string;
       city: string;
       state: string;
