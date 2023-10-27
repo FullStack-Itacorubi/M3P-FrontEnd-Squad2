@@ -40,10 +40,6 @@ const routes: Routes = [
         component: HomepageComponent,
       },
       {
-        path: 'register',
-        component: SignupComponent,
-      },
-      {
         path: 'records',
         component: RecordsComponent,
       },
@@ -59,8 +55,6 @@ const routes: Routes = [
         path: 'user-registration',
         component: UserRegistrationComponent,
       },
-
-      { path: '*', component: LoginComponent },
       {
         path: 'exercise',
         component: ExerciseComponent,
