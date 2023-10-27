@@ -5,8 +5,13 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RegistryNotAlowedComponent } from './components/registry-not-alowed/registry-not-alowed.component';
+import { RecordsComponent } from './components/records/records.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
+import { ExerciseComponent } from './components/exercise/exercise.component';
+import { DietComponent } from './components/diet/diet.component';
+import { MedicationComponent } from './components/medication/medication.component';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { privateChildGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -19,9 +24,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: SignupComponent,
-    // canActivate: [AuthGuard]
   },
-
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
@@ -39,20 +42,43 @@ const routes: Routes = [
       {
         path: 'register',
         component: SignupComponent,
-        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'records',
+        component: RecordsComponent,
       },
       {
         path: 'appointment',
         component: AppointmentComponent,
-        // canActivate: [AuthGuard]
       },
       {
         path: 'patient-registration',
         component: PatientRegistrationComponent,
       },
+      {
+        path: 'user-registration',
+        component: UserRegistrationComponent,
+      },
+
+      { path: '*', component: LoginComponent },
+      {
+        path: 'exercise',
+        component: ExerciseComponent,
+      },
+      {
+        path: 'diet',
+        component: DietComponent,
+      },
+      {
+        path: 'medication',
+        component: MedicationComponent,
+      },
     ],
   },
-  { path: '*', component: LoginComponent },
+  {
+    path: '**',
+    component: LoginComponent,
+  },
 ];
 
 @NgModule({
