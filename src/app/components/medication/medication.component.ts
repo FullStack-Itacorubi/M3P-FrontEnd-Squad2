@@ -16,7 +16,6 @@ export class MedicationComponent {
   searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
-  patients: IPatient[] = [];
 
   constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
     this.medicationForm = this.formBuilder.group({
@@ -75,26 +74,14 @@ export class MedicationComponent {
   }
   searchPatients(query: string) {
     if (query && query.length >= 3) {
-      this.searchResults = this.patients.filter((patient) =>
-        patient.name.toLowerCase().includes(query.toLowerCase())
-      );
-      this.showSearchResults = this.searchResults.length > 0;
+      this.patientService.getPatientsByName(query).subscribe((patients) => {
+        this.searchResults = patients;
+        this.showSearchResults = true;
+      });
     } else {
       this.searchResults = [];
       this.showSearchResults = false;
     }
-  }
-
-  // Load patients from the getPatients endpoint on component initialization
-  ngOnInit() {
-    this.loadPatients();
-  }
-
-  // Load patients from the getPatients endpoint
-  loadPatients() {
-    this.patientService.getPatients().subscribe((data) => {
-      this.patients = data;
-    });
   }
   
   assignPatient(patient: IPatientRequest) {

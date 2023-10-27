@@ -1,7 +1,7 @@
 import { IPatient } from "./IPatient";
 
 export interface IDiet {
-  id: number;
+  id?: number;
   dietName: string;
   dietType: string;
   description: string;
