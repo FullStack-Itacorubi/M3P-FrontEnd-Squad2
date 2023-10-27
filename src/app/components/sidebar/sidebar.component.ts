@@ -27,7 +27,7 @@ export class SidebarComponent {
       text: 'Usuarios',
       icon: 'heroUsersSolid',
       selected: false,
-      route: 'users',
+      route: 'user-registration',
     },
     {
       text: 'Medicos',
@@ -51,19 +51,19 @@ export class SidebarComponent {
       text: 'Exames',
       icon: 'heroDocumentTextSolid',
       selected: false,
-      route: 'exams',
+      route: 'records',
     },
     {
       text: 'Dietas',
       icon: 'heroCakeSolid',
       selected: false,
-      route: 'diets',
+      route: 'diet',
     },
     {
       text: 'Exercícios',
       icon: 'heroHeartSolid',
       selected: false,
-      route: 'exercises',
+      route: 'exercise',
     },
   ];
 

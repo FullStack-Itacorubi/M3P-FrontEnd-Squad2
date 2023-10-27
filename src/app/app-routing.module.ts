@@ -24,7 +24,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: SignupComponent,
-    // canActivate: [AuthGuard]
   },
   {
     path: 'labmedical',
@@ -41,18 +40,12 @@ const routes: Routes = [
         component: HomepageComponent,
       },
       {
-        path: 'register',
-        component: SignupComponent,
-        // canActivate: [AuthGuard]
-      },
-      {
         path: 'records',
-        component: RecordsComponent
+        component: RecordsComponent,
       },
       {
         path: 'appointment',
         component: AppointmentComponent,
-        // canActivate: [AuthGuard]
       },
       {
         path: 'patient-registration',
@@ -62,22 +55,17 @@ const routes: Routes = [
         path: 'user-registration',
         component: UserRegistrationComponent,
       },
-
-      { path: '*', component: LoginComponent },
       {
         path: 'exercise',
-        component: ExerciseComponent
-        // canActivate: [AuthGuard]
+        component: ExerciseComponent,
       },
       {
         path: 'diet',
-        component: DietComponent
-        // canActivate: [AuthGuard]
+        component: DietComponent,
       },
       {
         path: 'medication',
-        component: MedicationComponent
-        // canActivate: [AuthGuard]
+        component: MedicationComponent,
       },
       {
         path: '**',
@@ -86,7 +74,6 @@ const routes: Routes = [
     ]
   }
 ]
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
