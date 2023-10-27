@@ -57,6 +57,16 @@
       "email": "admin@email.com",
       "password": "123admin",
       "id": 1
+    },
+    {
+      "name": "Charles Martinazzo",
+      "gender": "male",
+      "cpf": "111.111.111-11",
+      "type": "administrator",
+      "phone": "(48) 9 8877-6655",
+      "email": "charles@email.com",
+      "password": "123charles",
+      "id": 2
     }
   ]
 }
