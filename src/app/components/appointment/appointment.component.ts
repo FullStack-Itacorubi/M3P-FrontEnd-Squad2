@@ -13,9 +13,10 @@ import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 export class AppointmentComponent {
   registerForm: FormGroup;
   isEditMode: boolean = false;
-  searchResults: IPatientRequest[] = [];
+  searchResults: IPatient[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
+  patients: IPatient[] = [];
 
   constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
     this.registerForm = this.formBuilder.group({
@@ -72,14 +73,24 @@ export class AppointmentComponent {
   }
   searchPatients(query: string) {
     if (query && query.length >= 3) {
-      this.patientService.getPatientsByName(query).subscribe((patients) => {
-        this.searchResults = patients;
-        this.showSearchResults = true;
-      });
+      this.searchResults = this.patients.filter((patient) =>
+        patient.name.toLowerCase().includes(query.toLowerCase())
+      );
+      this.showSearchResults = this.searchResults.length > 0;
     } else {
       this.searchResults = [];
       this.showSearchResults = false;
     }
+  }
+
+  ngOnInit() {
+    this.loadPatients();
+  }
+
+  loadPatients() {
+    this.patientService.getPatients().subscribe((data) => {
+      this.patients = data;
+    });
   }
   
   assignPatient(patient: IPatientRequest) {

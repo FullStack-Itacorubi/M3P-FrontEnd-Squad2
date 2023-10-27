@@ -1,5 +1,5 @@
 <section class="register-page h-screen flex flex-row items-center justify-center">
-    <div class="h-screen w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700  rounded-3xl">
+    <div class="h-screen w-full flex flex-row items-center justify-center shadow-2xl shadow-stone-700  rounded-3xl">
       <div class="bg-zinc-800 w-2/5 h-full"> <div class="search-bar">
         <input
           #searchInput
@@ -8,13 +8,11 @@
           placeholder="Search Patients"
           (input)="searchPatients(searchInput.value)"
         />
-        
         <ul *ngIf="showSearchResults" class="bg-white shadow-md rounded-lg p-2 mt-2 ">
           <li *ngFor="let patient of searchResults" (click)="assignPatient(patient)" class="p-2 hover:bg-gray-100 cursor-pointer ">
             {{ patient.name }} - {{ patient.email }}
           </li>
         </ul>
-
       </div>
     </div>
         
@@ -100,7 +98,7 @@
 
           <!-- Status do Sistema -->
           <div class="input-wrapper">
-            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-800 focus-within-last:hidden transition-all duration-500">
+            <label class="group mb-3 flex flex-col justify-evenly items-start w-full overflow-hidden h-14 bg-zinc-500 rounded-md hover:bg-zinc-700 focus-within-last:hidden transition-all duration-500">
               <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Status do Sistema:</span>
               <select class="w-11/12 mx-auto bg-zinc-800 hover-bg-zinc-500 rounded-sm" name="systemStatus" id="systemStatus" formControlName="systemStatus">
                 <option value="true">Ativo</option>

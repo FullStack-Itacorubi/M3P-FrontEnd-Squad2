@@ -1,0 +1,10 @@
+import { IPatient } from "./IPatient";
+
+export interface IDiet {
+  id: number;
+  dietName: string;
+  dietType: string;
+  description: string;
+  patient: IPatient;
+  systemStatus: boolean;
+}

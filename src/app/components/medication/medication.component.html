@@ -1,5 +1,5 @@
 <section class="register-page h-screen flex flex-row items-center justify-center h-14">
-    <div class="h-screen w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700  rounded-3xl">
+    <div class="h-screen w-full flex flex-row items-center justify-center shadow-2xl shadow-stone-700  rounded-3xl">
       <div class="bg-zinc-800 w-2/5 h-full"> 
         <!--Patient Search-->
         <div class="search-bar">
@@ -9,7 +9,7 @@
             type="text"
             placeholder="Search Patients"
             (input)="searchPatients(searchInput.value)"
-          />         
+          />
           <ul *ngIf="showSearchResults" class="bg-white shadow-md rounded-lg p-2 mt-2 ">
             <li *ngFor="let patient of searchResults" (click)="assignPatient(patient)" class="p-2 hover:bg-gray-100 cursor-pointer ">
               {{ patient.name }} - {{ patient.email }}
