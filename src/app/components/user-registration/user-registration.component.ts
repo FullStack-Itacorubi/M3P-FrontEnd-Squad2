@@ -42,7 +42,7 @@ export class UserRegistrationComponent {
     try {
       const formData = this.newUserForm.value;
       const user: IUser = {
-        name: formData.name,
+        fullName: formData.name,
         gender: formData.gender,
         cpf: formData.cpf,
         phone: formData.phone,

@@ -12,22 +12,24 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
 import { MedicationComponent } from './components/medication/medication.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { privateChildGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'register-not-allowed',
-    component: RegistryNotAlowedComponent
+    component: RegistryNotAlowedComponent,
   },
   {
     path: 'register',
-    component: SignupComponent
+    component: SignupComponent,
     // canActivate: [AuthGuard]
   },
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
+    canActivateChild: [privateChildGuard],
     children: [
       {
         path: '',
@@ -40,7 +42,7 @@ const routes: Routes = [
       },
       {
         path: 'register',
-        component: SignupComponent
+        component: SignupComponent,
         // canActivate: [AuthGuard]
       },
       {
@@ -49,7 +51,7 @@ const routes: Routes = [
       },
       {
         path: 'appointment',
-        component: AppointmentComponent
+        component: AppointmentComponent,
         // canActivate: [AuthGuard]
       },
       {
@@ -89,4 +91,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
