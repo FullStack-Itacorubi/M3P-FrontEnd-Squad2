@@ -13,22 +13,23 @@ import { DietComponent } from './components/diet/diet.component';
 import { MedicationComponent } from './components/medication/medication.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { PatientRecordComponent } from './components/patient-record/patient-record.component';
+import { privateChildGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'register-not-allowed',
-    component: RegistryNotAlowedComponent
+    component: RegistryNotAlowedComponent,
   },
   {
     path: 'register',
-    component: SignupComponent
-    // canActivate: [AuthGuard]
+    component: SignupComponent,
   },
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
+    canActivateChild: [privateChildGuard],
     children: [
       {
         path: '',
@@ -40,18 +41,12 @@ const routes: Routes = [
         component: HomepageComponent,
       },
       {
-        path: 'register',
-        component: SignupComponent
-        // canActivate: [AuthGuard]
-      },
-      {
         path: 'records',
-        component: RecordsComponent
+        component: RecordsComponent,
       },
       {
         path: 'appointment',
-        component: AppointmentComponent
-        // canActivate: [AuthGuard]
+        component: AppointmentComponent,
       },
       {
         path: 'patient-registration',
@@ -63,18 +58,15 @@ const routes: Routes = [
       },
       {
         path: 'exercise',
-        component: ExerciseComponent
-        // canActivate: [AuthGuard]
+        component: ExerciseComponent,
       },
       {
         path: 'diet',
-        component: DietComponent
-        // canActivate: [AuthGuard]
+        component: DietComponent,
       },
       {
         path: 'medication',
-        component: MedicationComponent
-        // canActivate: [AuthGuard]
+        component: MedicationComponent,
       },
       {path: 'patient-records',
       component: PatientRecordComponent
@@ -87,9 +79,8 @@ const routes: Routes = [
     ]
   }
 ]
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

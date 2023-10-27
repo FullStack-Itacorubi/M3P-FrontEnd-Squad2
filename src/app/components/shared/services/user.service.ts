@@ -9,12 +9,13 @@ import { lastValueFrom } from 'rxjs';
 export class UserService {
   private users: IUser[] = [];
 
-  private url = 'http://localhost:3000/users';
+  private url = 'http://localhost:8080/api/usuarios';
 
   constructor(private httpClient: HttpClient) {}
 
   async registerUser(user: IUser) {
     try {
+      console.log(user)
       await lastValueFrom(this.httpClient.post(this.url, user));
     } catch (e) {
       throw new Error('Erro ao cadastrar usuário');
