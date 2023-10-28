@@ -26,11 +26,26 @@ export class PatientRecordComponent implements OnInit {
       const patientId = +idParam;
       this.patientService.getPatientById(patientId).subscribe((data: IPatient) => {
         this.patient = data;
-        this.medications = data.medicationList || [];
-        this.diet = data.dietList || [];
-        this.exams = data.examList || [];
-        this.appointments = data.appointment || [];
+        this.medications = this.sortListById(data.medicationList || []);
+        this.diet = this.sortListByDate(data.dietList || []);
+        this.exams = this.sortListByDate(data.examList || []);
+        this.appointments = this.sortListByConsultationDate(data.appointment || []);
       });
     }
+  }
+
+  // Função para ordenar uma lista por data
+  private sortListByDate(list: any[]): any[] {
+    return list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }
+
+  // Função para ordenar uma lista por ID
+  private sortListById(list: any[]): any[] {
+    return list.sort((a, b) => a.id - b.id);
+  }
+
+  // Função para ordenar uma lista de consultas por data de consulta
+  private sortListByConsultationDate(list: any[]): any[] {
+    return list.sort((a, b) => new Date(a.consultationDate).getTime() - new Date(b.consultationDate).getTime());
   }
 }
