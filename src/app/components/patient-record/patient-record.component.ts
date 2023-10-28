@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IPatient } from '../shared/interfaces/IPatient';
 import { PatientService } from '../shared/services/patient.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-patient-record',
   templateUrl: './patient-record.component.html',
@@ -17,7 +17,8 @@ export class PatientRecordComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -34,18 +35,30 @@ export class PatientRecordComponent implements OnInit {
     }
   }
 
-  // Função para ordenar uma lista por data
   private sortListByDate(list: any[]): any[] {
     return list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
-  // Função para ordenar uma lista por ID
   private sortListById(list: any[]): any[] {
     return list.sort((a, b) => a.id - b.id);
   }
 
-  // Função para ordenar uma lista de consultas por data de consulta
   private sortListByConsultationDate(list: any[]): any[] {
     return list.sort((a, b) => new Date(a.consultationDate).getTime() - new Date(b.consultationDate).getTime());
+  }
+  editAppointment(appointment: any) {
+    this.router.navigate(['labmedical/appointment', 'edit', appointment['id']]);
+  }
+  editExam(exam: any) {
+    this.router.navigate(['labmedical/exam', 'edit', exam['id']]);
+  }
+  editMedication(medication: any) {
+    this.router.navigate(['labmedical/medication', 'edit', medication['id']]);
+  }
+  editDiet(diet: any) {
+    this.router.navigate(['labmedical/diet', 'edit', diet['id']]);
+  }
+  editExercise(exercise: any) {
+    this.router.navigate(['labmedical/exercise', 'edit', exercise['id']]);
   }
 }

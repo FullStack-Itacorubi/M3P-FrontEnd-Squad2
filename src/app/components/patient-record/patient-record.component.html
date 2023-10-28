@@ -28,10 +28,11 @@
         <ul>
           <li class="transition-transform duration-300 transform hover:scale-105" *ngFor="let exam of patient?.examList">
             <p><strong>Nome:</strong> {{ exam['name'] }}</p>
-            <p><strong>Tipo de Exame:</strong> {{ exam['examType'] }}</p>
+            <p><strong>Laboratório:</strong> {{ exam['laboratory'] }}</p>
             <p><strong>Data:</strong> {{ exam['date'] }}</p>
             <p><strong>Hora:</strong> {{ exam['time'] }}</p>
-            <p><strong>Laboratório:</strong> {{ exam['laboratory'] }}</p>
+            <p><strong>Anexo:</strong> {{ exam['documentUrl'] }}</p>
+            <button (click)="editExam(exam)">Editar</button>
           </li>
         </ul>
       </div>
@@ -44,6 +45,7 @@
             <p><strong>Data:</strong> {{ diet['date'] }}</p>
             <p><strong>Hora:</strong> {{ diet['time'] }}</p>
             <p><strong>Descrição:</strong> {{ diet['description'] }}</p>
+            <button (click)="editDiet(diet)">Editar</button>
           </li>
         </ul>
       </div>
@@ -55,6 +57,7 @@
             <p><strong>Tipo de Medicamento:</strong> {{ medication['medicationType'] }}</p>
             <p><strong>Quantidade:</strong> {{ medication['quantity'] }} {{ medication['unit'] }}</p>
             <p><strong>Observações:</strong> {{ medication['observations'] }}</p>
+            <button (click)="editMedication(medication)">Editar</button>
           </li>
         </ul>
       </div>
@@ -67,6 +70,7 @@
             <p><strong>Hora:</strong> {{ exercise['time'] }}</p>
             <p><strong>Duração:</strong> {{ exercise['duration'] }}</p>
             <p><strong>Descrição:</strong> {{ exercise['description'] }}</p>
+            <button (click)="editExercise(exercise)">Editar</button>
           </li>
         </ul>
       </div>
@@ -80,6 +84,7 @@
             <p><strong>Descrição do Problema:</strong> {{ appointment['problemDescription'] }}</p>
             <p><strong>Medicamentos Prescritos:</strong> {{ appointment['medicationPrescribed'] ? 'Sim' : 'Não' }}</p>
             <p><strong>Dosagem e Precauções:</strong> {{ appointment['dosageAndPrecautions'] }}</p>
+            <button (click)="editAppointment(appointment)">Editar</button>
           </li>
         </ul>
       </div>
