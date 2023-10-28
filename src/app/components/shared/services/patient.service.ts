@@ -5,10 +5,9 @@ import { IPatient } from '../interfaces/IPatient';
 import { IPatientRequest } from '../interfaces/IPatientRequest';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class PatientService {
-
   // implementar no componente dessa maneira:
   // patients: IPatient[] = [];
 
@@ -19,34 +18,45 @@ export class PatientService {
 
   //   })
   // }
-    private apiUrl = 'http://localhost:8080/api/pacientes';
-    constructor(private http: HttpClient) {}
+  private apiUrl = 'http://localhost:3000/patients';
+  // private apiUrl = 'http://localhost:8080/api/pacientes';
+  constructor(private http: HttpClient) {}
 
-    getPatients(): Observable<IPatient[]> {
-        return this.http.get<IPatient[]>(this.apiUrl);
-    }
+  getPatients(): Observable<IPatientRequest[]> {
+    return this.http.get<IPatientRequest[]>(this.apiUrl);
+  }
 
-    getPatientById(id: number): Observable<IPatient> {
-        const url = `${this.apiUrl}/${id}`;
-        return this.http.get<IPatient>(url);
-    }
+  getPatientById(id: number): Observable<IPatientRequest> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<IPatientRequest>(url);
+  }
 
-    async addPatient(patient: IPatient) {
-        return lastValueFrom(this.http.post<IPatient>(this.apiUrl, patient));
-    }
+  async addPatient(patient: IPatient) {
+    return lastValueFrom(this.http.post<IPatient>(this.apiUrl, patient));
+  }
 
-    updatePatient(patient: IPatientRequest): Observable<IPatient> {
-        const url = `${this.apiUrl}/${patient.id}`;
-        return this.http.put<IPatient>(url, patient);
-    }
+  updatePatient(patient: IPatientRequest): Observable<IPatient> {
+    const url = `${this.apiUrl}/${patient.id}`;
+    return this.http.put<IPatient>(url, patient);
+  }
 
-    deletePatient(id: number): Observable<void> {
-        const url = `${this.apiUrl}/${id}`;
-        return this.http.delete<void>(url);
+  deletePatient(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
+  getPatientsByName(name: string): Observable<IPatientRequest[]> {
+    const url = `${this.apiUrl}?name_like=${name}`;
+    return this.http.get<IPatientRequest[]>(url);
+  }
+
+  patientFilter(filter: string, patients: IPatientRequest[]){
+    let allPatients: IPatientRequest[] = [];
+    let patientsFiltered: IPatientRequest[] = [];
+    const filterLowerCase = filter.toLowerCase();
+    for (const patient of allPatients) {
+        if (patient.name.includes(filterLowerCase))
+        patientsFiltered.push(patient);
     }
-    getPatientsByName(name: string): Observable<IPatientRequest[]> {
-        const url = `${this.apiUrl}?name_like=${name}`;
-        return this.http.get<IPatientRequest[]>(url);
-      }
-      
+    return patientsFiltered;
+  }
 }

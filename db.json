@@ -45,7 +45,96 @@
         "complement": "do km 205,000 ao km 205,998 - lado par",
         "district": "Roçado"
       }
+    },
+    {
+      "id": 2,
+      "name": "Elza Clarice Mariana Lima",
+      "dateOfBirth": "01/01/2001",
+      "email": "elzaclaricelima@outlook.com.br",
+      "phone": "(96) 9 8603-3710",
+      "healthplan": "amarelo"
+    },
+    {
+      "id": 3,
+      "name": "Thiago Thiago Mateus da Cruz",
+      "dateOfBirth": "01/01/2001",
+      "email": "thiago_dacruz@humanfit.com.br",
+      "phone": "(68) 9 9139-4463",
+      "healthplan": "verde"
+    },
+    {
+      "id": 4,
+      "name": "Hadassa Antonella Monteiro",
+      "dateOfBirth": "01/01/2001",
+      "email": "hadassa.antonella.monteiro@semco.com.br",
+      "phone": "(85) 9 8150-2971",
+      "healthplan": "preto"
+    },
+    {
+      "id": 5,
+      "name": "Tatiane Daniela Catarina Dias",
+      "dateOfBirth": "01/01/2001",
+      "email": "tatiane.daniela.dias@tafeta.com.br",
+      "phone": "(96) 9 8583-0453",
+      "healthplan": "roxo"
+    },
+    {
+      "id": 6,
+      "name": "Isabella Carolina Amanda Brito",
+      "dateOfBirth": "01/01/2001",
+      "email": "isabella-brito88@rafaeladson.com",
+      "phone": "(71) 9 8649-1064",
+      "healthplan": "vermelho"
+    },
+    {
+      "id": 7,
+      "name": "Lucca Cauê Almada",
+      "dateOfBirth": "01/01/2001",
+      "email": "lucca_caue_almada@puenteimoveis.com.br",
+      "phone": "(21) 9 9404-1398",
+      "healthplan": "verde"
+    },
+    {
+      "id": 8,
+      "name": "Allana Laura Sarah Araújo",
+      "dateOfBirth": "01/01/2001",
+      "email": "allana.laura.araujo@danielstrauch.com",
+      "phone": "(27) 9 8144-2390",
+      "healthplan": "azul"
+    },
+    {
+      "id": 9,
+      "name": "Thomas André Pedro Alves",
+      "dateOfBirth": "01/01/2001",
+      "email": "thomas.andre.alves@sistectecnologia.com.br",
+      "phone": "(68) 9 8955-4338",
+      "healthplan": "azul"
+    },
+    {
+      "id": 10,
+      "name": "Valentina Luciana Caroline Campos",
+      "dateOfBirth": "01/01/2001",
+      "email": "valentina_campos@tortasecreta.com",
+      "phone": "(62) 9 9641-3682",
+      "healthplan": "amarelo"
+    },
+    {
+      "id": 11,
+      "name": "Kaique Roberto Galvão",
+      "dateOfBirth": "01/01/2001",
+      "email": "kaiquerobertogalvao@lojasrayton.com",
+      "phone": "(82) 9 9757-0717",
+      "healthplan": "preto"
+    },
+    {
+      "id": 12,
+      "name": "Eloá Mariana Assis",
+      "dateOfBirth": "01/01/2001",
+      "email": "eloa-assis94@lphbrasil.com.br",
+      "phone": "(43) 9 9553-0659",
+      "healthplan": "verde"
     }
+
   ],
   "users": [
     {
@@ -62,7 +151,7 @@
       "name": "Charles Martinazzo",
       "gender": "male",
       "cpf": "111.111.111-11",
-      "type": "administrator",
+      "type": "doctor",
       "phone": "(48) 9 8877-6655",
       "email": "charles@email.com",
       "password": "123charles",

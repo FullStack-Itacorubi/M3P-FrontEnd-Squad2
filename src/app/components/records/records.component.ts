@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient';
+import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 
 @Component({
   selector: 'app-record',
@@ -8,8 +9,8 @@ import { IPatient } from '../shared/interfaces/IPatient';
   styleUrls: ['./records.component.scss'],
 })
 export class RecordsComponent implements OnInit {
-  patients: IPatient[] = [];
-  filteredPatients: IPatient[] = []; // Store the filtered patients
+  patients: IPatientRequest[] = [];
+  filteredPatients: IPatientRequest[] = []; // Store the filtered patients
   searchTerm = '';
 
   constructor(private patientService: PatientService) {}

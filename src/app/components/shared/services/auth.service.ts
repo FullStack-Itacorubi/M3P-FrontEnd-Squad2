@@ -28,9 +28,11 @@ export class AuthService {
     const userLogOn = <IUser>JSON.parse(userString);
     const fullName = userLogOn.name;
     const email = userLogOn.email;
+    const type = userLogOn.type;
     const infoUser = {
       sliceName: fullName?.substring(0, fullName?.indexOf(' ')),
-      sliceEmail: email?.substring(0,email?.length)
+      sliceEmail: email?.substring(0,email?.length),
+      sliceType: type
     }
 
     return infoUser;
