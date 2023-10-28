@@ -27,8 +27,9 @@ export class SignupComponent {
   async onSubmit() {
     try{
       const formUser = this.registerForm.value;
+      console.log(formUser);
       const user: IUser = {
-        name: formUser.fullName,
+        fullName: formUser.fullName,
         gender: formUser.gender,
         cpf: formUser.cpf,
         type: formUser.userType,

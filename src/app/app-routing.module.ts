@@ -12,6 +12,7 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
 import { MedicationComponent } from './components/medication/medication.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { PatientRecordComponent } from './components/patient-record/patient-record.component';
 import { privateChildGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -67,14 +68,17 @@ const routes: Routes = [
         path: 'medication',
         component: MedicationComponent,
       },
-    ],
-  },
-  {
-    path: '**',
-    component: LoginComponent,
-  },
-];
-
+      {path: 'patient-record/:id',
+      component: PatientRecordComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: '**',
+        component: LoginComponent
+      }
+    ]
+  }
+]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

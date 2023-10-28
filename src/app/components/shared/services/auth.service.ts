@@ -26,7 +26,7 @@ export class AuthService {
     const userString = localStorage.getItem('user');
     if (userString === null) return;
     const userLogOn = <IUser>JSON.parse(userString);
-    const fullName = userLogOn.name;
+    const fullName = userLogOn.fullName;
     const email = userLogOn.email;
     const infoUser = {
       sliceName: fullName?.substring(0, fullName?.indexOf(' ')),

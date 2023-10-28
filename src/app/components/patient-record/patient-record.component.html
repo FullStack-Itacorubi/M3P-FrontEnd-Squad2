@@ -1,0 +1,93 @@
+<div class="container mx-auto py-8">
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="border-b border-gray-200 p-4">
+      <h2 class="text-2xl font-semibold">Informações do Paciente</h2>
+    </div>
+    <div class="p-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-lg font-semibold">Detalhes Pessoais</h3>
+          <p><strong>Nome do Paciente:</strong> {{ patient?.name }}</p>
+          <p><strong>Convênio:</strong> {{ patient?.insurance || 'N/A' }}</p>
+          <p><strong>Contato de Emergência:</strong> {{ patient?.emergencyContact }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 p-4">
+      <h3 class="text-lg font-semibold">Histórico Médico</h3>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Alergias:</h4>
+        <p>{{ patient?.allergies || 'N/A' }}</p>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Cuidados Específicos:</h4>
+        <p>{{ patient?.specificCare || 'N/A' }}</p>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Exames:</h4>
+        <ul>
+          <li class="transition-transform duration-300 transform hover:scale-105" *ngFor="let exam of patient?.examList">
+            <p><strong>Nome:</strong> {{ exam['name'] }}</p>
+            <p><strong>Laboratório:</strong> {{ exam['laboratory'] }}</p>
+            <p><strong>Data:</strong> {{ exam['date'] }}</p>
+            <p><strong>Hora:</strong> {{ exam['time'] }}</p>
+            <p><strong>Anexo:</strong> {{ exam['documentUrl'] }}</p>
+            <button (click)="editExam(exam)">Editar</button>
+          </li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Dietas:</h4>
+        <ul>
+          <li class="transition-transform duration-300 transform hover:scale-105" *ngFor="let diet of patient?.dietList">
+            <p><strong>Nome da Dieta:</strong> {{ diet['dietName'] }}</p>
+            <p><strong>Tipo de Dieta:</strong> {{ diet['dietType'] }}</p>
+            <p><strong>Data:</strong> {{ diet['date'] }}</p>
+            <p><strong>Hora:</strong> {{ diet['time'] }}</p>
+            <p><strong>Descrição:</strong> {{ diet['description'] }}</p>
+            <button (click)="editDiet(diet)">Editar</button>
+          </li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Medicamentos:</h4>
+        <ul>
+          <li class="transition-transform duration-300 transform hover:scale-105" *ngFor="let medication of patient?.medicationList">
+            <p><strong>Nome do Medicamento:</strong> {{ medication['medicationName'] }}</p>
+            <p><strong>Tipo de Medicamento:</strong> {{ medication['medicationType'] }}</p>
+            <p><strong>Quantidade:</strong> {{ medication['quantity'] }} {{ medication['unit'] }}</p>
+            <p><strong>Observações:</strong> {{ medication['observations'] }}</p>
+            <button (click)="editMedication(medication)">Editar</button>
+          </li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Exercícios:</h4>
+        <ul>
+          <li class="transition-transform duration-300 transform hover:scale-105" *ngFor="let exercise of patient?.exerciseList">
+            <p><strong>Tipo de Exercício:</strong> {{ exercise['exerciseType'] }}</p>
+            <p><strong>Data:</strong> {{ exercise['date'] }}</p>
+            <p><strong>Hora:</strong> {{ exercise['time'] }}</p>
+            <p><strong>Duração:</strong> {{ exercise['duration'] }}</p>
+            <p><strong>Descrição:</strong> {{ exercise['description'] }}</p>
+            <button (click)="editExercise(exercise)">Editar</button>
+          </li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Consultas:</h4>
+        <ul>
+          <li class="transition-transform duration-300 transform hover:scale-105" *ngFor="let appointment of patient?.appointment">
+            <p><strong>Razão:</strong> {{ appointment['reason'] }}</p>
+            <p><strong>Data da Consulta:</strong> {{ appointment['consultationDate'] }}</p>
+            <p><strong>Hora da Consulta:</strong> {{ appointment['consultationTime'] }}</p>
+            <p><strong>Descrição do Problema:</strong> {{ appointment['problemDescription'] }}</p>
+            <p><strong>Medicamentos Prescritos:</strong> {{ appointment['medicationPrescribed'] ? 'Sim' : 'Não' }}</p>
+            <p><strong>Dosagem e Precauções:</strong> {{ appointment['dosageAndPrecautions'] }}</p>
+            <button (click)="editAppointment(appointment)">Editar</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
