@@ -26,6 +26,8 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
 import { DietComponent } from './components/diet/diet.component';
 import { MedicationComponent } from './components/medication/medication.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { CommonModule } from '@angular/common';
+import { PatientRecordComponent } from './components/patient-record/patient-record.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
     ExerciseComponent,
     RecordsComponent,
     DietComponent, 
-    MedicationComponent, UserRegistrationComponent
+    MedicationComponent, UserRegistrationComponent,
+    PatientRecordComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
     NgIconsModule.withIcons({ ...heroIcons, ...heroIconsSolid, ...jamIcons }),
     ReactiveFormsModule,
     NgxMaskDirective, NgxMaskPipe, HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [provideNgxMask()],
   bootstrap: [AppComponent],

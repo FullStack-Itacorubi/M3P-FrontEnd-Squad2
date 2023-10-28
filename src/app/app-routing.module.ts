@@ -68,7 +68,7 @@ const routes: Routes = [
         path: 'medication',
         component: MedicationComponent,
       },
-      {path: 'patient-records',
+      {path: 'patient-record/:id',
       component: PatientRecordComponent
         // canActivate: [AuthGuard]
       },

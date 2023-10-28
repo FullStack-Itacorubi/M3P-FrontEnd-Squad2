@@ -1,96 +1,84 @@
-<div class="container mx-auto p-4">
-    <div class="bg-white rounded-lg shadow-md p-6">
-      <ng-container *ngIf="patient; else noPatient">
-        <!-- Patient Information -->
-        <div class="mb-6">
-          <h2 class="text-2xl font-semibold">{{ patient?.name }}</h2>
-          <p>Convênio: {{ patient?.insuranceNumber || 'N/A' }}</p>
-          <p>Contato de Emergência: {{ patient?.emergencyContact || 'N/A' }}</p>
-          <p>Alergias: {{ patient?.allergies || 'N/A' }}</p>
-          <p>Cuidados Específicos: {{ patient?.specificCare || 'N/A' }}</p>
+<div class="container mx-auto py-8">
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="border-b border-gray-200 p-4">
+      <h2 class="text-2xl font-semibold">Patient Information</h2>
+    </div>
+    <div class="p-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-lg font-semibold">Personal Details</h3>
+          <!-- Display Personal Details -->
+          <p><strong>Name:</strong> {{ patient?.name }}</p>
+          <p><strong>Gender:</strong> {{ patient?.gender }}</p>
+          <p><strong>Date of Birth:</strong> {{ patient?.dateOfBirth }}</p>
+          <p><strong>Marital Status:</strong> {{ patient?.maritalStatus }}</p>
+          <p><strong>Emergency Contact:</strong> {{ patient?.emergencyContact }}</p>
         </div>
-  
-        <!-- History Sections -->
-        <div class="space-y-8">
-          <!-- Consultations -->
-          <div class="border-b pb-4">
-            <h3 class="text-lg font-semibold">Consultations</h3>
-            <ng-container *ngIf="patient.appointment?.length; else noConsultations">
-              <div *ngFor="let appointment of patient.appointment">
-                <p>Date: {{ appointment.consultationDate }}</p>
-                <p>Reason: {{ appointment.reason }}</p>
-                <!-- Add more appointment details here -->
-              </div>
-            </ng-container>
-            <ng-template #noConsultations>
-              <p>No consultations available.</p>
-            </ng-template>
-          </div>
-  
-          <!-- Exams -->
-          <div class="border-b pb-4">
-            <h3 class="text-lg font-semibold">Exams</h3>
-            <ng-container *ngIf="patient.examList?.length; else noExams">
-              <div *ngFor="let exam of patient.examList">
-                <p>Name: {{ exam.name }}</p>
-                <p>Date: {{ exam.date }}</p>
-                <!-- Add more exam details here -->
-              </div>
-            </ng-container>
-            <ng-template #noExams>
-              <p>No exams available.</p>
-            </ng-template>
-          </div>
-  
-          <!-- Medications -->
-          <div class="border-b pb-4">
-            <h3 class="text-lg font-semibold">Medications</h3>
-            <ng-container *ngIf="patient.medications?.length; else noMedications">
-              <div *ngFor="let medication of patient.medications">
-                <p>Name: {{ medication.medicationName }}</p>
-                <p>Dosage: {{ medication.dosage }}</p>
-                <!-- Add more medication details here -->
-              </div>
-            </ng-container>
-            <ng-template #noMedications>
-              <p>No medications available.</p>
-            </ng-template>
-          </div>
-  
-          <!-- Diets -->
-          <div class="border-b pb-4">
-            <h3 class="text-lg font-semibold">Diets</h3>
-            <ng-container *ngIf="patient.dietList?.length; else noDiets">
-              <div *ngFor="let diet of patient.dietList">
-                <p>Name: {{ diet.dietName }}</p>
-                <p>Date: {{ diet.date }}</p>
-                <!-- Add more diet details here -->
-              </div>
-            </ng-container>
-            <ng-template #noDiets>
-              <p>No diets available.</p>
-            </ng-template>
-          </div>
-  
-          <!-- Exercises -->
-          <div>
-            <h3 class="text-lg font-semibold">Exercises</h3>
-            <ng-container *ngIf="patient.exerciseList?.length; else noExercises">
-              <div *ngFor="let exercise of patient.exerciseList">
-                <p>Name: {{ exercise.exerciseName }}</p>
-                <p>Date: {{ exercise.date }}</p>
-                <!-- Add more exercise details here -->
-              </div>
-            </ng-container>
-            <ng-template #noExercises>
-              <p>No exercises available.</p>
-            </ng-template>
-          </div>
+        <div>
+          <h3 class="text-lg font-semibold">Contact Information</h3>
+          <!-- Display Contact Information -->
+          <p><strong>Email:</strong> {{ patient?.email }}</p>
+          <p><strong>Phone:</strong> {{ patient?.phone }}</p>
+          <p><strong>Address:</strong> {{ patient?.address?.street }}, {{ patient?.address?.number }}, {{ patient?.address?.city }}, {{ patient?.address?.state }}</p>
         </div>
-      </ng-container>
-      <ng-template #noPatient>
-        <p>No patient information available.</p>
-      </ng-template>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 p-4">
+      <h3 class="text-lg font-semibold">Medical Record</h3>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Allergies:</h4>
+        <!-- Display Allergies -->
+        <p>{{ patient?.allergies || 'N/A' }}</p>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Specific Care:</h4>
+        <!-- Display Specific Care -->
+        <p>{{ patient?.specificCare || 'N/A' }}</p>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Exams:</h4>
+        <ul>
+          <!-- Loop through and display Exam List with transition effect -->
+          <li *ngFor="let exam of patient?.examList" class="transition-transform duration-300 transform hover:scale-105">
+            <p><strong>Name:</strong> {{ exam['name'] }}</p>
+            <p><strong>Exam Type:</strong> {{ exam['examType'] }}</p>
+            <!-- Add more exam details as needed -->
+          </li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Diet List:</h4>
+        <ul>
+          <!-- Loop through and display Diet List with transition effect -->
+          <li *ngFor="let diet of patient?.dietList" class="transition-transform duration-300 transform hover:scale-105">
+            <p><strong>Diet Name:</strong> {{ diet['dietName'] }}</p>
+            <p><strong>Diet Type:</strong> {{ diet['dietType'] }}</p>
+            <!-- Add more diet details as needed -->
+          </li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Medications:</h4>
+        <ul>
+          <!-- Loop through and display Medication List with transition effect -->
+          <li *ngFor="let medication of patient?.medicationList" class="transition-transform duration-300 transform hover:scale-105">
+            <p><strong>Medication Name:</strong> {{ medication['medicationName'] }}</p>
+            <p><strong>Medication Type:</strong> {{ medication['medicationType'] }}</p>
+            <!-- Add more medication details as needed -->
+          </li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <h4 class="text-base font-semibold">Appointments:</h4>
+        <ul>
+          <!-- Loop through and display Appointment List with transition effect -->
+          <li *ngFor="let appointment of patient?.appointment" class="transition-transform duration-300 transform hover:scale-105">
+            <p><strong>Reason:</strong> {{ appointment['reason'] }}</p>
+            <p><strong>Consultation Date:</strong> {{ appointment['consultationDate'] }}</p>
+            <!-- Add more appointment details as needed -->
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-  
+</div>

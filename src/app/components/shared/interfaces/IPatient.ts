@@ -25,4 +25,9 @@ export interface IPatient {
       district: string;
       reference: string;
   };
+  exerciseList?: [],
+  dietList?: [],
+  examList?: [],
+  medicationList?:[],
+  appointment?: []
 }

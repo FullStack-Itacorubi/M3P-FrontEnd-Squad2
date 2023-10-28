@@ -20,6 +20,7 @@ export class PatientService {
   //   })
   // }
     private apiUrl = 'http://localhost:8080/api/pacientes';
+    private recordsUrl='http://localhost:8080/api/prontuarios?idPaciente=';
     constructor(private http: HttpClient) {}
 
     getPatients(): Observable<IPatient[]> {
@@ -27,7 +28,7 @@ export class PatientService {
     }
 
     getPatientById(id: number): Observable<IPatient> {
-        const url = `${this.apiUrl}/${id}`;
+        const url = `${this.recordsUrl}${id}`;
         return this.http.get<IPatient>(url);
     }
 
