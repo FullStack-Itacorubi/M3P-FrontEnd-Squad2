@@ -61,6 +61,10 @@ const routes: Routes = [
         component: ExerciseComponent,
       },
       {
+        path: 'diet/:id',
+        component: DietComponent,
+      },
+      {
         path: 'diet',
         component: DietComponent,
       },

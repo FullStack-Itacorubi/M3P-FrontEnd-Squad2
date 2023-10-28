@@ -47,18 +47,18 @@ export class PatientRecordComponent implements OnInit {
     return list.sort((a, b) => new Date(a.consultationDate).getTime() - new Date(b.consultationDate).getTime());
   }
   editAppointment(appointment: any) {
-    this.router.navigate(['labmedical/appointment', 'edit', appointment['id']]);
+    this.router.navigate(['labmedical/appointment', appointment['id']]);
   }
   editExam(exam: any) {
-    this.router.navigate(['labmedical/exam', 'edit', exam['id']]);
+    this.router.navigate(['labmedical/exam', exam['id']]);
   }
   editMedication(medication: any) {
-    this.router.navigate(['labmedical/medication', 'edit', medication['id']]);
+    this.router.navigate(['labmedical/medication', medication['id']]);
   }
   editDiet(diet: any) {
-    this.router.navigate(['labmedical/diet', 'edit', diet['id']]);
+    this.router.navigate(['labmedical/diet', diet['id']]);
   }
   editExercise(exercise: any) {
-    this.router.navigate(['labmedical/exercise', 'edit', exercise['id']]);
+    this.router.navigate(['labmedical/exercise', exercise['id']]);
   }
 }
