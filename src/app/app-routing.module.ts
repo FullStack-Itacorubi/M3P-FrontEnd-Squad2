@@ -50,6 +50,10 @@ const routes: Routes = [
         component: AppointmentComponent,
       },
       {
+        path: 'appointment/:id',
+        component: AppointmentComponent,
+      },
+      {
         path: 'patient-registration',
         component: PatientRegistrationComponent,
       },
@@ -62,6 +66,14 @@ const routes: Routes = [
         component: ExerciseComponent,
       },
       {
+        path: 'exercise/:id',
+        component: ExerciseComponent,
+      },
+      {
+        path: 'diet/:id',
+        component: DietComponent,
+      },
+      {
         path: 'diet',
         component: DietComponent,
       },
@@ -70,7 +82,15 @@ const routes: Routes = [
         component: ExamComponent,
       },
       {
+        path: 'exam/:id',
+        component: ExamComponent,
+      },
+      {
         path: 'medication',
+        component: MedicationComponent,
+      },
+      {
+        path: 'medication/:id',
         component: MedicationComponent,
       },
       {path: 'patient-record/:id',
