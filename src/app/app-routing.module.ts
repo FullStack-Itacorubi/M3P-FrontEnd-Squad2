@@ -46,10 +46,6 @@ const routes: Routes = [
         component: RecordsComponent,
       },
       {
-        path: 'register',
-        component: SignupComponent,
-      },
-      {
         path: 'appointment',
         component: AppointmentComponent,
       },

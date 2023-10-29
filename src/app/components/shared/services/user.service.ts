@@ -22,9 +22,10 @@ export class UserService {
     }
   }
 
+
   async getUser() {
     this.users = await lastValueFrom(this.httpClient.get<IUser[]>(this.url));
     return this.users;
   }
-  
+
 }

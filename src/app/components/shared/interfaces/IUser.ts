@@ -5,5 +5,6 @@ export interface IUser {
     type: string,
     phone: string,
     email: string,
-    password: string
+    password: string,
+    systemStatus?: boolean
 }
