@@ -13,14 +13,15 @@ export class RecordsComponent implements OnInit {
   filteredPatients: IPatient[] = []; // Store the filtered patients
   searchTerm = '';
 
-  constructor(private patientService: PatientService,
-    private headerService : ToolbarHeaderService
-    ){
-
+  constructor(
+    private patientService: PatientService,
+    private headerService: ToolbarHeaderService
+  ) {
     headerService.headerData = {
       title: 'Prontuário',
-      icon: 'heroClipboardDocumentList'
-    }}
+      icon: 'heroClipboardDocumentList',
+    };
+  }
 
   ngOnInit() {
     this.loadPatients();
@@ -36,7 +37,7 @@ export class RecordsComponent implements OnInit {
 
   onSearchInputChange() {
     console.log(this.filteredPatients);
-    this.filteredPatients = this.patients.filter(patient =>
+    this.filteredPatients = this.patients.filter((patient) =>
       patient.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }

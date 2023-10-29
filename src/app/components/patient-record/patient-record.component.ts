@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IPatient } from '../shared/interfaces/IPatient';
 import { PatientService } from '../shared/services/patient.service';
 import { Router } from '@angular/router';
+import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 @Component({
   selector: 'app-patient-record',
   templateUrl: './patient-record.component.html',
@@ -18,8 +19,14 @@ export class PatientRecordComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private patientService: PatientService,
-    private router:Router
-  ) {}
+    private router:Router,
+    private headerService : ToolbarHeaderService
+    ){
+
+    headerService.headerData = {
+      title: `Registros do Paciente ${(this.patient)? this.patient.name : ""}`,
+      icon: 'heroClipboardDocumentList'
+    }}
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
