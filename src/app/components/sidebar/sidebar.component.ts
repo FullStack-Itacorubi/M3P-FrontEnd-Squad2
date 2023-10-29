@@ -33,7 +33,7 @@ export class SidebarComponent {
       text: 'Pacientes',
       icon: 'heroUserGroupSolid',
       selected: false,
-      route: 'patients',
+      route: 'patient-registration',
     },
     {
       text: 'Prontuários',
