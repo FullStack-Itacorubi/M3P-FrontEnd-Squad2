@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
+import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
@@ -17,7 +18,13 @@ export class ExerciseComponent {
   showSearchResults: boolean = false;
   searchQuery: string = '';
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService,
+    private headerService: ToolbarHeaderService
+  ) {
+    headerService.headerData = {
+      title: 'Exercícios',
+      icon: 'heroHeartSolid',
+    };
     this.registerForm = this.formBuilder.group({
       patientId: [''],
       exerciseName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
@@ -69,7 +76,7 @@ export class ExerciseComponent {
 
     this.isEditMode = false;
   }
-  
+
   searchPatients(query: string) {
     if (query && query.length >= 3) {
       this.patientService.getPatientsByName(query).subscribe((patients) => {
@@ -81,7 +88,7 @@ export class ExerciseComponent {
       this.showSearchResults = false;
     }
   }
-  
+
   assignPatient(patient: IPatientRequest) {
     this.registerForm.patchValue({
       patientId: patient.id,
