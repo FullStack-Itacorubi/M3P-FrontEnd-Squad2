@@ -12,7 +12,7 @@ export class ExamService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getDietById(id: string): Observable<IExam> {
+  getExamById(id: string): Observable<IExam> {
     const url = `${this.baseUrl}/${id}`;
     return this.httpClient.get<IExam>(url);
   }

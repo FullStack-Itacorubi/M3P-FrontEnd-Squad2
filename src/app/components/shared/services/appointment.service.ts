@@ -11,7 +11,7 @@ export class AppointmentService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getDietById(id: string): Observable<IConsultation> {
+  getAppointmentById(id: string): Observable<IConsultation> {
     const url = `${this.baseUrl}/${id}`;
     return this.httpClient.get<IConsultation>(url);
   }
