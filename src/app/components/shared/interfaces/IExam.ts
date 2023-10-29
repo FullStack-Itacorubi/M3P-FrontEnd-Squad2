@@ -1,13 +1,14 @@
-import { IPatient } from "./IPatient";
+import { IPatient } from './IPatient';
 
 export interface IExam {
-    id: number;
-    exerciseName: string;
-    date: string;
-    time: string;
-    exerciseType: string;
-    weeklyAmount: number;
-    description: string;
-    patient: IPatient;
-    systemStatus: boolean;
-  }   
+  id?: number;
+  name: string;
+  date: string;
+  time: string;
+  examType: string;
+  laboratory: string;
+  documentUrl: string;
+  results: string;
+  patient: IPatient;
+  systemStatus: boolean;
+}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient';
-import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
   selector: 'app-record',
@@ -13,13 +12,7 @@ export class RecordsComponent implements OnInit {
   filteredPatients: IPatient[] = []; // Store the filtered patients
   searchTerm = '';
 
-  constructor(private patientService: PatientService,
-    private headerService: ToolbarHeaderService
-  ) {
-    headerService.headerData = {
-      title: 'Exames',
-      icon: 'heroDocumentTextSolid',
-    };}
+  constructor(private patientService: PatientService) {}
 
   ngOnInit() {
     this.loadPatients();
