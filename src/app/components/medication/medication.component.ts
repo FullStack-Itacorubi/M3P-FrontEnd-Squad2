@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
-import { IPatient } from '../shared/interfaces/IPatient'; 
+import { IPatient } from '../shared/interfaces/IPatient';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 @Component({
   selector: 'app-medication',
@@ -83,7 +83,7 @@ export class MedicationComponent {
       this.showSearchResults = false;
     }
   }
-  
+
   assignPatient(patient: IPatientRequest) {
     this.medicationForm.patchValue({
       patientId: patient.id,

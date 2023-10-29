@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
   selector: 'app-homepage',
@@ -106,5 +107,13 @@ export class HomepageComponent {
       "healthplan": "verde"
     }
   ];
+
+  constructor(
+    private headerService: ToolbarHeaderService
+  ) {
+    headerService.headerData = {
+      title: 'Início',
+      icon: 'heroHomeSolid',
+    };}
 
 }
