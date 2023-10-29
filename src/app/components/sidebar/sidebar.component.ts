@@ -27,7 +27,7 @@ export class SidebarComponent {
       text: 'Usuarios',
       icon: 'heroUsersSolid',
       selected: false,
-      route: 'user-registration',
+      route: 'register',
     },
     {
       text: 'Pacientes',
