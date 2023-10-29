@@ -51,7 +51,7 @@ export class SidebarComponent {
       text: 'Exames',
       icon: 'heroDocumentTextSolid',
       selected: false,
-      route: 'records',
+      route: 'exam',
     },
     {
       text: 'Dietas',
@@ -88,7 +88,7 @@ export class SidebarComponent {
 
   check() {
   console.log(this.menuItems);
-  
+
   }
 
   constructor(private authService: AuthService, private router: Router) {}
