@@ -30,16 +30,16 @@ export class SidebarComponent {
       route: 'user-registration',
     },
     {
-      text: 'Medicos',
-      icon: 'jamActivity',
-      selected: false,
-      route: 'doctors',
-    },
-    {
       text: 'Pacientes',
       icon: 'heroUserGroupSolid',
       selected: false,
       route: 'patients',
+    },
+    {
+      text: 'Prontuários',
+      icon: 'heroDocumentTextSolid',
+      selected: false,
+      route: 'records',
     },
     {
       text: 'Consultas',
