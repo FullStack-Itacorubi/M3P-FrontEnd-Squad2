@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient';
+import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
   selector: 'app-patient-registration',
@@ -10,21 +11,48 @@ import { IPatient } from '../shared/interfaces/IPatient';
   styleUrls: ['./patient-registration.component.scss'],
 })
 export class PatientRegistrationComponent {
-  
   newPatientForm: FormGroup;
 
-  constructor(private http: HttpClient, private patientService: PatientService) {
+  constructor(
+    private http: HttpClient,
+    private patientService: PatientService,
+    private headerService: ToolbarHeaderService
+  ) {
+    headerService.headerData = {
+      title: 'Pacientes',
+      icon: 'heroUserGroupSolid',
+    };
     this.newPatientForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(64),
+      ]),
       gender: new FormControl('', [Validators.required]),
       dateOfBirth: new FormControl('', [Validators.required]),
-      cpf: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{11}$')]),
-      rgWithIssuingAuthority: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+      cpf: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]{11}$'),
+      ]),
+      rgWithIssuingAuthority: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(20),
+      ]),
       maritalStatus: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{11}$')]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]{11}$'),
+      ]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      nationality: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]),
-      emergencyContact: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{11}$')]),
+      nationality: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(64),
+      ]),
+      emergencyContact: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]{11}$'),
+      ]),
       allergies: new FormControl(''),
       specificCare: new FormControl(''),
       insurance: new FormControl(''),
@@ -38,7 +66,7 @@ export class PatientRegistrationComponent {
       city: new FormControl('', [Validators.required]),
       state: new FormControl('', [Validators.required]),
       status: new FormControl(''),
-    })
+    });
   }
 
   consultCEP(cep: any, form: NgForm) {
@@ -56,23 +84,22 @@ export class PatientRegistrationComponent {
         alert('CEP não encontrado.');
       }
     }
-    
   }
 
-  fillInDataCEP(data: any, form:any){
+  fillInDataCEP(data: any, form: any) {
     this.newPatientForm.patchValue({
       street: data.logradouro,
       complement: data.complemento,
       district: data.bairro,
       city: data.localidade,
-      state: data.uf
-    })
+      state: data.uf,
+    });
   }
 
   async onSubmit() {
     try {
-      const formData = this.newPatientForm.value; 
-      const patient: IPatient= {
+      const formData = this.newPatientForm.value;
+      const patient: IPatient = {
         name: formData.name,
         gender: formData.gender,
         cpf: formData.cpf,
@@ -86,25 +113,24 @@ export class PatientRegistrationComponent {
         emergencyContact: formData.emergencyContact,
         allergies: formData.allergies,
         specificCare: formData.specificCare,
-        insurance:formData.insurance,
+        insurance: formData.insurance,
         insuranceNumber: formData.insuranceNumber,
         insuranceValidity: formData.insuranceValidity,
         address: {
-            cep: formData.CEP,
-            city: formData.city,
-            state: formData.state,
-            street: formData.street,
-            number: formData.number,
-            complement: formData.complement,
-            district: formData.district,
-            reference: formData.reference
-        }
+          cep: formData.CEP,
+          city: formData.city,
+          state: formData.state,
+          street: formData.street,
+          number: formData.number,
+          complement: formData.complement,
+          district: formData.district,
+          reference: formData.reference,
+        },
       };
-      this.patientService.addPatient(patient)
-      await
-      alert ("cadastrado com suceso")
-    } catch(e){
-      alert("dados de cadastro invalido")
+      this.patientService.addPatient(patient);
+      await alert('cadastrado com suceso');
+    } catch (e) {
+      alert('dados de cadastro invalido');
     }
   }
-}   
+}

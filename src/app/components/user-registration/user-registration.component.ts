@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../shared/interfaces/IUser';
 import { UsersService } from '../shared/services/users.service';
+import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -12,7 +13,11 @@ import { UsersService } from '../shared/services/users.service';
 export class UserRegistrationComponent {
   newUserForm: FormGroup;
 
-  constructor(private http: HttpClient, private userService: UsersService) {
+  constructor(private http: HttpClient, private userService: UsersService,private headerService : ToolbarHeaderService ) {
+    headerService.headerData = {
+      title: 'Usuarios',
+      icon: 'heroUsersSolid'
+}
     this.newUserForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
