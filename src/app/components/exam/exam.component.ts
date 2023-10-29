@@ -1,44 +1,40 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 import { Router } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
-import { IPatient } from '../shared/interfaces/IPatient';
-import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
-  selector: 'app-diet',
-  templateUrl: './diet.component.html',
-  styleUrls: ['./diet.component.scss']
+  selector: 'app-exam',
+  templateUrl: './exam.component.html',
+  styleUrls: ['./exam.component.scss']
 })
-export class DietComponent {
-
-  registerForm: FormGroup;
+export class ExamComponent {
+  examForm: FormGroup;
   isEditMode: boolean = false;
   identifier= 0;
   searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private patientService:PatientService,
-    private headerService : ToolbarHeaderService
-    ){
-
+  constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService,
+    private headerService: ToolbarHeaderService
+    ) {
+    const reg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
     headerService.headerData = {
-      title: 'Dietas',
-      icon: 'heroCakeSolid'
-    }
-
-    this.registerForm = this.formBuilder.group({
-      dietName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-      dietDate: [this.getCurrentDate(), Validators.required],
-      dietTime: [this.getCurrentTime(), Validators.required],
-      dietType: ['', Validators.required],
-      dietDescription: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
-      systemStatus: [true, Validators.required]
+      title: 'Exames',
+      icon: 'heroDocumentTextSolid',
+    };
+    this.examForm = this.formBuilder.group({
+      patientId: [''],
+      examName: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]],
+      examDate: [this.getCurrentDate(), Validators.required],
+      examTime: [this.getCurrentTime(), Validators.required],
+      examType: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(32)]],
+      laboratory: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(32)]],
+      documentUrl: ['', Validators.pattern(reg)],
+      results: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(1024)]],
     });
   }
 
@@ -67,14 +63,14 @@ export class DietComponent {
   }
 
   deleteForm() {
-    this.registerForm.reset;
+    this.examForm.reset;
   }
 
   onSubmit() {
-    if (this.registerForm.valid) {
+    if (this.examForm.valid) {
       const uniqueIdentifier = this.identifier +1;
 
-      alert(`Dieta registrada com sucesso! Identificador único: ${uniqueIdentifier}`);
+      alert(`Exercício registrado com sucesso! Identificador único: ${uniqueIdentifier}`);
       this.router.navigate(['labmedical']);
     } else {
       alert('Existem dados inválidos no formulário. Por favor, corrija-os e tente novamente.');
@@ -96,11 +92,10 @@ export class DietComponent {
   }
 
   assignPatient(patient: IPatientRequest) {
-    this.registerForm.patchValue({
+    this.examForm.patchValue({
       patientId: patient.id,
     });
     this.searchQuery = '';
     this.showSearchResults = false;
   }
-
 }

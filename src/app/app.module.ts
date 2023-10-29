@@ -28,6 +28,7 @@ import { MedicationComponent } from './components/medication/medication.componen
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { CommonModule } from '@angular/common';
 import { PatientRecordComponent } from './components/patient-record/patient-record.component';
+import { ExamComponent } from './components/exam/exam.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { PatientRecordComponent } from './components/patient-record/patient-reco
     RecordsComponent,
     DietComponent, 
     MedicationComponent, UserRegistrationComponent,
-    PatientRecordComponent
+    PatientRecordComponent,
+    ExamComponent
   ],
   imports: [
     BrowserModule,
