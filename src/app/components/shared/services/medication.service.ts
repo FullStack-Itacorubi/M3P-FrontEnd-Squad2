@@ -11,7 +11,7 @@ export class MedicationService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getDietById(id: string): Observable<IMedication> {
+  getMedicationById(id: string): Observable<IMedication> {
     const url = `${this.baseUrl}/${id}`;
     return this.httpClient.get<IMedication>(url);
   }

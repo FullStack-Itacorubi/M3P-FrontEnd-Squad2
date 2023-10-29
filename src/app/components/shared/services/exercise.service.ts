@@ -11,7 +11,7 @@ export class ExerciseService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getDietById(id: string): Observable<IExercise> {
+  getExerciseById(id: string): Observable<IExercise> {
     const url = `${this.baseUrl}/${id}`;
     return this.httpClient.get<IExercise>(url);
   }
