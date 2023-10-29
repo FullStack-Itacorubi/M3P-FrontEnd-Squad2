@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import { Router } from '@angular/router';
 import { IUser } from '../shared/interfaces/IUser';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 import { UserService } from '../shared/services/user.service';
@@ -14,17 +19,19 @@ export class UserRegistrationComponent {
   newUserForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
     private http: HttpClient,
     private userService: UserService,
+    private router: Router,
+    private formBuilder: FormBuilder,
     private headerService: ToolbarHeaderService
   ) {
     headerService.headerData = {
       title: 'Usuarios',
       icon: 'heroUsersSolid',
     };
+
     this.newUserForm = this.formBuilder.group({
-      fullName: [
+      name: [
         '',
         [
           Validators.required,
@@ -32,41 +39,40 @@ export class UserRegistrationComponent {
           Validators.maxLength(64),
         ],
       ],
-      gender: ['', Validators.required],
+      gender: ['', [Validators.required]],
       cpf: [
-        '',
+        '',[
         Validators.required,
-        Validators.pattern('^[0-9]{11}$'),
-      ],
-      phoneNumber: ['', [Validators.required]],
+        Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/),
+      ]],
+      phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      userType: ['', Validators.required],
+      type: ['', [Validators.required]],
+      status: [''],
     });
   }
 
   async onSubmit() {
     try {
-      const formUser = this.newUserForm.value;
-      console.log(formUser);
+      const formData = this.newUserForm.value;
+      console.log(formData);
       const user: IUser = {
-        fullName: formUser.fullName,
-        gender: formUser.gender,
-        cpf: formUser.cpf,
-        type: formUser.userType,
-        phone: formUser.phoneNumber,
-        email: formUser.email,
-        password: formUser.password,
-        systemStatus : true,
-
+        fullName: formData.name,
+        gender: formData.gender,
+        cpf: formData.cpf,
+        type: formData.type,
+        phone: formData.phone,
+        email: formData.email,
+        password: formData.password,
       };
-      await this.userService.registerUser(user);
 
-      alert('Cadastro efetuado com sucesso!');
+      await this.userService.registerUser(user);
+      this.router.navigate(['labmedical/homepage']);
+      alert('cadastrado com suceso');
+
     } catch (e) {
-      alert(
-        'Existem dados inválidos no formulário. Por favor, corrija-os e tente novamente.'
-      );
+      alert('dados de cadastro invalidos');
     }
   }
 }
