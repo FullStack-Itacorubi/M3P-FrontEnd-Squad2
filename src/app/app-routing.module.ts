@@ -30,7 +30,7 @@ const routes: Routes = [
   {
     path: 'labmedical',
     component: BaseLayoutComponent,
-    // canActivateChild: [privateChildGuard],
+    canActivateChild: [privateChildGuard],
     children: [
       {
         path: '',
