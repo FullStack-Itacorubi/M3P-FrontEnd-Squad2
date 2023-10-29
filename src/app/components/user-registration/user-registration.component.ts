@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../shared/interfaces/IUser';
-import { UsersService } from '../shared/services/users.service';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -13,52 +13,60 @@ import { ToolbarHeaderService } from '../shared/services/toolbar-header.service'
 export class UserRegistrationComponent {
   newUserForm: FormGroup;
 
-  constructor(private http: HttpClient, private userService: UsersService,private headerService : ToolbarHeaderService ) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private userService: UserService,
+    private headerService: ToolbarHeaderService
+  ) {
     headerService.headerData = {
       title: 'Usuarios',
-      icon: 'heroUsersSolid'
-}
-    this.newUserForm = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(64),
-      ]),
-      gender: new FormControl('', [Validators.required]),
-      cpf: new FormControl('', [
+      icon: 'heroUsersSolid',
+    };
+    this.newUserForm = this.formBuilder.group({
+      fullName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(64),
+        ],
+      ],
+      gender: ['', Validators.required],
+      cpf: [
+        '',
         Validators.required,
         Validators.pattern('^[0-9]{11}$'),
-      ]),
-      phone: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-9]{11}$'),
-      ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-      type: new FormControl('', [Validators.required]),
-      status: new FormControl(''),
+      ],
+      phoneNumber: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      userType: ['', Validators.required],
     });
   }
 
   async onSubmit() {
     try {
-      const formData = this.newUserForm.value;
+      const formUser = this.newUserForm.value;
+      console.log(formUser);
       const user: IUser = {
-        fullName: formData.name,
-        gender: formData.gender,
-        cpf: formData.cpf,
-        phone: formData.phone,
-        email: formData.email,
-        password: formData.password,
-        type: formData.type,
+        fullName: formUser.fullName,
+        gender: formUser.gender,
+        cpf: formUser.cpf,
+        type: formUser.userType,
+        phone: formUser.phoneNumber,
+        email: formUser.email,
+        password: formUser.password,
+        systemStatus : true,
+
       };
-      this.userService.addUser(user);
-      await alert('cadastrado com suceso');
+      await this.userService.registerUser(user);
+
+      alert('Cadastro efetuado com sucesso!');
     } catch (e) {
-      alert('dados de cadastro invalido');
+      alert(
+        'Existem dados inválidos no formulário. Por favor, corrija-os e tente novamente.'
+      );
     }
   }
 }

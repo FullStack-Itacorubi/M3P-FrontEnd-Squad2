@@ -16,31 +16,31 @@
     (ngSubmit)="onSubmit()"
   >
     <div class="flex flex-col justify-between items-center showRight">
-      <!-- Name -->
+      <!-- FullName -->
       <div class="input-wrapper w-full">
-        <label for="name" class="self-start ms-2">Nome completo</label>
+        <label for="fullFullName" class="self-start ms-2">Nome completo</label>
         <input
           type="text"
           class="self-start w-11/12 p-1 rounded-md block"
-          id="name"
+          id="fullFullName"
           placeholder="Insira o nome do usuário"
-          name="name"
-          formControlName="name"
+          fullFullName="fullFullName"
+          formControlFullName="fullFullName"
         />
         <div
           class="validation"
           *ngIf="
-            newUserForm.get('name')?.touched ||
-            newUserForm.get('name')?.dirty
+            newUserForm.get('fullFullName')?.touched ||
+            newUserForm.get('fullFullName')?.dirty
           "
         >
-          <div *ngIf="newUserForm.get('name')?.hasError('required')">
+          <div *ngIf="newUserForm.get('fullFullName')?.hasError('required')">
             Campo obrigatório
           </div>
-          <div *ngIf="newUserForm.get('name')?.hasError('minlength')">
+          <div *ngIf="newUserForm.get('fullFullName')?.hasError('minlength')">
             Mínimo de 8 caracteres
           </div>
-          <div *ngIf="newUserForm.get('name')?.hasError('maxlength')">
+          <div *ngIf="newUserForm.get('fullFullName')?.hasError('maxlength')">
             Máximo de 64 caracteres
           </div>
         </div>
@@ -52,8 +52,8 @@
         <select
           class="self-start w-11/12 p-1 rounded-md block"
           id="gender"
-          name="gender"
-          formControlName="gender"
+          fullFullName="gender"
+          formControlFullName="gender"
         >
           <option value="" selected>Selecione uma opção</option>
           <option value="female">Feminino</option>
@@ -81,8 +81,8 @@
           class="self-start w-11/12 p-1 rounded-md block"
           id="cpf"
           placeholder="999.999.999-99"
-          name="cpf"
-          formControlName="cpf"
+          fullFullName="cpf"
+          formControlFullName="cpf"
           mask="000.000.000-00"
         />
         <div
@@ -110,8 +110,8 @@
           id="phone"
           placeholder="(99) 9 9999-9999"
           mask="(00) 0 0000-0000"
-          name="phone"
-          formControlName="phone"
+          fullFullName="phone"
+          formControlFullName="phone"
         />
         <div
           class="validation"
@@ -137,8 +137,8 @@
           class="self-start w-11/12 p-1 rounded-md block"
           id="email"
           placeholder="Insira o email"
-          name="email"
-          formControlName="email"
+          fullFullName="email"
+          formControlFullName="email"
         />
         <div
           class="validation"
@@ -164,8 +164,8 @@
           class="self-start w-11/12 p-1 rounded-md block"
           id="password"
           placeholder="Insira a sua senha"
-          name="password"
-          formControlName="password"
+          fullFullName="password"
+          formControlFullName="password"
         />
         <div
           class="validation"
@@ -189,8 +189,8 @@
         <select
           class="self-start w-11/12 p-1 rounded-md block"
           id="type"
-          name="type"
-          formControlName="type"
+          fullFullName="type"
+          formControlFullName="type"
         >
           <option value="" selected>Selecione uma opção</option>
           <option value="doctor">Médico(a)</option>
@@ -216,20 +216,20 @@
         <input
           type="radio"
           class=""
-          id="status"
+          id="statusTrue"
           placeholder=""
-          name="status"
-          value="valid"
-          formControlName="status"
+          fullFullName="status"
+          value="true"
+          formControlFullName="status"
         /><span class="me-10">Válido</span>
         <input
           type="radio"
           class=""
-          id="status"
+          id="statusFalse"
           placeholder=""
-          name="status"
-          value="invalid"
-          formControlName="status"
+          fullFullName="status"
+          value="false"
+          formControlFullName="status"
         /><span>Inválido</span>
       </div>
     </div>
@@ -238,7 +238,7 @@
       type="submit"
       class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
       [disabled]="newUserForm.invalid"
-      routerLink="labmedical/users"
+      routerLink="labmedical/homepage"
     >
       Cadastrar usuário
     </button>

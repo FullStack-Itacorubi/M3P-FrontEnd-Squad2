@@ -27,7 +27,7 @@ export class SidebarComponent {
       text: 'Usuarios',
       icon: 'heroUsersSolid',
       selected: false,
-      route: 'register',
+      route: 'user-registration',
     },
     {
       text: 'Pacientes',
@@ -77,18 +77,15 @@ export class SidebarComponent {
   // }
 
   test(item: any) {
-    this.menuItems = this.menuItems.map(
-      (thisItem) =>
-        (thisItem.text === item.text
-          ? { ...thisItem, selected: true }
-          : { ...thisItem, selected: false }
-          )
+    this.menuItems = this.menuItems.map((thisItem) =>
+      thisItem.text === item.text
+        ? { ...thisItem, selected: true }
+        : { ...thisItem, selected: false }
     );
   }
 
   check() {
-  console.log(this.menuItems);
-
+    console.log(this.menuItems);
   }
 
   constructor(private authService: AuthService, private router: Router) {}
