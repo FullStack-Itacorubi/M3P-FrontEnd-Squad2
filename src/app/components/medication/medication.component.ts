@@ -93,7 +93,7 @@ export class MedicationComponent {
       this.showSearchResults = false;
     }
   }
-  
+
   assignPatient(patient: IPatientRequest) {
     this.medicationForm.patchValue({
       patientId: patient.id,

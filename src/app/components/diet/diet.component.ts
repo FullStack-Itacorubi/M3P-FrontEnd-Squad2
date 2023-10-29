@@ -4,6 +4,7 @@ import {  Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 import { DietService } from '../shared/services/diet.service'; // Import your DietService
+import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
   selector: 'app-diet',
@@ -25,8 +26,15 @@ export class DietComponent {
     private router: Router, 
     private patientService:PatientService,
     private route: ActivatedRoute,
-    private dietService: DietService
-    ) {
+    private dietService: DietService,
+    private headerService : ToolbarHeaderService
+    ){
+
+    headerService.headerData = {
+      title: 'Dietas',
+      icon: 'heroCakeSolid'
+    }
+
     this.registerForm = this.formBuilder.group({
       dietName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       dietDate: [this.getCurrentDate(), Validators.required],
