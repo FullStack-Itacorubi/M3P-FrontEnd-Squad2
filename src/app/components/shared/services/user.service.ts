@@ -15,17 +15,16 @@ export class UserService {
 
   async registerUser(user: IUser) {
     try {
-      console.log(user)
+      console.log(user);
+      user.systemStatus = true;
       await lastValueFrom(this.httpClient.post(this.url, user));
     } catch (e) {
       throw new Error('Erro ao cadastrar usuário');
     }
   }
 
-
   async getUser() {
     this.users = await lastValueFrom(this.httpClient.get<IUser[]>(this.url));
     return this.users;
   }
-
 }

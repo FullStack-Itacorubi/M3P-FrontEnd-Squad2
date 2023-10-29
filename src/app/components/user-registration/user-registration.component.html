@@ -10,37 +10,36 @@
   <hr class="showUp mx-5 border-b border-black/20" />
 
   <form
-    #f="ngForm"
     class="grid grid-cols-2 gap-x-12 mx-auto ms-10 my-8"
     [formGroup]="newUserForm"
     (ngSubmit)="onSubmit()"
   >
     <div class="flex flex-col justify-between items-center showRight">
-      <!-- FullName -->
+      <!-- Name -->
       <div class="input-wrapper w-full">
-        <label for="fullFullName" class="self-start ms-2">Nome completo</label>
+        <label for="name" class="self-start ms-2">Nome completo</label>
         <input
           type="text"
           class="self-start w-11/12 p-1 rounded-md block"
-          id="fullFullName"
+          id="name"
           placeholder="Insira o nome do usuário"
-          fullFullName="fullFullName"
-          formControlFullName="fullFullName"
+          name="name"
+          formControlName="name"
         />
         <div
           class="validation"
           *ngIf="
-            newUserForm.get('fullFullName')?.touched ||
-            newUserForm.get('fullFullName')?.dirty
+            newUserForm.get('name')?.touched ||
+            newUserForm.get('name')?.dirty
           "
         >
-          <div *ngIf="newUserForm.get('fullFullName')?.hasError('required')">
+          <div *ngIf="newUserForm.get('name')?.hasError('required')">
             Campo obrigatório
           </div>
-          <div *ngIf="newUserForm.get('fullFullName')?.hasError('minlength')">
+          <div *ngIf="newUserForm.get('name')?.hasError('minlength')">
             Mínimo de 8 caracteres
           </div>
-          <div *ngIf="newUserForm.get('fullFullName')?.hasError('maxlength')">
+          <div *ngIf="newUserForm.get('name')?.hasError('maxlength')">
             Máximo de 64 caracteres
           </div>
         </div>
@@ -52,13 +51,13 @@
         <select
           class="self-start w-11/12 p-1 rounded-md block"
           id="gender"
-          fullFullName="gender"
-          formControlFullName="gender"
+          name="gender"
+          formControlName="gender"
         >
           <option value="" selected>Selecione uma opção</option>
-          <option value="female">Feminino</option>
-          <option value="male">Masculino</option>
-          <option value="other">Outro</option>
+          <option value="FEMALE">Feminino</option>
+          <option value="MALE">Masculino</option>
+          <option value="OTHER">Outro</option>
         </select>
         <div
           class="validation"
@@ -81,8 +80,9 @@
           class="self-start w-11/12 p-1 rounded-md block"
           id="cpf"
           placeholder="999.999.999-99"
-          fullFullName="cpf"
-          formControlFullName="cpf"
+          name="cpf"
+          formControlName="cpf"
+          [dropSpecialCharacters]="false"
           mask="000.000.000-00"
         />
         <div
@@ -108,10 +108,11 @@
           type="text"
           class="self-start w-11/12 p-1 rounded-md block"
           id="phone"
-          placeholder="(99) 9 9999-9999"
-          mask="(00) 0 0000-0000"
-          fullFullName="phone"
-          formControlFullName="phone"
+          placeholder="(99) 99999-9999"
+          mask="(00) 00000-0000"
+          name="phone"
+          [dropSpecialCharacters]="false"
+          formControlName="phone"
         />
         <div
           class="validation"
@@ -137,8 +138,8 @@
           class="self-start w-11/12 p-1 rounded-md block"
           id="email"
           placeholder="Insira o email"
-          fullFullName="email"
-          formControlFullName="email"
+          name="email"
+          formControlName="email"
         />
         <div
           class="validation"
@@ -164,8 +165,8 @@
           class="self-start w-11/12 p-1 rounded-md block"
           id="password"
           placeholder="Insira a sua senha"
-          fullFullName="password"
-          formControlFullName="password"
+          name="password"
+          formControlName="password"
         />
         <div
           class="validation"
@@ -189,13 +190,13 @@
         <select
           class="self-start w-11/12 p-1 rounded-md block"
           id="type"
-          fullFullName="type"
-          formControlFullName="type"
+          name="type"
+          formControlName="type"
         >
           <option value="" selected>Selecione uma opção</option>
-          <option value="doctor">Médico(a)</option>
-          <option value="administrator">Administrador(a)</option>
-          <option value="nurse">Enfermeiro(a)</option>
+          <option value="DOCTOR">Médico(a)</option>
+          <option value="ADMINISTRATOR">Administrador(a)</option>
+          <option value="NURSE">Enfermeiro(a)</option>
         </select>
         <div
           class="validation"
@@ -216,38 +217,38 @@
         <input
           type="radio"
           class=""
-          id="statusTrue"
+          id="statusValid"
           placeholder=""
-          fullFullName="status"
+          name="status"
           value="true"
-          formControlFullName="status"
+          formControlName="status"
         /><span class="me-10">Válido</span>
         <input
           type="radio"
           class=""
-          id="statusFalse"
+          id="statusInvalid"
           placeholder=""
-          fullFullName="status"
+          name="status"
           value="false"
-          formControlFullName="status"
+          formControlName="status"
         /><span>Inválido</span>
       </div>
     </div>
-
+    <!-- <div class="button-wapper"> -->
     <button
       type="submit"
       class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
       [disabled]="newUserForm.invalid"
-      routerLink="labmedical/homepage"
-    >
+      >
       Cadastrar usuário
     </button>
+    <!-- </div> -->
   </form>
 
   <button
     type="button"
     class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
-    routerLink="/labmedical/users"
+    routerLink="/labmedical/homepage"
   >
     Voltar
   </button>
