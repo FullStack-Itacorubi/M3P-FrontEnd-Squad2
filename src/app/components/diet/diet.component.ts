@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {  Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
-import { IPatient } from '../shared/interfaces/IPatient';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
+import { DietService } from '../shared/services/diet.service'; // Import your DietService
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
@@ -19,11 +19,14 @@ export class DietComponent {
   searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
+  dietId: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
+    private router: Router, 
     private patientService:PatientService,
+    private route: ActivatedRoute,
+    private dietService: DietService,
     private headerService : ToolbarHeaderService
     ){
 
@@ -39,6 +42,16 @@ export class DietComponent {
       dietType: ['', Validators.required],
       dietDescription: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
       systemStatus: [true, Validators.required]
+    });
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.dietId = params['id'];
+        this.loadDietData(this.dietId);
+        this.isEditMode = true;
+      }
     });
   }
 
@@ -102,5 +115,15 @@ export class DietComponent {
     this.searchQuery = '';
     this.showSearchResults = false;
   }
-
+  loadDietData(dietId: string) {
+    this.dietService.getDietById(dietId).subscribe((diet) => {
+      this.registerForm.patchValue({
+        dietName: diet.dietName,
+        dietDate: diet.date,
+        dietTime: diet.time,
+        dietType: diet.dietType,
+        dietDescription: diet.description,
+      });
+    });
+  }
 }

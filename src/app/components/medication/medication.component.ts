@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
-import { IPatient } from '../shared/interfaces/IPatient';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
+import { MedicationService } from '../shared/services/medication.service';
 @Component({
   selector: 'app-medication',
   templateUrl: './medication.component.html',
@@ -16,8 +16,8 @@ export class MedicationComponent {
   searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
-
-  constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
+  medicationId: string = '';
+  constructor(private medicationService:MedicationService,private route: ActivatedRoute,private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
     this.medicationForm = this.formBuilder.group({
       patientId: [''],
       patientSearchControl: [''],
@@ -29,6 +29,16 @@ export class MedicationComponent {
       medicationUnit: ['', Validators.required],
       medicationObservations: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
       medicationStatus: [true, Validators.required],
+    });
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.medicationId = params['id'];
+        this.loadMedicationData(this.medicationId);
+        this.isEditMode = true;
+      }
     });
   }
 
@@ -90,5 +100,18 @@ export class MedicationComponent {
     });
     this.searchQuery = '';
     this.showSearchResults = false;
+  }
+  loadMedicationData(MedicationId: string) {
+    this.medicationService.getMedicationById(MedicationId).subscribe((Medication) => {
+      this.medicationForm.patchValue({
+        medicationName: Medication.medicationName,
+        medicationDate: Medication.medicationDate,
+        medicationTime: Medication.medicationTime,
+        medicationType: Medication.medicationType,
+        medicationQuantity: Medication.quantity,
+        medicationUnit: Medication.unit,
+
+      });
+    });
   }
 }

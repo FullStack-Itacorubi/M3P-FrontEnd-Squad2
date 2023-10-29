@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
-import { IPatient } from '../shared/interfaces/IPatient';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
+import { ExerciseService } from '../shared/services/exercise.service';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 @Component({
   selector: 'app-exercise',
@@ -17,9 +17,15 @@ export class ExerciseComponent {
   searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
+  ExerciseId: string = '';
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService,
-    private headerService: ToolbarHeaderService
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private patientService:PatientService,
+    private route: ActivatedRoute,
+    private exerciseService: ExerciseService,
+    private headerService: ToolbarHeaderService    
   ) {
     headerService.headerData = {
       title: 'Exercícios',
@@ -33,6 +39,16 @@ export class ExerciseComponent {
       exerciseType: ['', Validators.required],
       exerciseFrequency: ['', [Validators.required, Validators.min(0.01)]],
       exerciseDescription: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
+    });
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.ExerciseId = params['id'];
+        this.loadExerciseData(this.ExerciseId);
+        this.isEditMode = true;
+      }
     });
   }
 
@@ -95,5 +111,17 @@ export class ExerciseComponent {
     });
     this.searchQuery = '';
     this.showSearchResults = false;
+  }
+  loadExerciseData(exerciseId: string) {
+    this.exerciseService.getExerciseById(exerciseId).subscribe((exercise) => {
+      this.registerForm.patchValue({
+        exerciseName: exercise.exerciseName,
+        exerciseDate: exercise.date,
+        exerciseTime: exercise.time,
+        exerciseType: exercise.exerciseType,
+        exerciseFrequency: exercise.weeklyAmount,
+        exerciseDescription: exercise.description,
+      });
+    });
   }
 }

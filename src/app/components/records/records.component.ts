@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient';
+import { Router } from '@angular/router';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
@@ -13,9 +14,12 @@ export class RecordsComponent implements OnInit {
   filteredPatients: IPatient[] = []; // Store the filtered patients
   searchTerm = '';
 
+
+
   constructor(
     private patientService: PatientService,
-    private headerService: ToolbarHeaderService
+    private headerService: ToolbarHeaderService,
+     private router:Router
   ) {
     headerService.headerData = {
       title: 'Prontuário',
@@ -40,5 +44,8 @@ export class RecordsComponent implements OnInit {
     this.filteredPatients = this.patients.filter((patient) =>
       patient.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+  viewPatient(patient: any) {
+    this.router.navigate(['labmedical/patient-record', patient['id']]);
   }
 }
