@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
+import { IPatient } from '../shared/interfaces/IPatient';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 import { MedicationService } from '../shared/services/medication.service';
 @Component({
@@ -13,10 +14,13 @@ export class MedicationComponent {
   medicationForm: FormGroup;
   isEditMode: boolean = false;
   identifier = 0;
-  searchResults: IPatientRequest[] = [];
+  searchResults: IPatient[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
   medicationId: string = '';
+  patients: IPatient[] = [];
+
+
   constructor(private medicationService:MedicationService,private route: ActivatedRoute,private formBuilder: FormBuilder, private router: Router, private patientService:PatientService) {
     this.medicationForm = this.formBuilder.group({
       patientId: [''],
@@ -39,9 +43,15 @@ export class MedicationComponent {
         this.loadMedicationData(this.medicationId);
         this.isEditMode = true;
       }
+      this.loadPatients()
     });
   }
 
+  loadPatients() {
+    this.patientService.getPatients().subscribe((patients) => {
+      this.patients = patients;
+    });
+  }
   getCurrentDate(): string {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -84,17 +94,17 @@ export class MedicationComponent {
   }
   searchPatients(query: string) {
     if (query && query.length >= 3) {
-      this.patientService.getPatientsByName(query).subscribe((patients) => {
-        this.searchResults = patients;
-        this.showSearchResults = true;
-      });
+      this.searchResults = this.patients.filter((patient) =>
+        patient.name.toLowerCase().includes(query.toLowerCase())
+      );
+      this.showSearchResults = true;
     } else {
       this.searchResults = [];
       this.showSearchResults = false;
     }
   }
 
-  assignPatient(patient: IPatientRequest) {
+  assignPatient(patient: IPatient) {
     this.medicationForm.patchValue({
       patientId: patient.id,
     });

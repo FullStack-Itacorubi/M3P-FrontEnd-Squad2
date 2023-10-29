@@ -4,6 +4,7 @@ import { Router, ActivatedRoute  } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { AppointmentService } from '../shared/services/appointment.service'; 
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
+import {IPatient} from '../shared/interfaces/IPatient'
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
 @Component({
@@ -14,10 +15,12 @@ import { ToolbarHeaderService } from '../shared/services/toolbar-header.service'
 export class AppointmentComponent {
   registerForm: FormGroup;
   isEditMode: boolean = false;
-  searchResults: IPatientRequest[] = [];
+  searchResults: IPatient[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
   apointmentId: string ='';
+  patients: IPatient[] = [];
+  identifier: number=0;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -66,6 +69,12 @@ export class AppointmentComponent {
         this.loadappointmentData(this.apointmentId);
         this.isEditMode = true;
       }
+      this.loadPatients();
+    });
+  }
+  loadPatients() {
+    this.patientService.getPatients().subscribe((patients) => {
+      this.patients = patients;
     });
   }
 
@@ -97,7 +106,7 @@ export class AppointmentComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const uniqueIdentifier = 'your-unique-identifier'; // Implement your own logic here
+      const uniqueIdentifier = this.identifier+1;
 
       alert(
         `Consulta registrada com sucesso! Identificador único: ${uniqueIdentifier}`
@@ -113,17 +122,17 @@ export class AppointmentComponent {
   }
   searchPatients(query: string) {
     if (query && query.length >= 3) {
-      this.patientService.getPatientsByName(query).subscribe((patients) => {
-        this.searchResults = patients;
-        this.showSearchResults = true;
-      });
+      this.searchResults = this.patients.filter((patient) =>
+        patient.name.toLowerCase().includes(query.toLowerCase())
+      );
+      this.showSearchResults = true;
     } else {
       this.searchResults = [];
       this.showSearchResults = false;
     }
   }
 
-  assignPatient(patient: IPatientRequest) {
+  assignPatient(patient: IPatient) {
     this.registerForm.patchValue({
       patientId: patient.id,
     });

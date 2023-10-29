@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
+import { IPatient } from '../shared/interfaces/IPatient';
 import { ExerciseService } from '../shared/services/exercise.service';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 @Component({
@@ -14,10 +15,12 @@ export class ExerciseComponent {
   registerForm: FormGroup;
   isEditMode: boolean = false;
   identifier= 0;
-  searchResults: IPatientRequest[] = [];
+  searchResults: IPatient[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
   ExerciseId: string = '';
+  patients: IPatient[] = [];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,7 +53,15 @@ export class ExerciseComponent {
         this.isEditMode = true;
       }
     });
+    this.loadPatients();
   }
+
+  loadPatients() {
+    this.patientService.getPatients().subscribe((patients) => {
+      this.patients = patients;
+    });
+  }
+
 
   getCurrentDate(): string {
     const today = new Date();
@@ -95,17 +106,17 @@ export class ExerciseComponent {
 
   searchPatients(query: string) {
     if (query && query.length >= 3) {
-      this.patientService.getPatientsByName(query).subscribe((patients) => {
-        this.searchResults = patients;
-        this.showSearchResults = true;
-      });
+      this.searchResults = this.patients.filter((patient) =>
+        patient.name.toLowerCase().includes(query.toLowerCase())
+      );
+      this.showSearchResults = true;
     } else {
       this.searchResults = [];
       this.showSearchResults = false;
     }
   }
 
-  assignPatient(patient: IPatientRequest) {
+  assignPatient(patient: IPatient) {
     this.registerForm.patchValue({
       patientId: patient.id,
     });

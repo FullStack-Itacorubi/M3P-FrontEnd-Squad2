@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
+import { IPatient } from '../shared/interfaces/IPatient';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
@@ -14,10 +15,11 @@ export class ExamComponent {
   examForm: FormGroup;
   isEditMode: boolean = false;
   identifier= 0;
-  searchResults: IPatientRequest[] = [];
+  searchResults: IPatient[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
   examId: string = '';
+  patients: IPatient[] = [];
 
   constructor(private examService:ExamService,private route:ActivatedRoute,private formBuilder: FormBuilder, private router: Router, private patientService:PatientService,
     private headerService: ToolbarHeaderService
@@ -46,6 +48,12 @@ export class ExamComponent {
         this.loadExamData(this.examId);
         this.isEditMode = true;
       }
+    });
+    this.loadPatients();
+  }
+  loadPatients() {
+    this.patientService.getPatients().subscribe((patients) => {
+      this.patients = patients;
     });
   }
 
@@ -92,17 +100,17 @@ export class ExamComponent {
 
   searchPatients(query: string) {
     if (query && query.length >= 3) {
-      this.patientService.getPatientsByName(query).subscribe((patients) => {
-        this.searchResults = patients;
-        this.showSearchResults = true;
-      });
+      this.searchResults = this.patients.filter((patient) =>
+        patient.name.toLowerCase().includes(query.toLowerCase())
+      );
+      this.showSearchResults = true;
     } else {
       this.searchResults = [];
       this.showSearchResults = false;
     }
   }
 
-  assignPatient(patient: IPatientRequest) {
+  assignPatient(patient: IPatient) {
     this.examForm.patchValue({
       patientId: patient.id,
     });
