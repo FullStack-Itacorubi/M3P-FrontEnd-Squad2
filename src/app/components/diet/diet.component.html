@@ -1,5 +1,5 @@
 <section class="register-page h-screen flex flex-row items-center justify-center">
-  <div class="h-screen w-3/5 flex flex-row items-center justify-center shadow-2xl shadow-stone-700 rounded-3xl">
+  <div class="h-screen w-full flex flex-row items-center justify-center shadow-2xl shadow-stone-700 rounded-3xl">
     <div class="bg-zinc-800 w-2/5 h-full">
       <div class="search-bar">
         <input
@@ -7,26 +7,25 @@
           class="w-3/4 mx-7 my-3 px-3 py-1 w-2/5 rounded shadow-xl text-black"
           type="text"
           placeholder="Search Patients"
+          [(ngModel)]="searchQuery"
           (input)="searchPatients(searchInput.value)"
         />
 
-        <ul *ngIf="showSearchResults" class="bg-white shadow-md rounded-lg p-2 mt-2 ">
-          <li *ngFor="let patient of searchResults" (click)="assignPatient(patient)" class="p-2 hover:bg-gray-100 cursor-pointer ">
+        <ul *ngIf="showSearchResults" class="bg-white shadow-md rounded-lg p-2 mt-2">
+          <li *ngFor="let patient of searchResults" (click)="assignPatient(patient)" class="p-2 hover:bg-gray-100 cursor-pointer">
             {{ patient.name }} - {{ patient.email }}
           </li>
         </ul>
-
       </div>
     </div>
-    <div class="bg-zinc-800 w-2/5 h-full"></div>
 
     <div class="flex flex-col items-center justify-around w-3/5 h-full ps-5 bg-zinc-400">
       <div class="w-3/4 text-white">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-          <!-- Nome da Dieta -->
+          <!-- Nome da Série de Exercícios -->
           <div class="input-wrapper">
-            <label class="group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
+            <label class="hover:bg-zinc-800 group mb-3 flex flex-col justify-evenly items-start w-full h-14 bg-zinc-500 rounded-md hover-bg-zinc-800 focus-within:last:hidden transition-all duration-500">
               <span class="ms-2 transition-all duration-500 group-focus-within:opacity-0">Nome da Dieta:</span>
               <input class="ms-2 w-full h-full bg-transparent outline-none transition-all duration-1000 group-focus-within:-translate-y-3" type="text" name="dietName" id="dietName" formControlName="dietName" placeholder="Digite o nome da dieta" />
             </label>
