@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute  } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
-import { IPatient } from '../shared/interfaces/IPatient'; // Update 'path-to-ipatient' to the actual path
+import { AppointmentService } from '../shared/services/appointment.service'; 
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 
@@ -17,12 +17,14 @@ export class AppointmentComponent {
   searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
-
+  apointmentId: string ='';
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private patientService: PatientService,
-    private headerService: ToolbarHeaderService
+    private headerService: ToolbarHeaderService,
+    private route:ActivatedRoute,
+    private appointmentService:AppointmentService
   ) {
     headerService.headerData = {
       title: 'Consultas',
@@ -54,6 +56,16 @@ export class AppointmentComponent {
         [Validators.minLength(16), Validators.maxLength(256)],
       ],
       systemStatus: [true, Validators.required],
+    });
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.apointmentId = params['id'];
+        this.loadappointmentData(this.apointmentId);
+        this.isEditMode = true;
+      }
     });
   }
 
@@ -117,5 +129,17 @@ export class AppointmentComponent {
     });
     this.searchQuery = '';
     this.showSearchResults = false;
+  }
+  loadappointmentData(appointmentId: string) {
+    this.appointmentService.getAppointmentById(appointmentId).subscribe((appointment) => {
+      this.registerForm.patchValue({
+        appointmentReason: appointment.reason,
+        appointmentDate: appointment.consultationDate,
+        appointmentTime: appointment.consultationTime,
+        problemDescription: appointment.problemDescription,
+        prescribedMedication: appointment.medicationPrescribed,
+        dosageAndPrecautions:appointment.dosageAndPrecautions
+      });
+    });
   }
 }

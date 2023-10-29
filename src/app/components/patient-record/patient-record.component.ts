@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IPatient } from '../shared/interfaces/IPatient';
 import { PatientService } from '../shared/services/patient.service';
 import { Router } from '@angular/router';
+import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
 @Component({
   selector: 'app-patient-record',
   templateUrl: './patient-record.component.html',
@@ -18,8 +19,14 @@ export class PatientRecordComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private patientService: PatientService,
-    private router:Router
-  ) {}
+    private router:Router,
+    private headerService : ToolbarHeaderService
+    ){
+
+    headerService.headerData = {
+      title: `Registros do Paciente ${(this.patient)? this.patient.name : ""}`,
+      icon: 'heroClipboardDocumentList'
+    }}
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -47,18 +54,18 @@ export class PatientRecordComponent implements OnInit {
     return list.sort((a, b) => new Date(a.consultationDate).getTime() - new Date(b.consultationDate).getTime());
   }
   editAppointment(appointment: any) {
-    this.router.navigate(['labmedical/appointment', 'edit', appointment['id']]);
+    this.router.navigate(['labmedical/appointment', appointment['id']]);
   }
   editExam(exam: any) {
-    this.router.navigate(['labmedical/exam', 'edit', exam['id']]);
+    this.router.navigate(['labmedical/exam', exam['id']]);
   }
   editMedication(medication: any) {
-    this.router.navigate(['labmedical/medication', 'edit', medication['id']]);
+    this.router.navigate(['labmedical/medication', medication['id']]);
   }
   editDiet(diet: any) {
-    this.router.navigate(['labmedical/diet', 'edit', diet['id']]);
+    this.router.navigate(['labmedical/diet', diet['id']]);
   }
   editExercise(exercise: any) {
-    this.router.navigate(['labmedical/exercise', 'edit', exercise['id']]);
+    this.router.navigate(['labmedical/exercise', exercise['id']]);
   }
 }

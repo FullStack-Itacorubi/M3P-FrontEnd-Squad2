@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PatientService } from '../shared/services/patient.service';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
-
+import { ExamService } from '../shared/services/exam.service';
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -17,8 +17,9 @@ export class ExamComponent {
   searchResults: IPatientRequest[] = [];
   showSearchResults: boolean = false;
   searchQuery: string = '';
+  examId: string = '';
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private patientService:PatientService,
+  constructor(private examService:ExamService,private route:ActivatedRoute,private formBuilder: FormBuilder, private router: Router, private patientService:PatientService,
     private headerService: ToolbarHeaderService
     ) {
     const reg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
@@ -35,6 +36,16 @@ export class ExamComponent {
       laboratory: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(32)]],
       documentUrl: ['', Validators.pattern(reg)],
       results: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(1024)]],
+    });
+  }
+  
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.examId = params['id'];
+        this.loadExamData(this.examId);
+        this.isEditMode = true;
+      }
     });
   }
 
@@ -97,5 +108,19 @@ export class ExamComponent {
     });
     this.searchQuery = '';
     this.showSearchResults = false;
+  }
+
+  loadExamData(examId: string) {
+    this.examService.getExamById(examId).subscribe((exam) => {
+      this.examForm.patchValue({
+        examName: exam.name,
+        examDate: exam.date,
+        examTime: exam.time,
+        examType: exam.examType,
+        laboratory: exam.laboratory,
+        documentURL:exam.documentUrl,
+        results:exam.results
+      });
+    });
   }
 }
