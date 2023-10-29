@@ -15,15 +15,17 @@ export class RecordsComponent implements OnInit {
   searchTerm = '';
 
 
+
   constructor(
     private patientService: PatientService,
     private headerService: ToolbarHeaderService,
      private router:Router
   ) {
     headerService.headerData = {
-      title: 'Exames',
-      icon: 'heroDocumentTextSolid',
-    };}
+      title: 'Prontuário',
+      icon: 'heroClipboardDocumentList',
+    };
+  }
 
   ngOnInit() {
     this.loadPatients();
@@ -39,7 +41,7 @@ export class RecordsComponent implements OnInit {
 
   onSearchInputChange() {
     console.log(this.filteredPatients);
-    this.filteredPatients = this.patients.filter(patient =>
+    this.filteredPatients = this.patients.filter((patient) =>
       patient.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }

@@ -38,7 +38,7 @@ export class ExamComponent {
       results: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(1024)]],
     });
   }
-
+  
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id']) {
@@ -109,6 +109,7 @@ export class ExamComponent {
     this.searchQuery = '';
     this.showSearchResults = false;
   }
+
   loadExamData(examId: string) {
     this.examService.getExamById(examId).subscribe((exam) => {
       this.examForm.patchValue({
