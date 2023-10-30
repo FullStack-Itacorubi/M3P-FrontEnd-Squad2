@@ -33,7 +33,14 @@ export class PatientService {
     }
 
     async addPatient(patient: IPatient) {
+      try{
+        console.log(patient);
+        patient.systemStatus = true;
         return lastValueFrom(this.http.post<IPatient>(this.apiUrl, patient));
+
+      }catch(e) {
+        throw new Error('Erro ao cadastrar paciente')
+      }
     }
 
     updatePatient(patient: IPatientRequest): Observable<IPatient> {
@@ -49,5 +56,5 @@ export class PatientService {
         const url = `${this.apiUrl}?name_like=${name}`;
         return this.http.get<IPatientRequest[]>(url);
       }
-      
+
 }
