@@ -4,6 +4,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { PatientService } from '../shared/services/patient.service';
 import { IPatient } from '../shared/interfaces/IPatient';
 import { ToolbarHeaderService } from '../shared/services/toolbar-header.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-registration',
@@ -16,6 +17,7 @@ export class PatientRegistrationComponent {
   constructor(
     private http: HttpClient,
     private patientService: PatientService,
+    private router: Router,
     private headerService: ToolbarHeaderService
   ) {
     headerService.headerData = {
@@ -32,7 +34,7 @@ export class PatientRegistrationComponent {
       dateOfBirth: new FormControl('', [Validators.required]),
       cpf: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[0-9]{11}$'),
+        Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/),
       ]),
       rgWithIssuingAuthority: new FormControl('', [
         Validators.required,
@@ -41,7 +43,6 @@ export class PatientRegistrationComponent {
       maritalStatus: new FormControl('', [Validators.required]),
       phone: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[0-9]{11}$'),
       ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       nationality: new FormControl('', [
@@ -51,7 +52,6 @@ export class PatientRegistrationComponent {
       ]),
       emergencyContact: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[0-9]{11}$'),
       ]),
       allergies: new FormControl(''),
       specificCare: new FormControl(''),
@@ -105,10 +105,9 @@ export class PatientRegistrationComponent {
         cpf: formData.cpf,
         phone: formData.phone,
         email: formData.email,
-        nationality: formData.nationality,
-        status: formData.status,
         dateOfBirth: formData.dateOfBirth,
         rgWithIssuingAuthority: formData.rgWithIssuingAuthority,
+        status: formData.status,
         maritalStatus: formData.maritalStatus,
         emergencyContact: formData.emergencyContact,
         allergies: formData.allergies,
@@ -117,7 +116,7 @@ export class PatientRegistrationComponent {
         insuranceNumber: formData.insuranceNumber,
         insuranceValidity: formData.insuranceValidity,
         address: {
-          cep: formData.CEP,
+          cep: formData.cep,
           city: formData.city,
           state: formData.state,
           street: formData.street,
@@ -128,6 +127,7 @@ export class PatientRegistrationComponent {
         },
       };
       this.patientService.addPatient(patient);
+      this.router.navigate(['lambedical/homepage'])
       await alert('cadastrado com suceso');
     } catch (e) {
       alert('dados de cadastro invalido');

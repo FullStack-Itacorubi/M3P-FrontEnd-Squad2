@@ -56,9 +56,9 @@
           formControlName="gender"
         >
           <option value="" selected>Selecione uma opção</option>
-          <option value="female">Feminino</option>
-          <option value="male">Masculino</option>
-          <option value="other">Outro</option>
+          <option value="FEMALE">Feminino</option>
+          <option value="MALE">Masculino</option>
+          <option value="OTHER">Outro</option>
         </select>
         <div
           class="validation"
@@ -109,6 +109,7 @@
           placeholder="999.999.999-99"
           name="cpf"
           formControlName="cpf"
+          [dropSpecialCharacters]="false"
           mask="000.000.000-00"
         />
         <div
@@ -163,11 +164,10 @@
           formControlName="maritalStatus"
         >
           <option value="" selected>Selecione uma opção</option>
-          <option value="married">Casado(a)</option>
-          <option value="divorced">Divorciado(a)</option>
-          <option value="separated">Separado(a)</option>
-          <option value="single">Solteiro(a)</option>
-          <option value="widowed">Viúvo(a)</option>
+          <option value="MARRIED">Casado(a)</option>
+          <option value="DIVORCED">Divorciado(a)</option>
+          <option value="SINGLE">Solteiro(a)</option>
+          <option value="WIDOWED">Viúvo(a)</option>
         </select>
         <div
           class="validation"
@@ -191,9 +191,10 @@
           type="text"
           class="self-start w-11/12 p-1 rounded-md block"
           id="phone"
-          placeholder="(99) 9 9999-9999"
-          mask="(00) 0 0000-0000"
+          placeholder="(99) 99999-9999"
+          mask="(00) 00000-0000"
           name="phone"
+          [dropSpecialCharacters]="false"
           formControlName="phone"
         />
         <div
@@ -269,13 +270,14 @@
           >Contato de emergência</label
         >
         <input
-          type="text"
-          class="self-start w-11/12 p-1 rounded-md block"
-          id="emergencyContact"
-          placeholder="(99) 9 9999-9999"
-          mask="(00) 0 0000-0000"
-          name="emergencyContact"
-          formControlName="emergencyContact"
+        type="text"
+        class="self-start w-11/12 p-1 rounded-md block"
+        id="emergencyContact"
+        placeholder="(99) 99999-9999"
+        mask="(00) 00000-0000"
+        name="emergencyContact"
+        [dropSpecialCharacters]="false"
+        formControlName="emergencyContact"
         />
         <div
           class="validation"
@@ -361,12 +363,12 @@
           >Validade do convênio</label
         >
         <input
-          type="text"
-          class="self-start w-11/12 p-1 rounded-md block"
-          id="insuranceValidity"
-          placeholder=""
-          name="insuranceValidity"
-          formControlName="insuranceValidity"
+        type="date"
+        class="self-start w-11/12 p-1 rounded-md block"
+        id="insuranceValidity"
+        placeholder="dd/mm/aaaa"
+        name="insuranceValidity"
+        formControlName="insuranceValidity"
         />
       </div>
 
@@ -379,8 +381,9 @@
           class="self-start w-11/12 p-1 rounded-md block"
           #cep
           formControlName="cep"
-          mask="00.000-000"
+          mask="00000-000"
           (blur)="consultCEP(cep.value, f.value)"
+          [dropSpecialCharacters]="false"
         />
         <div
           class="validation"
@@ -420,6 +423,19 @@
             Campo obrigatório
           </div>
         </div>
+      </div>
+
+      <!-- Number -->
+      <div class="input-wrapper w-full">
+        <label for="number" class="self-start ms-2">Número</label>
+        <input
+          type="text"
+          class="self-start w-11/12 p-1 rounded-md block"
+          id="number"
+          placeholder=""
+          name="number"
+          formControlName="number"
+        />
       </div>
 
       <!-- Complement -->
@@ -513,19 +529,19 @@
         <input
           type="radio"
           class=""
-          id="status"
+          id="statusTrue"
           placeholder=""
           name="status"
-          value="valid"
+          value="true"
           formControlName="status"
         /><span class="me-10">Válido</span>
         <input
           type="radio"
           class=""
-          id="status"
+          id="statusFalse"
           placeholder=""
           name="status"
-          value="invalid"
+          value="false"
           formControlName="status"
         /><span>Inválido</span>
       </div>
@@ -534,9 +550,8 @@
     <button
       type="submit"
       class="text-white w-72 col-span-2 mx-auto my-16 p-2 bg-zinc-600 rounded-md"
-      [disabled]="newPatientForm.invalid"
-      routerLink="labmedical/patients"
-    >
+      >
+      <!-- [disabled]="newPatientForm.invalid" -->
       Cadastrar paciente
     </button>
   </form>
