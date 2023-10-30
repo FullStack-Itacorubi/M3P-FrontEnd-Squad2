@@ -8,7 +8,8 @@ import { IUserRequest } from '../interfaces/IUserRequest';
   providedIn: 'root',
 })
 export class UsersService {
-  private usersUrl = 'http://localhost:8080/api/usuarios';
+  private usersUrl = 'http://localhost:3000/users';
+  // private usersUrl = 'http://localhost:8080/api/usuarios';
   constructor(private http: HttpClient) {}
   getUsers(): Observable<IUserRequest[]> {
     return this.http.get<IUserRequest[]>(this.usersUrl);
@@ -16,6 +17,11 @@ export class UsersService {
   getUserById(userId: number): Observable<IUserRequest> {
     const userByIdUrl = `${this.usersUrl}/${userId}`;
     return this.http.get<IUserRequest>(userByIdUrl);
+  }
+
+  getUsersByName(name: string): Observable<IUserRequest[]> {
+    const url = `${this.usersUrl}?name_like=${name}`;
+    return this.http.get<IUserRequest[]>(url);
   }
 
   async addUser(user: IUser) {

@@ -97,9 +97,11 @@
     <div>
       <input
         id="filterUsers"
+        #userSearchInput
         class="ms-7 m-3 px-1 w-2/5 rounded shadow-xl"
         type="text"
         placeholder="Buscar um usuario..."
+        (input)="searchUsers(userSearchInput.value)"
       />
     </div>
     <div class="mx-4 mt-2 mb-6">
@@ -152,10 +154,11 @@
     <div>
       <input
         id="filterpatients"
+        #patientSearchInput
         class="ms-7 m-3 px-1 w-2/5 rounded shadow-xl"
         type="text"
         placeholder="Buscar um paciente..."
-        (input)="patientsFilter()"
+        (input)="searchPatients(patientSearchInput.value)"
       />
     </div>
     <div

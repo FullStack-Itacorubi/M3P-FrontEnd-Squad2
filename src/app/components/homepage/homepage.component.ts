@@ -6,11 +6,13 @@ import { PatientService } from '../shared/services/patient.service';
 import { IPatientRequest } from '../shared/interfaces/IPatientRequest';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
+import { IUserRequest } from '../shared/interfaces/IUserRequest';
+import { UsersService } from '../shared/services/users.service';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
 
@@ -21,49 +23,76 @@ export class HomepageComponent implements OnInit {
     medications: 0,
     diets: 0,
     exercises: 0,
-  }
+  };
 
-  type? = ''
+  type? = '';
   admin: boolean = false;
 
-  users: IUser[] = []
+  users: IUserRequest[] = [];
+  searchUsersResults: IUserRequest[] = [];
 
   patients: IPatientRequest[] = [];
+  searchPatientsResults: IPatientRequest[] = [];
 
-  constructor(private userService: UserService, private patientsService: PatientService, private authService: AuthService, private router: Router) {}
+  constructor(
+    private usersService: UsersService,
+    private patientService: PatientService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
-    this.users = await this.userService.getUser();
-    this.loadPatients();  
+    this.loadUsers();
+    this.loadPatients();
     const infoUser = this.authService.getUserLogOn();
-    this.type = infoUser?.sliceType
+    this.type = infoUser?.sliceType;
     if (this.type === 'administrator') {
       this.admin = true;
     }
   }
 
+  loadUsers() {
+    this.usersService.getUsers().subscribe((data) => {
+      this.users = data;
+      this.data.patients = data.length;
+    });
+  }
+  
   loadPatients() {
-    this.patientsService.getPatients().subscribe((data) => {
-      this.patients = data;     
-      this.data.patients = data.length
+    this.patientService.getPatients().subscribe((data) => {
+      this.patients = data;
+      this.data.patients = data.length;
     });
   }
 
   patientCard(id: number) {
-    this.patientsService.getPatientById(id).subscribe((data) => {
+    this.patientService.getPatientById(id).subscribe((data) => {
       console.log(data.id);
       // FALTA COMPONENTE DE PACIENTE PARA O RESTANTE FUNCIONAR:
-      // this.router.navigate(['/labmedical/patient/' + data.id]); 
-    });    
+      this.router.navigate(['/labmedical/patient/' + data.id]);
+    });
   }
 
-  
-  patientsFilter(){
-    const input = document.getElementById('filterpatients') as HTMLInputElement;
-    if (this.patients === undefined) return;
-    console.log(input.value);
-    this.patientsService.patientFilter(input.value, this.patients);
-    
+  searchUsers(query: string) {
+    if (query) {
+      this.usersService.getUsersByName(query).subscribe((users) => {
+        this.searchUsersResults = users;
+        this.users = users;
+      });
+    } else {
+      this.searchUsersResults = [];
+    }
   }
 
+
+  searchPatients(query: string) {
+    if (query) {
+      this.patientService.getPatientsByName(query).subscribe((patients) => {
+        this.searchPatientsResults = patients;
+        this.patients = patients;
+      });
+    } else {
+      this.searchPatientsResults = [];
+    }
+  }
 }
